@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { trustBadges } from "@/lib/data";
-import IndySkyline from "./IndySkyline";
 
 export default function InstitutionalHero() {
   return (
@@ -45,8 +45,18 @@ export default function InstitutionalHero() {
         </dl>
       </div>
 
-      <div className="relative mt-14 h-[170px] w-full text-in-ink/85 sm:h-[220px]">
-        <IndySkyline className="absolute inset-x-0 bottom-0 h-full w-full" />
+      <div className="relative mt-14 h-[240px] w-full sm:h-[340px] lg:h-[420px]">
+        <Image
+          src="/images/indianapolis-skyline.jpg"
+          alt="Downtown Indianapolis skyline at dusk, framed by the Indiana World War Memorial"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-in-bg to-transparent sm:h-28"
+          aria-hidden="true"
+        />
         <div className="absolute inset-x-0 bottom-0 h-px bg-in-ink" aria-hidden="true" />
       </div>
     </section>

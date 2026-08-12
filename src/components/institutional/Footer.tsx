@@ -1,4 +1,4 @@
-import IndySkyline from "./IndySkyline";
+import Image from "next/image";
 
 export default function InstitutionalFooter() {
   return (
@@ -22,8 +22,16 @@ export default function InstitutionalFooter() {
       </section>
 
       <footer className="relative overflow-hidden bg-in-ink text-in-gold">
-        <div className="relative h-[100px] w-full text-in-gold/25 sm:h-[130px]">
-          <IndySkyline className="absolute inset-x-0 bottom-0 h-full w-full" />
+        <div className="relative h-[150px] w-full overflow-hidden sm:h-[200px]" aria-hidden="true">
+          <Image
+            src="/images/indianapolis-skyline.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-70 grayscale sepia-[0.4] contrast-110"
+          />
+          <div className="absolute inset-0 bg-in-ink/45" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-in-ink to-transparent sm:h-28" />
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-16 sm:grid-cols-2 lg:grid-cols-4 lg:px-10">
