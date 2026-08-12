@@ -17,6 +17,12 @@ import {
   IBM_Plex_Mono,
   Outfit,
   Figtree,
+  Spectral,
+  Karla,
+  Space_Mono,
+  Big_Shoulders,
+  Barlow,
+  Barlow_Condensed,
 } from "next/font/google";
 import "./globals.css";
 
@@ -124,6 +130,43 @@ const figtree = Figtree({
   weight: ["400", "500", "600", "700"],
 });
 
+const spectral = Spectral({
+  variable: "--font-spectral",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const karla = Karla({
+  variable: "--font-karla",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const bigShoulders = Big_Shoulders({
+  variable: "--font-big-shoulders",
+  subsets: ["latin"],
+  weight: "variable",
+});
+
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Warrner Immigration Law | Case Evaluations",
   description:
@@ -148,6 +191,12 @@ const fontVariables = [
   ibmPlexMono.variable,
   outfit.variable,
   figtree.variable,
+  spectral.variable,
+  karla.variable,
+  spaceMono.variable,
+  bigShoulders.variable,
+  barlow.variable,
+  barlowCondensed.variable,
 ].join(" ");
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

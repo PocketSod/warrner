@@ -100,6 +100,35 @@
   --color-gl-border-strong: rgba(30, 27, 58, 0.24);
   --font-gl-heading: var(--font-outfit);
   --font-gl-body: var(--font-figtree);
+
+  /* ===== Atlas — Cartographic, chart-paper / prussian ink / stamp red ===== */
+  --color-at-bg: #eee5cd;
+  --color-at-surface: #e2d3ab;
+  --color-at-ink: #16324a;
+  --color-at-muted: #52626f;
+  --color-at-brass: #93732f; /* decorative hairlines/icons only, not text */
+  --color-at-brass-dark: #6e551f; /* text-safe brass — 5.4:1 on at-bg */
+  --color-at-stamp: #8f2f22; /* stamp graphic + small tags — 6.3:1 on at-bg */
+  --color-at-stamp-light: #e7b9a6; /* text ON at-ink dark footer — 7.9:1 */
+  --color-at-border: rgba(22, 50, 74, 0.16);
+  --color-at-border-strong: rgba(22, 50, 74, 0.32);
+  --font-at-heading: var(--font-spectral);
+  --font-at-body: var(--font-karla);
+  --font-at-mono: var(--font-space-mono);
+
+  /* ===== Frontline — Advocacy bulletin, newsprint / ink / bulletin red ===== */
+  --color-fl-bg: #f3f1ea;
+  --color-fl-surface: #e7e2d2;
+  --color-fl-ink: #171310;
+  --color-fl-muted: #4a453e;
+  --color-fl-red: #c81e1e; /* decorative/large display only, not small text */
+  --color-fl-red-dark: #971414; /* buttons + small text-safe on fl-bg — 6.1:1 */
+  --color-fl-red-light: #ff8a7a; /* text ON fl-ink dark footer — 7.6:1 */
+  --color-fl-border: rgba(23, 19, 16, 0.14);
+  --color-fl-border-strong: rgba(23, 19, 16, 0.3);
+  --font-fl-heading: var(--font-big-shoulders);
+  --font-fl-body: var(--font-barlow);
+  --font-fl-label: var(--font-barlow-condensed);
 }
 
 @theme inline {
@@ -194,6 +223,33 @@
   --color-gl-border-strong: var(--color-gl-border-strong);
   --font-gl-heading: var(--font-gl-heading);
   --font-gl-body: var(--font-gl-body);
+
+  --color-at-bg: var(--color-at-bg);
+  --color-at-surface: var(--color-at-surface);
+  --color-at-ink: var(--color-at-ink);
+  --color-at-muted: var(--color-at-muted);
+  --color-at-brass: var(--color-at-brass);
+  --color-at-brass-dark: var(--color-at-brass-dark);
+  --color-at-stamp: var(--color-at-stamp);
+  --color-at-stamp-light: var(--color-at-stamp-light);
+  --color-at-border: var(--color-at-border);
+  --color-at-border-strong: var(--color-at-border-strong);
+  --font-at-heading: var(--font-at-heading);
+  --font-at-body: var(--font-at-body);
+  --font-at-mono: var(--font-at-mono);
+
+  --color-fl-bg: var(--color-fl-bg);
+  --color-fl-surface: var(--color-fl-surface);
+  --color-fl-ink: var(--color-fl-ink);
+  --color-fl-muted: var(--color-fl-muted);
+  --color-fl-red: var(--color-fl-red);
+  --color-fl-red-dark: var(--color-fl-red-dark);
+  --color-fl-red-light: var(--color-fl-red-light);
+  --color-fl-border: var(--color-fl-border);
+  --color-fl-border-strong: var(--color-fl-border-strong);
+  --font-fl-heading: var(--font-fl-heading);
+  --font-fl-body: var(--font-fl-body);
+  --font-fl-label: var(--font-fl-label);
 }
 
 ::selection {

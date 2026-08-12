@@ -12,6 +12,8 @@ const versions = [
   { href: "/enterprise", label: "Enterprise" },
   { href: "/brief", label: "The Brief" },
   { href: "/glass", label: "Glass" },
+  { href: "/atlas", label: "Atlas" },
+  { href: "/frontline", label: "Frontline" },
 ];
 
 export default function DesignToggle() {
