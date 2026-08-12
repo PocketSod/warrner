@@ -1,26 +1,214 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ===== Executive — Navy / Ivory / Gold (verified WCAG AAA) ===== */
+  --color-ivory: #faf7f0;
+  --color-ivory-deep: #f3eee3;
+  --color-navy: #0b1f3d;
+  --color-navy-muted: #3d5578;
+  --color-navy-soft: #c9cfda;
+  --color-gold: #a6822e;
+  --color-gold-dark: #8c6a22;
+  --color-gold-light: #d4b15a;
+  --color-border: rgba(166, 130, 46, 0.28);
+  --color-border-strong: rgba(166, 130, 46, 0.55);
+  --font-serif: var(--font-eb-garamond);
+  --font-sans: var(--font-lato);
+
+  /* ===== Minimal — Swiss editorial, off-white / ink / forest ===== */
+  --color-mn-bg: #fafaf7;
+  --color-mn-surface: #f1f0ec;
+  --color-mn-ink: #16181d;
+  --color-mn-muted: #495056;
+  --color-mn-accent: #2f5233;
+  --color-mn-accent-dark: #22391f;
+  --color-mn-border: rgba(22, 24, 29, 0.12);
+  --color-mn-border-strong: rgba(22, 24, 29, 0.24);
+  --font-mn-heading: var(--font-archivo);
+  --font-mn-body: var(--font-inter);
+
+  /* ===== Editorial — Dark luxury, charcoal / cream / oxblood ===== */
+  --color-ed-bg: #14120f;
+  --color-ed-surface: #1d1a16;
+  --color-ed-cream: #f3ede4;
+  --color-ed-cream-muted: #c9beb0;
+  --color-ed-oxblood: #6e1e2c;
+  --color-ed-oxblood-light: #c97686;
+  --color-ed-border: rgba(243, 237, 228, 0.14);
+  --color-ed-border-strong: rgba(243, 237, 228, 0.28);
+  --font-ed-heading: var(--font-fraunces);
+  --font-ed-body: var(--font-work-sans);
+
+  /* ===== Boutique — Warm, cream / brown-ink / terracotta ===== */
+  --color-bq-bg: #fbf3ec;
+  --color-bq-surface: #f6e9dd;
+  --color-bq-ink: #2e2621;
+  --color-bq-muted: #5a4d42;
+  --color-bq-terracotta: #c1502e;
+  --color-bq-terracotta-dark: #7a2e1b; /* text ON cream/surface — 7.9–8.6:1 (AAA, incl. small text) */
+  --color-bq-terracotta-cta: #8a3820; /* buttons: white text 7.87:1 (AAA) */
+  --color-bq-terracotta-light: #efa97c; /* text ON bq-ink dark footer — 7.51:1 (AAA) */
+  --color-bq-teal: #1f6e64;
+  --color-bq-border: rgba(156, 63, 36, 0.18);
+  --color-bq-border-strong: rgba(156, 63, 36, 0.32);
+  --font-bq-heading: var(--font-sora);
+  --font-bq-body: var(--font-nunito);
+
+  /* ===== Institutional — Collegiate heritage, parchment / forest / burgundy ===== */
+  --color-in-bg: #f6f1e4;
+  --color-in-surface: #ede4ce;
+  --color-in-ink: #16241a;
+  --color-in-muted: #3e4b41;
+  --color-in-burgundy: #6b1e2c;
+  --color-in-gold: #d8c089; /* text ON in-ink dark panels — 9.08:1 */
+  --color-in-border: rgba(22, 36, 26, 0.16);
+  --color-in-border-strong: rgba(22, 36, 26, 0.3);
+  --font-in-heading: var(--font-playfair-display);
+  --font-in-body: var(--font-source-serif-4);
+
+  /* ===== Enterprise — Modern SaaS trust, white / slate / cobalt ===== */
+  --color-en-bg: #f7f9fc;
+  --color-en-surface: #eef2fa;
+  --color-en-ink: #10192b;
+  --color-en-muted: #46536b;
+  --color-en-accent: #1b39b8; /* text + buttons — 8.19–9.04:1 */
+  --color-en-border: rgba(16, 25, 43, 0.1);
+  --color-en-border-strong: rgba(16, 25, 43, 0.2);
+  --font-en-heading: var(--font-plus-jakarta-sans);
+  --font-en-body: var(--font-manrope);
+
+  /* ===== The Brief — Monochrome case-file, paper / ink / case-red ===== */
+  --color-br-bg: #f5f4f1;
+  --color-br-surface: #eae8e2;
+  --color-br-ink: #101010;
+  --color-br-muted: #55524d;
+  --color-br-red: #8c1d17; /* text + buttons — 8.29–9.12:1 */
+  --color-br-border: rgba(16, 16, 16, 0.14);
+  --color-br-border-strong: rgba(16, 16, 16, 0.28);
+  --font-br-heading: var(--font-ibm-plex-serif);
+  --font-br-body: var(--font-ibm-plex-sans);
+  --font-br-mono: var(--font-ibm-plex-mono);
+
+  /* ===== Glass — Ethereal modern, mesh gradient / indigo / violet ===== */
+  --color-gl-bg: #eef0fb;
+  --color-gl-ink: #1e1b3a;
+  --color-gl-muted: #504c72;
+  --color-gl-accent: #4638a6; /* text + buttons — 7.78–8.84:1 */
+  --color-gl-panel: #1e1b3a;
+  --color-gl-panel-text: #b9aef0; /* text ON gl-panel — 8.15:1 */
+  --color-gl-border: rgba(30, 27, 58, 0.12);
+  --color-gl-border-strong: rgba(30, 27, 58, 0.24);
+  --font-gl-heading: var(--font-outfit);
+  --font-gl-body: var(--font-figtree);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ivory: var(--color-ivory);
+  --color-ivory-deep: var(--color-ivory-deep);
+  --color-navy: var(--color-navy);
+  --color-navy-muted: var(--color-navy-muted);
+  --color-navy-soft: var(--color-navy-soft);
+  --color-gold: var(--color-gold);
+  --color-gold-dark: var(--color-gold-dark);
+  --color-gold-light: var(--color-gold-light);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+
+  --color-mn-bg: var(--color-mn-bg);
+  --color-mn-surface: var(--color-mn-surface);
+  --color-mn-ink: var(--color-mn-ink);
+  --color-mn-muted: var(--color-mn-muted);
+  --color-mn-accent: var(--color-mn-accent);
+  --color-mn-accent-dark: var(--color-mn-accent-dark);
+  --color-mn-border: var(--color-mn-border);
+  --color-mn-border-strong: var(--color-mn-border-strong);
+  --font-mn-heading: var(--font-mn-heading);
+  --font-mn-body: var(--font-mn-body);
+
+  --color-ed-bg: var(--color-ed-bg);
+  --color-ed-surface: var(--color-ed-surface);
+  --color-ed-cream: var(--color-ed-cream);
+  --color-ed-cream-muted: var(--color-ed-cream-muted);
+  --color-ed-oxblood: var(--color-ed-oxblood);
+  --color-ed-oxblood-light: var(--color-ed-oxblood-light);
+  --color-ed-border: var(--color-ed-border);
+  --color-ed-border-strong: var(--color-ed-border-strong);
+  --font-ed-heading: var(--font-ed-heading);
+  --font-ed-body: var(--font-ed-body);
+
+  --color-bq-bg: var(--color-bq-bg);
+  --color-bq-surface: var(--color-bq-surface);
+  --color-bq-ink: var(--color-bq-ink);
+  --color-bq-muted: var(--color-bq-muted);
+  --color-bq-terracotta: var(--color-bq-terracotta);
+  --color-bq-terracotta-dark: var(--color-bq-terracotta-dark);
+  --color-bq-terracotta-cta: var(--color-bq-terracotta-cta);
+  --color-bq-terracotta-light: var(--color-bq-terracotta-light);
+  --color-bq-teal: var(--color-bq-teal);
+  --color-bq-border: var(--color-bq-border);
+  --color-bq-border-strong: var(--color-bq-border-strong);
+  --font-bq-heading: var(--font-bq-heading);
+  --font-bq-body: var(--font-bq-body);
+
+  --color-in-bg: var(--color-in-bg);
+  --color-in-surface: var(--color-in-surface);
+  --color-in-ink: var(--color-in-ink);
+  --color-in-muted: var(--color-in-muted);
+  --color-in-burgundy: var(--color-in-burgundy);
+  --color-in-gold: var(--color-in-gold);
+  --color-in-border: var(--color-in-border);
+  --color-in-border-strong: var(--color-in-border-strong);
+  --font-in-heading: var(--font-in-heading);
+  --font-in-body: var(--font-in-body);
+
+  --color-en-bg: var(--color-en-bg);
+  --color-en-surface: var(--color-en-surface);
+  --color-en-ink: var(--color-en-ink);
+  --color-en-muted: var(--color-en-muted);
+  --color-en-accent: var(--color-en-accent);
+  --color-en-border: var(--color-en-border);
+  --color-en-border-strong: var(--color-en-border-strong);
+  --font-en-heading: var(--font-en-heading);
+  --font-en-body: var(--font-en-body);
+
+  --color-br-bg: var(--color-br-bg);
+  --color-br-surface: var(--color-br-surface);
+  --color-br-ink: var(--color-br-ink);
+  --color-br-muted: var(--color-br-muted);
+  --color-br-red: var(--color-br-red);
+  --color-br-border: var(--color-br-border);
+  --color-br-border-strong: var(--color-br-border-strong);
+  --font-br-heading: var(--font-br-heading);
+  --font-br-body: var(--font-br-body);
+  --font-br-mono: var(--font-br-mono);
+
+  --color-gl-bg: var(--color-gl-bg);
+  --color-gl-ink: var(--color-gl-ink);
+  --color-gl-muted: var(--color-gl-muted);
+  --color-gl-accent: var(--color-gl-accent);
+  --color-gl-panel: var(--color-gl-panel);
+  --color-gl-panel-text: var(--color-gl-panel-text);
+  --color-gl-border: var(--color-gl-border);
+  --color-gl-border-strong: var(--color-gl-border-strong);
+  --font-gl-heading: var(--font-gl-heading);
+  --font-gl-body: var(--font-gl-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-navy);
+}
+
+/* Respect reduced-motion preference for every animation in the site */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
