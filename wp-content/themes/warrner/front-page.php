@@ -530,7 +530,7 @@ $practice_areas = warrner_get_practice_areas();
 	<!-- ==========================================================
 	     C · Hero — full-bleed
 	     ========================================================== -->
-	<section class="vc-hero" style="background-image: url('<?php echo esc_url( WARRNER_URI . '/assets/images/indianapolis-skyline.jpg' ); ?>');">
+	<section class="vc-hero" style="background-image: url('<?php echo esc_url( WARRNER_URI . '/assets/images/indy-evening.jpg' ); ?>');">
 		<div class="wrap vc-hero__content">
 			<span class="vc-eyebrow">Immigration Law · Indianapolis</span>
 			<h1 class="vc-h1">A steady hand through a complex process.</h1>
@@ -547,15 +547,14 @@ $practice_areas = warrner_get_practice_areas();
 	     ========================================================== -->
 	<div class="vc-tiles">
 		<a class="vc-tile" href="#bio-heading-c">
-			<img class="vc-tile__bg" src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-warrner.jpg' ); ?>" alt="">
+			<img class="vc-tile__bg vc-tile__bg--portrait" src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-warrner.jpg' ); ?>" alt="">
 			<div class="vc-tile__content">
 				<span class="vc-eyebrow">Founding Attorney</span>
 				<h3 class="vc-tile__title">Meet Erin Warrner</h3>
 				<span class="vc-link">Read More →</span>
 			</div>
 		</a>
-		<a class="vc-tile" href="#practice-heading-c">
-			<img class="vc-tile__bg" src="<?php echo esc_url( WARRNER_URI . '/assets/images/indianapolis-skyline.jpg' ); ?>" alt="">
+		<a class="vc-tile vc-tile--solid" href="#practice-heading-c">
 			<div class="vc-tile__content">
 				<span class="vc-eyebrow">Serving Indianapolis</span>
 				<h3 class="vc-tile__title">Rooted in the Community We Serve</h3>
