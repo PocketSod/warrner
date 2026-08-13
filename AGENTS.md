@@ -65,6 +65,7 @@ Invoke the `frontend-design` skill before writing any theme/template code. This 
 - Minimum code that solves the problem. Nothing speculative.
 - Touch only what you must. Clean up only your own mess.
 - Define success criteria. Loop until verified.
+- Remove all AI artifacts before calling work done: scratch/debug/test files generated while building (test composites, throwaway scripts, one-off diagnostic output), and design/content tells that read as AI-generated (generic AI-default palettes/layouts, placeholder-sounding copy not clearly flagged as such). Deliberately flagged placeholders (e.g. `<!-- PLACEHOLDER -->`) are the exception — they exist specifically so fake content doesn't get mistaken for real.
 
 ## 2. UI/UX Guidelines
 

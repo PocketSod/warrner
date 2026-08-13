@@ -57,7 +57,16 @@ function warrner_enqueue_assets() {
 		null
 	);
 
+	// Option B fonts — from public/images/warrner_legal_brand_guide.md.
+	wp_enqueue_style(
+		'warrner-fonts-b',
+		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap',
+		array(),
+		null
+	);
+
 	wp_enqueue_style( 'warrner-style', WARRNER_URI . '/assets/css/main.css', array( 'warrner-fonts' ), WARRNER_VERSION );
+	wp_enqueue_style( 'warrner-variant-b', WARRNER_URI . '/assets/css/variant-b.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
 
 	wp_enqueue_script( 'warrner-main', WARRNER_URI . '/assets/js/main.js', array(), WARRNER_VERSION, true );
 

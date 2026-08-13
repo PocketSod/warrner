@@ -96,6 +96,48 @@ a { color: inherit; }
 	outline-offset: 2px;
 }
 
+/* ==========================================================================
+   Variant toggle — internal review tool, not part of either brand.
+   Remove this block (and the toggle markup) once a direction is chosen.
+   ========================================================================== */
+
+.variant-toggle {
+	position: fixed;
+	bottom: var(--space-6);
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 999;
+	display: flex;
+	gap: 2px;
+	background: var(--color-ink);
+	border-radius: 999px;
+	padding: 4px;
+	box-shadow: var(--shadow-floating);
+	font-family: var(--font-sans);
+}
+
+.variant-toggle__btn {
+	appearance: none;
+	border: none;
+	cursor: pointer;
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: rgba(250, 248, 243, 0.65);
+	background: transparent;
+	padding: var(--space-2) var(--space-6);
+	border-radius: 999px;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.variant-toggle__btn[aria-pressed="true"] {
+	background: var(--color-brass);
+	color: var(--color-ink);
+}
+
+.variant-toggle__btn:hover:not([aria-pressed="true"]) {
+	color: var(--color-paper);
+}
+
 .screen-reader-text {
 	position: absolute;
 	width: 1px;

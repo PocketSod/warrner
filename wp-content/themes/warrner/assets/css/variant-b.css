@@ -1,0 +1,373 @@
+/* ==========================================================================
+   Warrner Legal — Option B
+   Per public/images/warrner_legal_brand_guide.md: "classical legal authority
+   fused with technical precision and global reach." Globe/coordinates as the
+   signature system, Heritage Maroon as the sole strong accent.
+   ========================================================================== */
+
+#variant-b {
+	--vb-maroon: #660000;
+	--vb-maroon-dark: #4D0000;
+	--vb-taupe: #A89E8D;
+	--vb-white: #FFFFFF;
+	--vb-linen: #F7F5F2;
+	--vb-slate: #333333;
+
+	--vb-font-serif: 'Libre Baskerville', Georgia, serif;
+	--vb-font-sans: 'Montserrat', -apple-system, sans-serif;
+	--vb-font-body: 'Open Sans', -apple-system, sans-serif;
+
+	background: var(--vb-white);
+	color: var(--vb-slate);
+	font-family: var(--vb-font-body);
+	line-height: var(--body-leading);
+}
+
+#variant-b .vb-section { padding-block: var(--space-24); position: relative; }
+#variant-b .vb-section--white { background: var(--vb-white); }
+#variant-b .vb-section--linen { background: var(--vb-linen); }
+
+#variant-b .vb-eyebrow {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--vb-taupe);
+	display: inline-block;
+	margin-bottom: var(--space-3);
+}
+
+#variant-b .vb-h1, #variant-b .vb-h2, #variant-b .vb-h3 {
+	font-family: var(--vb-font-serif);
+	color: var(--vb-maroon);
+	line-height: 1.15;
+	font-weight: 700;
+	margin: 0 0 var(--space-4);
+}
+
+#variant-b .vb-h1 { font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl)); }
+#variant-b .vb-h2 { font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl)); }
+#variant-b .vb-h3 { font-size: var(--text-xl); }
+
+#variant-b .vb-lede { font-size: var(--text-lg); color: var(--vb-slate); max-width: 46ch; opacity: 0.85; }
+
+/* Crosshair dot — the logo's precision motif, reused as bullet/accent */
+#variant-b .vb-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--vb-maroon);
+	flex: none;
+}
+
+/* Globe wireframe watermark — recreated per brand guide §4A, taupe at low opacity */
+#variant-b .vb-globe-watermark {
+	position: absolute;
+	top: 50%;
+	right: -8%;
+	transform: translateY(-50%);
+	width: 640px;
+	max-width: 60vw;
+	height: auto;
+	color: var(--vb-taupe);
+	opacity: 0.12;
+	pointer-events: none;
+}
+
+/* ==========================================================================
+   Header / nav
+   ========================================================================== */
+
+#variant-b .vb-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--space-4) var(--space-6);
+	background: var(--vb-white);
+	border-bottom: 1px solid var(--vb-linen);
+}
+
+#variant-b .vb-logo {
+	height: 96px;
+	width: auto;
+	object-fit: contain;
+}
+#variant-b .vb-topbar .vb-logo { height: 80px; }
+#variant-b .vb-hero__mark { height: 128px; margin-bottom: var(--space-6); }
+#variant-b .vb-footer .vb-logo { height: 160px; }
+
+#variant-b .vb-nav { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+
+#variant-b .vb-nav a {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-sm);
+	font-weight: 500;
+	color: var(--vb-slate);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+#variant-b .vb-nav a:hover { color: var(--vb-maroon); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+#variant-b .vb-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	font-family: var(--vb-font-sans);
+	font-weight: 600;
+	font-size: var(--text-sm);
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	padding: var(--space-3) var(--space-6);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--vb-maroon);
+	cursor: pointer;
+	text-decoration: none;
+	transition: transform 0.2s var(--ease-spring), box-shadow 0.2s var(--ease-spring), background-color 0.2s ease;
+}
+
+#variant-b .vb-btn--primary { background: var(--vb-maroon); color: var(--vb-white); box-shadow: var(--shadow-base); }
+#variant-b .vb-btn--primary:hover { background: var(--vb-maroon-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
+#variant-b .vb-btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-base); }
+
+#variant-b .vb-btn--ghost { background: transparent; color: var(--vb-maroon); }
+#variant-b .vb-btn--ghost:hover { background: rgba(102, 0, 0, 0.06); transform: translateY(-2px); }
+
+#variant-b .vb-btn--block { width: 100%; justify-content: center; }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+#variant-b .vb-hero { overflow: hidden; }
+
+#variant-b .vb-hero__grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-16);
+	align-items: center;
+	position: relative;
+}
+
+@media (min-width: 900px) {
+	#variant-b .vb-hero__grid { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+#variant-b .vb-hero__coords {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	letter-spacing: 0.08em;
+	color: var(--vb-taupe);
+	margin: var(--space-6) 0 var(--space-8);
+}
+
+#variant-b .vb-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+
+#variant-b .vb-hero__photo {
+	border: 1px solid var(--vb-taupe);
+	padding: var(--space-2);
+	background: var(--vb-white);
+	box-shadow: var(--shadow-elevated);
+	max-width: 380px;
+	margin-inline: auto;
+	position: relative;
+}
+#variant-b .vb-hero__photo img { width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; }
+
+/* ==========================================================================
+   Stats
+   ========================================================================== */
+
+#variant-b .vb-stats {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--space-8);
+	text-align: center;
+}
+@media (min-width: 700px) { #variant-b .vb-stats { grid-template-columns: repeat(4, 1fr); } }
+
+#variant-b .vb-stat__num {
+	font-family: var(--vb-font-serif);
+	font-size: var(--text-4xl);
+	color: var(--vb-maroon);
+	line-height: 1;
+	margin-bottom: var(--space-2);
+}
+#variant-b .vb-stat__label {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--vb-taupe);
+}
+
+#variant-b .vb-badges-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: var(--space-8);
+	margin-top: var(--space-16);
+}
+#variant-b .vb-badges-row img { height: 44px; width: auto; }
+
+/* ==========================================================================
+   Practice areas
+   ========================================================================== */
+
+#variant-b .vb-grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 700px) { #variant-b .vb-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { #variant-b .vb-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+#variant-b .vb-card {
+	background: var(--vb-white);
+	border: 1px solid var(--vb-linen);
+	border-top: 3px solid var(--vb-taupe);
+	border-radius: var(--radius-sm);
+	padding: var(--space-6);
+	text-decoration: none;
+	color: var(--vb-slate);
+	display: block;
+	box-shadow: var(--shadow-base);
+	transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-spring), border-top-color 0.25s ease;
+}
+#variant-b .vb-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-elevated); border-top-color: var(--vb-maroon); }
+
+#variant-b .vb-card__title {
+	font-family: var(--vb-font-serif);
+	font-size: var(--text-lg);
+	font-weight: 700;
+	color: var(--vb-maroon);
+	margin: 0 0 var(--space-2);
+}
+#variant-b .vb-card__desc { font-size: var(--text-sm); opacity: 0.8; margin: 0; }
+
+/* ==========================================================================
+   Bio
+   ========================================================================== */
+
+#variant-b .vb-bio { display: grid; grid-template-columns: 1fr; gap: var(--space-12); align-items: start; }
+@media (min-width: 900px) { #variant-b .vb-bio { grid-template-columns: 300px 1fr; } }
+
+#variant-b .vb-bio__photo { border: 1px solid var(--vb-taupe); padding: var(--space-2); background: var(--vb-white); box-shadow: var(--shadow-elevated); }
+#variant-b .vb-bio__photo img { width: 100%; height: auto; }
+
+#variant-b .vb-credentials { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+#variant-b .vb-credentials li { display: flex; align-items: baseline; gap: var(--space-3); font-size: var(--text-base); }
+
+/* ==========================================================================
+   Results & testimonials
+   ========================================================================== */
+
+#variant-b .vb-results-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-bottom: var(--space-8); }
+@media (min-width: 700px) { #variant-b .vb-results-grid { grid-template-columns: repeat(3, 1fr); } }
+
+#variant-b .vb-result-card { background: var(--vb-white); border-left: 3px solid var(--vb-maroon); border-radius: var(--radius-sm); padding: var(--space-6); }
+#variant-b .vb-result-card__tag {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--vb-maroon);
+	display: block;
+	margin-bottom: var(--space-2);
+}
+
+#variant-b .vb-testimonial { background: var(--vb-linen); border-radius: var(--radius-sm); padding: var(--space-6); }
+#variant-b .vb-testimonial p { font-family: var(--vb-font-serif); font-style: italic; margin: 0 0 var(--space-3); }
+#variant-b .vb-testimonial cite { font-family: var(--vb-font-sans); font-style: normal; font-weight: 600; font-size: var(--text-sm); }
+
+#variant-b .vb-disclaimer {
+	font-family: var(--vb-font-body);
+	font-size: var(--text-xs);
+	color: var(--vb-slate);
+	opacity: 0.7;
+	max-width: 70ch;
+	margin-top: var(--space-8);
+	padding-top: var(--space-6);
+	border-top: 1px solid var(--vb-linen);
+}
+
+/* ==========================================================================
+   Intake form
+   ========================================================================== */
+
+#variant-b .vb-intake {
+	background: var(--vb-white);
+	border: 1px solid var(--vb-linen);
+	border-radius: var(--radius-sm);
+	padding: var(--space-8);
+	box-shadow: var(--shadow-floating);
+}
+
+#variant-b .vb-field { margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+#variant-b .vb-field label { font-family: var(--vb-font-sans); font-size: var(--text-sm); font-weight: 600; }
+
+#variant-b .vb-field input,
+#variant-b .vb-field select,
+#variant-b .vb-field textarea {
+	font-family: var(--vb-font-body);
+	font-size: var(--text-base);
+	padding: var(--space-3);
+	border: 1px solid var(--vb-taupe);
+	border-radius: var(--radius-sm);
+	background: var(--vb-white);
+	color: var(--vb-slate);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#variant-b .vb-field input:focus-visible,
+#variant-b .vb-field select:focus-visible,
+#variant-b .vb-field textarea:focus-visible {
+	outline: none;
+	border-color: var(--vb-maroon);
+	box-shadow: 0 0 0 3px rgba(102, 0, 0, 0.15);
+}
+#variant-b .vb-field textarea { resize: vertical; min-height: 96px; }
+
+#variant-b .vb-intake__status { font-size: var(--text-sm); margin-top: var(--space-4); min-height: 1.5em; }
+#variant-b .vb-intake__status[data-state="success"] { color: #3F6B3F; }
+#variant-b .vb-intake__status[data-state="error"] { color: var(--vb-maroon); }
+
+/* ==========================================================================
+   Location / footer
+   ========================================================================== */
+
+#variant-b .vb-location { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
+@media (min-width: 900px) { #variant-b .vb-location { grid-template-columns: 1fr 1fr; } }
+
+#variant-b .vb-location__map { border: 1px solid var(--vb-taupe); aspect-ratio: 4/3; }
+#variant-b .vb-location__map iframe { width: 100%; height: 100%; border: 0; }
+#variant-b .vb-location__map-fallback {
+	width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+	background: var(--vb-linen); color: var(--vb-maroon); font-family: var(--vb-font-sans); font-weight: 600; text-decoration: none;
+}
+
+#variant-b .vb-location__details dt {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--vb-taupe);
+	margin-top: var(--space-6);
+}
+#variant-b .vb-location__details dd { margin: var(--space-1) 0 0; }
+
+#variant-b .vb-footer {
+	background: var(--vb-linen);
+	padding-block: var(--space-12);
+	text-align: center;
+}
+#variant-b .vb-footer__coords {
+	font-family: var(--vb-font-sans);
+	font-size: var(--text-xs);
+	letter-spacing: 0.1em;
+	color: var(--vb-taupe);
+	margin-top: var(--space-3);
+}
