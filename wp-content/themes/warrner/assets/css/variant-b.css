@@ -84,9 +84,16 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--space-3);
 	padding: var(--space-4) var(--space-6);
 	background: var(--vb-white);
 	border-bottom: 1px solid var(--vb-linen);
+}
+
+@media (max-width: 640px) {
+	#variant-b .vb-topbar .vb-logo { height: 56px; }
+	#variant-b .vb-nav { gap: var(--space-4); flex-wrap: wrap; }
 }
 
 #variant-b .vb-logo {
@@ -144,7 +151,16 @@
    Hero
    ========================================================================== */
 
-#variant-b .vb-hero { overflow: hidden; }
+#variant-b .vb-hero {
+	position: relative;
+	overflow: hidden;
+	background-image:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.8) 100%),
+		url('../images/indy-block.jpg');
+	background-size: cover, cover;
+	background-position: center, center 35%;
+	background-repeat: no-repeat, no-repeat;
+}
 
 #variant-b .vb-hero__grid {
 	display: grid;

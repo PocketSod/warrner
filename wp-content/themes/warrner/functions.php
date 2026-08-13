@@ -67,6 +67,8 @@ function warrner_enqueue_assets() {
 
 	wp_enqueue_style( 'warrner-style', WARRNER_URI . '/assets/css/main.css', array( 'warrner-fonts' ), WARRNER_VERSION );
 	wp_enqueue_style( 'warrner-variant-b', WARRNER_URI . '/assets/css/variant-b.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
+	wp_enqueue_style( 'warrner-variant-c', WARRNER_URI . '/assets/css/variant-c.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
+	wp_enqueue_style( 'warrner-variant-d', WARRNER_URI . '/assets/css/variant-d.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
 
 	wp_enqueue_script( 'warrner-main', WARRNER_URI . '/assets/js/main.js', array(), WARRNER_VERSION, true );
 

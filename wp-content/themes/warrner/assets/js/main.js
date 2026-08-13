@@ -60,6 +60,33 @@
 		});
 	});
 
+	// Testimonial pull-quote carousel (Option C).
+	var carousel = document.querySelector('[data-quote-carousel]');
+	if (carousel) {
+		var slides = carousel.querySelectorAll('.vc-quote__slide');
+		var dots = carousel.querySelectorAll('.vc-quote__dot');
+		dots.forEach(function (dot, i) {
+			dot.addEventListener('click', function () {
+				slides.forEach(function (slide, j) { slide.setAttribute('data-active', String(i === j)); });
+				dots.forEach(function (d, j) { d.setAttribute('aria-current', String(i === j)); });
+			});
+		});
+	}
+
+	// FAQ accordion (Option D).
+	var accordion = document.querySelector('[data-accordion]');
+	if (accordion) {
+		var items = accordion.querySelectorAll('.vd-faq__item');
+		items.forEach(function (item) {
+			var q = item.querySelector('.vd-faq__q');
+			q.addEventListener('click', function () {
+				var isOpen = item.getAttribute('data-open') === 'true';
+				item.setAttribute('data-open', String(!isOpen));
+				q.setAttribute('aria-expanded', String(!isOpen));
+			});
+		});
+	}
+
 	// Design-option toggle — review tool only, remove alongside the losing
 	// variant's markup once a direction is picked.
 	var toggleBtns = document.querySelectorAll('[data-variant-btn]');
