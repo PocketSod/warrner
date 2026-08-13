@@ -1,0 +1,11 @@
+{
+  "name": "warrner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "screenshot": "node scripts/screenshot.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^24"
+  }
+}

@@ -34,3 +34,10 @@ wp-cli.phar
 
 # scratch design review screenshots
 /temporary screenshots/
+
+# Node (screenshot tooling)
+node_modules/
+npm-debug.log*
+
+# Claude Code local tool config — machine/session-specific
+.claude/

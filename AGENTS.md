@@ -1,4 +1,59 @@
-# AGENTS.md — WordPress Website Rules
+# AGENTS.md — Warrner Legal WordPress Site
+
+## START OF SESSION CHECKLIST
+
+1. **Confirm Laragon is running** — this repo is source only; nothing renders until Laragon serves it.
+2. **Check your branch:** `git branch` — this project uses a single `main` branch, no `dev`/`feature` split.
+3. **Invoke the `frontend-design` skill** before writing any theme/template code.
+
+---
+
+## Editing Protocol
+
+This is a **split repo**: `D:\Projects\Warrner\` is the git repo and source of truth. `D:\laragon\www\Warrner\` is the Laragon-served WordPress install — it is **not** version controlled and must never be edited directly.
+
+**After every edit to a tracked file**, sync it into the Laragon install before checking it in a browser:
+
+```powershell
+Copy-Item "D:\Projects\Warrner\wp-content\themes\warrner\*" `
+  "D:\laragon\www\Warrner\wp-content\themes\warrner\" -Recurse -Force
+```
+
+Adjust the path for whichever theme/plugin directory you touched (e.g. `wp-content\plugins\<plugin>`).
+
+**Full workflow:**
+```
+1. Edit source under D:\Projects\Warrner\wp-content\...
+2. Sync to Laragon (Copy-Item above)
+3. node scripts/screenshot.mjs http://warrner.test
+4. Compare → fix → repeat until correct
+5. git add <files> && git commit -m "describe change"
+6. git push origin main
+```
+
+The two failure modes to avoid: editing the Laragon copy directly and forgetting to backport into git, or editing git and forgetting to sync into Laragon before checking it in browser.
+
+---
+
+## Project Structure
+
+```
+D:\Projects\Warrner\                      ← git repo, source of truth
+├── wp-content\
+│   ├── themes\warrner\                   ← custom theme (only theme in active use)
+│   └── plugins\                          ← custom plugins, if/when needed
+├── scripts\screenshot.mjs                ← screenshot tooling (Puppeteer)
+├── public\images\                        ← brand asset source (logos, photos) — not synced automatically, pull into the theme as needed
+├── wp-config-sample.php                  ← reference only, not the real config
+└── AGENTS.md / CLAUDE.md / README.md
+
+D:\laragon\www\Warrner\                   ← Laragon-served WP install, NOT the git repo
+├── wp-admin\, wp-includes\, wp-*.php     ← WordPress core (not versioned)
+├── wp-config.php                         ← real local config (DB `warrner`, not versioned)
+└── wp-content\                           ← synced from the repo, plus core-managed uploads/cache
+```
+
+---
 
 ## 1. Mandatory First Step
 
@@ -38,13 +93,17 @@ Invoke the `frontend-design` skill before writing any theme/template code. This 
 
 - The site is served by Laragon (Apache + MySQL + PHP 8.3) at `http://warrner.test`.
 - Laragon runs as a persistent local service — do not start a separate dev server, and never screenshot from `file:///`.
-- Document root: `D:\laragon\www\Warrner` (this repo).
+- Document root: `D:\laragon\www\Warrner` — a separate, non-versioned install. This repo (`D:\Projects\Warrner`) is source only; see Editing Protocol above for the sync step required before anything you edit here shows up there.
 
 ## 5. Screenshot Workflow
 
 Chrome cache: `C:/Users/wildr/.cache/puppeteer/`
 
-Screenshot `http://warrner.test` (and specific template URLs as needed) with whatever Puppeteer-based tooling is available in the session.
+```bash
+node scripts/screenshot.mjs http://warrner.test <label>   # label optional
+```
+
+Output: `./temporary screenshots/screenshot-N.png`
 
 After each screenshot, load the PNG via the Read tool and check:
 - Spacing and padding
@@ -159,13 +218,27 @@ Maintain a three-tier layering system: `base` → `elevated` → `floating`.
 
 ### 11.4 Color Tokens
 
-Derived from a single brand hue. Define the full scale before use.
+Signature concept: Indiana limestone (the state's literal export — Empire State Building, the Pentagon) as the material metaphor for "solid ground to build a life on." One warm brass accent, used deliberately, not scattered.
+
+```css
+--color-ink:        #1B2531;  /* primary text, dark section bg */
+--color-ink-70:      rgba(27, 37, 49, 0.7);
+--color-limestone:  #E7E2D3;  /* light section bg */
+--color-stone:      #C9C2AC;  /* borders, dividers, card edges on light bg */
+--color-brass:      #B08D4F;  /* sole accent — CTAs, signature ring motif, highlights */
+--color-brass-dark: #8C6E3A;  /* brass hover/active state */
+--color-sage:       #6B7A5E;  /* sparing use only — success states, growth/roots motifs */
+--color-paper:      #FAF8F3;  /* card surfaces on limestone bg, near-white */
+```
 
 ### 11.5 Typography Tokens
 
+Display face reads as carved/inscriptional (slab, not thin high-contrast serif) — echoes limestone civic lettering. Body face is Public Sans, the USWDS government-services typeface — a deliberate nod to navigating a federal process. Caption face is a mono, echoing immigration form numbers (I-130, N-400).
+
 ```css
---font-display:    /* display or serif family */;
---font-sans:       /* clean sans-serif family */;
+--font-display:    'Bitter', Georgia, serif;
+--font-sans:       'Public Sans', -apple-system, sans-serif;
+--font-mono:       'IBM Plex Mono', ui-monospace, monospace;
 --heading-tight:   -0.03em;
 --body-leading:    1.7;
 ```
