@@ -1,16 +1,390 @@
 /* ==========================================================================
-   Warrner Legal — Option D
-   Modeled on clj.pocketsod.com (Center for Language Justice): deep-green/
-   cream/gold cooperative warmth, headlines with an italicized serif accent
-   word, numbered process steps, a tag cloud, an accordion, a dated timeline.
-   Palette stays in the Warrner token family — this leans into the sage
-   token (already reserved for "growth/new roots" motifs) as the dominant
-   deep tone rather than introducing an unrelated hue.
+   Warrner Legal — Option E (originally Option D)
+   Was a deep-green/cream/gold palette; now an ocean-blue/light scheme built
+   around ocean.jpg in the hero. The dark "forest" role became a medium
+   ocean-navy rather than a pale blue, since it still needs to carry white
+   (and gold) text at a real contrast ratio — see --vd-gold-pale below for
+   the paler gold used specifically on this bg, where the base --vd-gold
+   fell under 2:1.
+   ========================================================================== */
+
+#variant-d-orig {
+	--vd-forest: #1C4A63;
+	--vd-forest-dark: #123347;
+	--vd-sky: #5B9BB5;
+	--vd-cream: #E3EEF3;
+	--vd-paper: #F7FBFD;
+	--vd-gold: #B08D4F;
+	--vd-gold-dark: #8C6E3A;
+	--vd-gold-pale: #F0DFB0;
+	--vd-ink: #1B2B36;
+	--vd-ink-70: rgba(27, 43, 54, 0.7);
+
+	--vd-font-serif: 'Libre Baskerville', Georgia, serif;
+	--vd-font-sans: 'Montserrat', -apple-system, sans-serif;
+
+	background: var(--vd-paper);
+	color: var(--vd-ink);
+	font-family: var(--vd-font-sans);
+	line-height: var(--body-leading);
+}
+
+#variant-d-orig .vd-section { padding-block: var(--space-24); }
+#variant-d-orig .vd-section--cream { background: var(--vd-cream); }
+#variant-d-orig .vd-section--paper { background: var(--vd-paper); }
+#variant-d-orig .vd-section--forest { background: var(--vd-forest); color: var(--vd-paper); }
+
+#variant-d-orig .vd-eyebrow {
+	font-family: var(--vd-font-sans);
+	font-size: var(--text-xs);
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--vd-gold-dark);
+	display: inline-block;
+	margin-bottom: var(--space-3);
+}
+#variant-d-orig .vd-section--forest .vd-eyebrow { color: var(--vd-gold-pale); }
+
+#variant-d-orig .vd-h1, #variant-d-orig .vd-h2, #variant-d-orig .vd-h3 {
+	font-family: var(--vd-font-sans);
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	margin: 0 0 var(--space-4);
+}
+#variant-d-orig .vd-h1 { font-size: clamp(var(--text-3xl), 5vw, 52px); }
+#variant-d-orig .vd-h2 { font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl)); }
+#variant-d-orig .vd-h3 { font-size: var(--text-xl); }
+
+/* The signature device: an italicized serif accent word inside an
+   otherwise sans headline, in gold. */
+#variant-d-orig .vd-accent {
+	font-family: var(--vd-font-serif);
+	font-style: italic;
+	font-weight: 400;
+	color: var(--vd-gold-dark);
+}
+#variant-d-orig .vd-section--forest .vd-accent { color: var(--vd-gold-pale); }
+
+#variant-d-orig .vd-lede { font-size: var(--text-lg); color: var(--vd-ink-70); max-width: 52ch; }
+#variant-d-orig .vd-section--forest .vd-lede { color: rgba(247, 251, 253, 0.85); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+#variant-d-orig .vd-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	font-family: var(--vd-font-sans);
+	font-weight: 700;
+	font-size: var(--text-sm);
+	letter-spacing: 0.02em;
+	padding: var(--space-3) var(--space-6);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--vd-gold);
+	cursor: pointer;
+	text-decoration: none;
+	transition: transform 0.2s var(--ease-spring), box-shadow 0.2s var(--ease-spring), background-color 0.2s ease;
+}
+#variant-d-orig .vd-btn--primary { background: var(--vd-gold); color: var(--vd-forest-dark); box-shadow: var(--shadow-base); }
+#variant-d-orig .vd-btn--primary:hover { background: var(--vd-gold-dark); color: var(--vd-paper); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
+#variant-d-orig .vd-btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-base); }
+#variant-d-orig .vd-btn--ghost { background: transparent; color: inherit; border-color: currentColor; }
+#variant-d-orig .vd-btn--ghost:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+#variant-d-orig .vd-btn--block { width: 100%; justify-content: center; }
+
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+
+#variant-d-orig .vd-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--space-3);
+	padding: var(--space-4) var(--space-6);
+	background: var(--vd-paper);
+	border-bottom: 1px solid var(--vd-cream);
+}
+#variant-d-orig .vd-logo { height: 64px; width: auto; object-fit: contain; }
+
+#variant-d-orig .vd-nav { display: flex; align-items: center; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+#variant-d-orig .vd-nav a { font-size: var(--text-sm); font-weight: 600; color: var(--vd-ink); text-decoration: none; }
+#variant-d-orig .vd-nav a:hover { color: var(--vd-gold-dark); }
+
+@media (max-width: 640px) {
+	#variant-d-orig .vd-nav li:not(:last-child) { display: none; }
+	#variant-d-orig .vd-logo { height: 52px; }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+#variant-d-orig .vd-hero {
+	position: relative;
+	background-image:
+		linear-gradient(160deg, var(--vd-sky) 10%, var(--vd-forest) 90%),
+		url('../images/ocean.jpg');
+	background-size: cover, cover;
+	background-position: center, center;
+	background-repeat: no-repeat, no-repeat;
+	background-blend-mode: multiply, normal;
+	color: var(--vd-paper);
+	padding-block: var(--space-24) var(--space-16);
+}
+#variant-d-orig .vd-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18, 51, 71, 0.35) 0%, rgba(18, 51, 71, 0.08) 60%); }
+#variant-d-orig .vd-hero__content { position: relative; max-width: 720px; }
+/* .vd-lede defaults to a dark ink tone made for light backgrounds; the hero
+   sits on a dark photo, so it was rendering essentially invisible here —
+   same fix already applied on the new Option A hero. */
+#variant-d-orig .vd-hero .vd-lede { color: rgba(247, 251, 253, 0.85); }
+#variant-d-orig .vd-hero .vd-eyebrow { color: var(--vd-gold-pale); }
+#variant-d-orig .vd-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
+
+#variant-d-orig .vd-badges { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-8); padding: 0; list-style: none; }
+#variant-d-orig .vd-badges li { text-align: center; }
+#variant-d-orig .vd-badges .vd-badge__num { font-family: var(--vd-font-serif); font-size: var(--text-3xl); color: var(--vd-gold); line-height: 1; }
+#variant-d-orig .vd-badges .vd-badge__label { font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: rgba(251,249,243,0.75); }
+
+/* ==========================================================================
+   Services grid
+   ========================================================================== */
+
+#variant-d-orig .vd-grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-top: var(--space-10); }
+@media (min-width: 700px) { #variant-d-orig .vd-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { #variant-d-orig .vd-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+#variant-d-orig .vd-card {
+	background: var(--vd-paper);
+	border: 1px solid var(--vd-cream);
+	border-radius: var(--radius-md);
+	padding: var(--space-6);
+	text-decoration: none;
+	color: var(--vd-ink);
+	display: block;
+	box-shadow: var(--shadow-base);
+	transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-spring), border-color 0.25s ease;
+}
+#variant-d-orig .vd-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-elevated); border-color: var(--vd-gold); }
+#variant-d-orig .vd-card__icon {
+	width: 40px; height: 40px; border-radius: 50%;
+	background: var(--vd-cream);
+	display: flex; align-items: center; justify-content: center;
+	margin-bottom: var(--space-4);
+	color: var(--vd-forest);
+	font-weight: 700;
+}
+#variant-d-orig .vd-card__title { font-size: var(--text-lg); font-weight: 700; margin: 0 0 var(--space-2); }
+#variant-d-orig .vd-card__desc { font-size: var(--text-sm); color: var(--vd-ink-70); margin: 0; }
+
+/* ==========================================================================
+   Numbered process steps
+   ========================================================================== */
+
+#variant-d-orig .vd-steps { display: grid; grid-template-columns: 1fr; gap: var(--space-8); margin-top: var(--space-10); }
+@media (min-width: 700px) { #variant-d-orig .vd-steps { grid-template-columns: repeat(3, 1fr); } }
+
+#variant-d-orig .vd-step__num {
+	width: 48px; height: 48px; border-radius: 50%;
+	background: var(--vd-forest); color: var(--vd-paper);
+	display: flex; align-items: center; justify-content: center;
+	font-family: var(--vd-font-serif); font-size: var(--text-xl);
+	margin-bottom: var(--space-4);
+}
+#variant-d-orig .vd-step__title { font-size: var(--text-lg); font-weight: 700; margin: 0 0 var(--space-2); }
+#variant-d-orig .vd-step__desc { font-size: var(--text-sm); color: var(--vd-ink-70); margin: 0; }
+
+/* ==========================================================================
+   Fee cards
+   ========================================================================== */
+
+#variant-d-orig .vd-fees { display: grid; grid-template-columns: 1fr; gap: var(--space-1); margin-top: var(--space-10); background: var(--vd-cream); border-radius: var(--radius-md); overflow: hidden; }
+@media (min-width: 700px) { #variant-d-orig .vd-fees { grid-template-columns: repeat(3, 1fr); } }
+#variant-d-orig .vd-fee { background: var(--vd-paper); padding: var(--space-8); }
+#variant-d-orig .vd-fee__title { font-family: var(--vd-font-serif); font-size: var(--text-xl); color: var(--vd-forest); margin: 0 0 var(--space-2); }
+#variant-d-orig .vd-fee__desc { font-size: var(--text-sm); color: var(--vd-ink-70); margin: 0; }
+
+/* ==========================================================================
+   Tag cloud
+   ========================================================================== */
+
+#variant-d-orig .vd-tags { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-10); }
+#variant-d-orig .vd-tag {
+	font-family: var(--vd-font-sans);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	padding: var(--space-2) var(--space-4);
+	border-radius: 999px;
+	background: var(--vd-cream);
+	color: var(--vd-forest);
+	border: 1px solid transparent;
+}
+#variant-d-orig .vd-tag--outline { background: transparent; border-color: var(--vd-cream); color: var(--vd-ink-70); }
+
+/* ==========================================================================
+   Approach list (dark)
+   ========================================================================== */
+
+#variant-d-orig .vd-approach { display: grid; grid-template-columns: 1fr; gap: var(--space-12); align-items: center; }
+@media (min-width: 900px) { #variant-d-orig .vd-approach { grid-template-columns: 1.2fr 0.8fr; } }
+
+#variant-d-orig .vd-approach__portrait {
+	border: 1px solid rgba(176, 141, 79, 0.4);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	box-shadow: var(--shadow-elevated);
+}
+#variant-d-orig .vd-approach__portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+#variant-d-orig .vd-approach-list { list-style: none; margin: var(--space-10) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-6); max-width: 640px; }
+#variant-d-orig .vd-approach-list li { padding-left: var(--space-8); position: relative; }
+#variant-d-orig .vd-approach-list li::before {
+	content: '';
+	position: absolute; left: 0; top: 0.4em;
+	width: 10px; height: 10px; border-radius: 50%;
+	background: var(--vd-gold);
+}
+#variant-d-orig .vd-approach-list strong { display: block; font-family: var(--vd-font-serif); font-size: var(--text-lg); margin-bottom: var(--space-1); }
+#variant-d-orig .vd-approach-list span { color: rgba(251,249,243,0.75); font-size: var(--text-sm); }
+
+/* ==========================================================================
+   FAQ accordion
+   ========================================================================== */
+
+#variant-d-orig .vd-faq { max-width: 760px; margin-top: var(--space-10); border-top: 1px solid var(--vd-cream); }
+#variant-d-orig .vd-faq__item { border-bottom: 1px solid var(--vd-cream); }
+#variant-d-orig .vd-faq__q {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-4);
+	background: none;
+	border: none;
+	text-align: left;
+	font-family: var(--vd-font-sans);
+	font-size: var(--text-lg);
+	font-weight: 700;
+	color: var(--vd-ink);
+	padding: var(--space-6) 0;
+	cursor: pointer;
+}
+#variant-d-orig .vd-faq__icon { flex: none; font-size: var(--text-xl); color: var(--vd-gold-dark); transition: transform 0.25s var(--ease-spring); }
+#variant-d-orig .vd-faq__item[data-open="true"] .vd-faq__icon { transform: rotate(45deg); }
+#variant-d-orig .vd-faq__a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+#variant-d-orig .vd-faq__item[data-open="true"] .vd-faq__a { max-height: 240px; }
+#variant-d-orig .vd-faq__a p { margin: 0 0 var(--space-6); color: var(--vd-ink-70); font-size: var(--text-base); max-width: 65ch; }
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+#variant-d-orig .vd-testimonial { background: var(--vd-cream); border-radius: var(--radius-md); padding: var(--space-6); }
+#variant-d-orig .vd-testimonial p { font-family: var(--vd-font-serif); font-style: italic; margin: 0 0 var(--space-3); }
+#variant-d-orig .vd-testimonial cite { font-style: normal; font-weight: 700; font-size: var(--text-sm); }
+
+/* ==========================================================================
+   Timeline
+   ========================================================================== */
+
+#variant-d-orig .vd-timeline { position: relative; max-width: 720px; margin-top: var(--space-10); padding-left: var(--space-8); border-left: 2px solid var(--vd-cream); }
+#variant-d-orig .vd-timeline__item { position: relative; padding-bottom: var(--space-10); }
+#variant-d-orig .vd-timeline__item:last-child { padding-bottom: 0; }
+#variant-d-orig .vd-timeline__item::before {
+	content: '';
+	position: absolute; left: calc(-1 * var(--space-8) - 6px); top: 4px;
+	width: 12px; height: 12px; border-radius: 50%;
+	background: var(--vd-gold); border: 2px solid var(--vd-paper); box-shadow: 0 0 0 2px var(--vd-gold);
+}
+#variant-d-orig .vd-timeline__stage { font-family: var(--vd-font-sans); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vd-gold-dark); }
+#variant-d-orig .vd-timeline__title { font-size: var(--text-lg); font-weight: 700; margin: var(--space-1) 0; }
+#variant-d-orig .vd-timeline__desc { font-size: var(--text-sm); color: var(--vd-ink-70); margin: 0; }
+
+/* ==========================================================================
+   CTA banner
+   ========================================================================== */
+
+#variant-d-orig .vd-cta-banner {
+	background: var(--vd-gold);
+	color: var(--vd-forest-dark);
+	text-align: center;
+	padding-block: var(--space-16);
+}
+#variant-d-orig .vd-cta-banner .vd-h2 { color: var(--vd-forest-dark); }
+#variant-d-orig .vd-cta-banner .vd-btn--primary { background: var(--vd-forest-dark); color: var(--vd-paper); border-color: var(--vd-forest-dark); }
+#variant-d-orig .vd-cta-banner .vd-btn--primary:hover { background: var(--vd-forest); }
+
+/* ==========================================================================
+   Intake form (reuses the same field pattern as B/C)
+   ========================================================================== */
+
+#variant-d-orig .vd-intake { background: var(--vd-paper); color: var(--vd-ink); border-radius: var(--radius-md); padding: var(--space-8); box-shadow: var(--shadow-floating); }
+#variant-d-orig .vd-field { margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+#variant-d-orig .vd-field label { font-size: var(--text-sm); font-weight: 600; }
+#variant-d-orig .vd-field input, #variant-d-orig .vd-field select, #variant-d-orig .vd-field textarea {
+	font-family: var(--vd-font-sans);
+	font-size: var(--text-base);
+	padding: var(--space-3);
+	border: 1px solid var(--vd-cream);
+	border-radius: var(--radius-sm);
+	background: var(--vd-paper);
+	color: var(--vd-ink);
+}
+#variant-d-orig .vd-field input:focus-visible, #variant-d-orig .vd-field select:focus-visible, #variant-d-orig .vd-field textarea:focus-visible {
+	outline: none; border-color: var(--vd-gold); box-shadow: 0 0 0 3px rgba(176, 141, 79, 0.2);
+}
+#variant-d-orig .vd-field textarea { resize: vertical; min-height: 96px; }
+#variant-d-orig .vd-intake__status { font-size: var(--text-sm); margin-top: var(--space-4); min-height: 1.5em; }
+#variant-d-orig .vd-intake__status[data-state="success"] { color: #3F6B3F; }
+#variant-d-orig .vd-intake__status[data-state="error"] { color: #A0413A; }
+
+/* ==========================================================================
+   Location / footer
+   ========================================================================== */
+
+#variant-d-orig .vd-location { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
+@media (min-width: 900px) { #variant-d-orig .vd-location { grid-template-columns: 1fr 1fr; } }
+#variant-d-orig .vd-location__map { border: 1px solid var(--vd-cream); aspect-ratio: 4/3; border-radius: var(--radius-md); overflow: hidden; }
+#variant-d-orig .vd-location__map iframe { width: 100%; height: 100%; border: 0; }
+#variant-d-orig .vd-location__map-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--vd-cream); color: var(--vd-forest); font-weight: 700; text-decoration: none; }
+#variant-d-orig .vd-location__details dt { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--vd-gold-dark); margin-top: var(--space-6); }
+#variant-d-orig .vd-location__details dd { margin: var(--space-1) 0 0; }
+
+#variant-d-orig .vd-footer { background: var(--vd-forest-dark); color: var(--vd-paper); padding-block: var(--space-12); }
+#variant-d-orig .vd-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-6); margin-bottom: var(--space-8); }
+#variant-d-orig .vd-footer .vd-logo { height: 56px; filter: brightness(0) invert(1); opacity: 0.9; }
+#variant-d-orig .vd-footer__nav { display: flex; flex-wrap: wrap; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+#variant-d-orig .vd-footer__nav a { font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--vd-paper); text-decoration: none; opacity: 0.85; }
+#variant-d-orig .vd-footer__nav a:hover { opacity: 1; color: var(--vd-gold); }
+#variant-d-orig .vd-footer__bottom { font-size: var(--text-xs); opacity: 0.6; border-top: 1px solid rgba(251,249,243,0.15); padding-top: var(--space-6); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); }
+
+/* ==========================================================================
+   The block above (#variant-d-orig) is Option D, now shown last in the
+   toggle as "Option E" — kept under its original selector so nothing about
+   its own styling had to change. The block below (#variant-d) is the new
+   default "Option A": same component system and tokens, duplicated under
+   its own selector so the two can diverge (hero photo/background, bio
+   section) without touching Option E.
+   ========================================================================== */
+
+/* ==========================================================================
+   Warrner Legal — Option A (new default; reuses Option D's system below)
+   Same component system/structure as Option D (numbered process steps, tag
+   cloud, accordion, dated timeline), but the dominant deep tone is a maroon
+   pulled from the logo's crimson instead of Option D's forest green.
+   NOTE: the custom properties below kept their original --vd-forest /
+   --vd-forest-dark names for a smaller diff — they hold maroon values here,
+   not green. Don't be misled by the name when editing this block.
    ========================================================================== */
 
 #variant-d {
-	--vd-forest: #2E3826;
-	--vd-forest-dark: #1F2619;
+	--vd-forest: #4A0F22; /* maroon, not forest — see note above */
+	--vd-forest-dark: #3A0C1B; /* maroon, not forest — see note above */
 	--vd-cream: #F2EEE1;
 	--vd-paper: #FBF9F3;
 	--vd-gold: #B08D4F;
@@ -125,24 +499,128 @@
 
 #variant-d .vd-hero {
 	position: relative;
-	background-image:
-		linear-gradient(160deg, var(--color-sage) 10%, var(--vd-forest) 90%),
-		url('../images/indy-sketch.jpg');
-	background-size: cover, cover;
-	background-position: center, center;
-	background-repeat: no-repeat, no-repeat;
-	background-blend-mode: multiply, normal;
+	background-image: url('../images/indy-evening.jpg');
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
 	color: var(--vd-paper);
 	padding-block: var(--space-24) var(--space-16);
 }
-#variant-d .vd-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,38,25,0.32) 0%, rgba(31,38,25,0.06) 60%); }
+/* Localized scrim behind the text column only — the photo itself stays
+   untouched everywhere else (including the whole right side/portrait). */
+#variant-d .vd-hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.2) 45%, transparent 68%);
+	pointer-events: none;
+}
 #variant-d .vd-hero__content { position: relative; max-width: 720px; }
+/* Photo is fully natural (no tint/scrim per direction), so the text needs
+   its own contrast aids instead: a saturated red (reads against both the
+   photo's blues and golds, unlike the muted --vd-gold-dark) plus a soft
+   shadow that holds up over any part of the image without darkening it. */
+#variant-d .vd-hero .vd-eyebrow,
+#variant-d .vd-hero .vd-accent { color: #E23A5C; }
+#variant-d .vd-hero .vd-h1,
+#variant-d .vd-hero .vd-lede,
+#variant-d .vd-hero .vd-eyebrow,
+#variant-d .vd-hero .vd-accent {
+	/* Layered rather than one soft blur — the sunset band behind this text
+	   swings from near-black to bright pink/gold, and a single shadow reads
+	   fine against one but disappears against the other. A tight dark pass
+	   plus a wider one holds contrast across that whole range. */
+	text-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.9),
+		0 2px 6px rgba(0, 0, 0, 0.8),
+		0 4px 18px rgba(0, 0, 0, 0.6);
+}
 #variant-d .vd-hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
+/* .vd-lede defaults to a dark ink tone made for light backgrounds; the hero
+   sits on a dark photo, so it needs the same light treatment .vd-section--
+   forest gets elsewhere. */
+#variant-d .vd-hero .vd-lede { color: rgba(251, 249, 243, 0.85); }
+
+/* Split layout: text column + ringed portrait (Option A only). */
+#variant-d .vd-hero--split .vd-hero__grid {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-12);
+	align-items: center;
+}
+@media (min-width: 900px) {
+	#variant-d .vd-hero--split .vd-hero__grid { grid-template-columns: 1.1fr 0.9fr; }
+}
+#variant-d .vd-hero__portrait {
+	position: relative;
+	display: grid;
+	place-items: center;
+	aspect-ratio: 1;
+	max-width: 340px;
+	margin-inline: auto;
+	/* The ring below bleeds ~12% past this box on every side. Below the
+	   900px breakpoint the grid stacks to one column, so without this
+	   margin that bleed overlaps the lede text sitting right above it. */
+	margin-top: var(--space-8);
+}
+@media (min-width: 900px) {
+	#variant-d .vd-hero__portrait { margin-top: 0; }
+}
+/* Ring device echoes the logo's wireframe globe: crossing brass ellipses
+   plus a crimson tick + dot standing in for its compass/coordinate accent. */
+#variant-d .vd-hero__ring {
+	position: absolute;
+	inset: -12%;
+	width: 124%;
+	height: 124%;
+	filter: drop-shadow(0 0 8px rgba(176, 141, 79, 0.3));
+	animation: warrner-ring-drift 36s linear infinite;
+}
+#variant-d .vd-hero__photo {
+	position: relative;
+	width: 74%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: var(--shadow-floating);
+	border: 4px solid var(--vd-gold);
+}
+#variant-d .vd-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+/* ==========================================================================
+   Bio section (Option A only — Option E has no equivalent)
+   ========================================================================== */
+
+#variant-d .vd-bio { display: grid; grid-template-columns: 1fr; gap: var(--space-12); align-items: start; }
+@media (min-width: 900px) { #variant-d .vd-bio { grid-template-columns: 340px 1fr; } }
+#variant-d .vd-bio__photo { border: 1px solid rgba(176, 141, 79, 0.4); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-elevated); }
+#variant-d .vd-bio__photo img { width: 100%; height: auto; display: block; }
+#variant-d .vd-bio__credentials { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+#variant-d .vd-bio__credentials li { padding-left: var(--space-6); position: relative; font-size: var(--text-sm); color: var(--vd-ink-70); }
+#variant-d .vd-bio__credentials li::before {
+	content: '';
+	position: absolute; left: 0; top: 0.5em;
+	width: 8px; height: 8px; border-radius: 50%;
+	background: var(--vd-gold);
+}
 
 #variant-d .vd-badges { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-8); padding: 0; list-style: none; }
 #variant-d .vd-badges li { text-align: center; }
-#variant-d .vd-badges .vd-badge__num { font-family: var(--vd-font-serif); font-size: var(--text-3xl); color: var(--vd-gold); line-height: 1; }
-#variant-d .vd-badges .vd-badge__label { font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: rgba(251,249,243,0.75); }
+#variant-d .vd-badges .vd-badge__num {
+	font-family: var(--vd-font-serif);
+	font-size: var(--text-3xl);
+	color: #E23A5C;
+	line-height: 1;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 18px rgba(0, 0, 0, 0.6);
+}
+#variant-d .vd-badges .vd-badge__label {
+	font-size: var(--text-xs);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: rgba(251,249,243,0.9);
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
 
 /* ==========================================================================
    Services grid

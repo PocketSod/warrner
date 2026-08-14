@@ -241,15 +241,30 @@ a { color: inherit; }
 	background-image:
 		radial-gradient(circle at 78% 20%, rgba(176, 141, 79, 0.16), transparent 55%),
 		radial-gradient(circle at 15% 85%, rgba(107, 122, 94, 0.10), transparent 50%),
-		linear-gradient(180deg, rgba(27, 37, 49, 0.50) 0%, rgba(27, 37, 49, 0.60) 55%, rgba(27, 37, 49, 0.72) 100%),
+		linear-gradient(90deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.18) 45%, transparent 68%),
 		url('../images/indy-evening.jpg');
 	background-size: auto, auto, auto, cover;
-	background-position: 78% 20%, 15% 85%, center, center 65%;
+	background-position: 78% 20%, 15% 85%, center, center top;
 	background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-	background-blend-mode: normal, normal, multiply, normal;
+	background-blend-mode: normal, normal, normal, normal;
 	color: var(--color-paper);
 	padding-block: var(--space-24) var(--space-16);
 }
+/* Photo needs its own text contrast aids beyond the left-side scrim above —
+   layered shadow holds up across both the dark buildings and bright sky. */
+.hero .h1,
+.hero .lede,
+.hero .eyebrow,
+.hero__badges li {
+	text-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.9),
+		0 2px 6px rgba(0, 0, 0, 0.8),
+		0 4px 18px rgba(0, 0, 0, 0.6);
+}
+/* --color-brass-dark (the default .eyebrow color) is a mid-tone brown-gold
+   that stays weak even with the shadow above — bumped to the brighter
+   crimson used elsewhere for this same problem (Option A's hero eyebrow). */
+.hero .eyebrow { color: #E23A5C; }
 
 .hero__grid {
 	display: grid;

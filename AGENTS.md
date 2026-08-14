@@ -29,9 +29,18 @@ Adjust the path for whichever theme/plugin directory you touched (e.g. `wp-conte
 4. Compare → fix → repeat until correct
 5. git add <files> && git commit -m "describe change"
 6. git push origin main
+7. npm run deploy   (pushes wp-content/themes/warrner to the demo.toolsandtable.com FTP site)
 ```
 
 The two failure modes to avoid: editing the Laragon copy directly and forgetting to backport into git, or editing git and forgetting to sync into Laragon before checking it in browser.
+
+### Deploying to the demo site
+
+`demo.toolsandtable.com` is a separate, live WordPress install on Hostinger used to share progress remotely (superseded the old ngrok tunnel — see repo memory for history). `npm run deploy` uploads `wp-content/themes/warrner` over FTP via `scripts/deploy.mjs`; it overwrites changed files and adds new ones but never deletes files removed locally, so prune stale files on the remote manually if a file is ever renamed/removed.
+
+Credentials live in `.env` (gitignored, real secrets — never commit) based on `.env.example`. This is a distinct WordPress database/content from local Laragon — deploying the theme does not sync posts, pages, or plugin config, only the theme code itself.
+
+When the client gets their own Hostinger account, this same script works against it — just point `.env` at the new account's FTP credentials (or add a second target/env file) and re-run. **Before the first deploy to a new account, verify `FTP_REMOTE_ROOT` by listing the FTP login directory** (e.g. `client.list()` in a throwaway script) rather than assuming `public_html` — on `demo.toolsandtable.com` the FTP account's home directory already *is* the document root, so setting `FTP_REMOTE_ROOT=public_html` created a spurious nested `public_html/public_html/...` that never actually reached the live theme folder. Leave `FTP_REMOTE_ROOT` empty unless the listing shows `wp-admin`/`wp-content` sitting inside a `public_html` subfolder.
 
 ---
 
@@ -43,6 +52,8 @@ D:\Projects\Warrner\                      ← git repo, source of truth
 │   ├── themes\warrner\                   ← custom theme (only theme in active use)
 │   └── plugins\                          ← custom plugins, if/when needed
 ├── scripts\screenshot.mjs                ← screenshot tooling (Puppeteer)
+├── scripts\deploy.mjs                    ← FTP deploy to demo.toolsandtable.com (npm run deploy)
+├── .env                                  ← FTP credentials, gitignored — copy from .env.example
 ├── public\images\                        ← brand asset source (logos, photos) — not synced automatically, pull into the theme as needed
 ├── wp-config-sample.php                  ← reference only, not the real config
 └── AGENTS.md / CLAUDE.md / README.md

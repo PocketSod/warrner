@@ -3,9 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "screenshot": "node scripts/screenshot.mjs"
+    "screenshot": "node scripts/screenshot.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "set-site-icon": "node scripts/set-site-icon.mjs"
   },
   "dependencies": {
+    "basic-ftp": "^6.2.0",
     "puppeteer": "^24"
   }
 }

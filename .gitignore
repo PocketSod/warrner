@@ -35,9 +35,12 @@ wp-cli.phar
 # scratch design review screenshots
 /temporary screenshots/
 
-# Node (screenshot tooling)
+# Node (screenshot / deploy tooling)
 node_modules/
 npm-debug.log*
+
+# FTP credentials for demo deploy — never commit
+.env
 
 # Claude Code local tool config — machine/session-specific
 .claude/

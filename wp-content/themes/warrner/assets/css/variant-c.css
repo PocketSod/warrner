@@ -9,7 +9,7 @@
    ========================================================================== */
 
 #variant-c {
-	--vc-black: #111111;
+	--vc-black: #333333;
 	--vc-maroon: #660000;
 	--vc-maroon-dark: #4D0000;
 	--vc-white: #FFFFFF;
@@ -129,19 +129,27 @@
 	display: flex;
 	align-items: flex-end;
 	background-size: cover;
-	background-position: center;
+	background-position: center top;
 	color: var(--vc-white);
 }
+/* Lightened from the original 0.18–0.60 dark wash — photo now reads much
+   more naturally, with just enough of a bottom scrim to hold the text
+   (which anchors to the bottom of this hero) legible. */
 #variant-c .vc-hero::before {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(180deg, rgba(17,17,17,0.18) 0%, rgba(17,17,17,0.32) 60%, rgba(17,17,17,0.60) 100%);
+	background: linear-gradient(180deg, rgba(17,17,17,0.05) 0%, rgba(17,17,17,0.12) 55%, rgba(17,17,17,0.32) 100%);
 }
 #variant-c .vc-hero__content { position: relative; padding-block: var(--space-24) var(--space-16); max-width: 720px; }
 #variant-c .vc-hero__content .vc-eyebrow,
 #variant-c .vc-hero__content .vc-h1,
-#variant-c .vc-hero__content .vc-lede { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 2px 12px rgba(0, 0, 0, 0.3); }
+#variant-c .vc-hero__content .vc-lede {
+	text-shadow:
+		0 1px 2px rgba(0, 0, 0, 0.9),
+		0 2px 6px rgba(0, 0, 0, 0.8),
+		0 4px 18px rgba(0, 0, 0, 0.6);
+}
 #variant-c .vc-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); margin-top: var(--space-8); }
 
 #variant-c .vc-btn {

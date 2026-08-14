@@ -47,6 +47,21 @@ function warrner_setup() {
 add_action( 'after_setup_theme', 'warrner_setup' );
 
 /**
+ * Cache-busting version for a theme asset, keyed to its own last-modified
+ * time. A shared WARRNER_VERSION (the static style.css header) doesn't
+ * change when a CSS/JS file is edited without also bumping that header, so
+ * browsers (and LiteSpeed's static-file cache) keep serving stale assets
+ * indefinitely after a deploy — this is what broke Option A/E's styling on
+ * demo.toolsandtable.com after the theme was updated but style.css's
+ * Version field wasn't. filemtime() ties the query string to the actual
+ * file, so every deploy busts cache automatically.
+ */
+function warrner_asset_version( $relative_path ) {
+	$file = WARRNER_DIR . $relative_path;
+	return file_exists( $file ) ? filemtime( $file ) : WARRNER_VERSION;
+}
+
+/**
  * Styles & scripts.
  */
 function warrner_enqueue_assets() {
@@ -65,12 +80,12 @@ function warrner_enqueue_assets() {
 		null
 	);
 
-	wp_enqueue_style( 'warrner-style', WARRNER_URI . '/assets/css/main.css', array( 'warrner-fonts' ), WARRNER_VERSION );
-	wp_enqueue_style( 'warrner-variant-b', WARRNER_URI . '/assets/css/variant-b.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
-	wp_enqueue_style( 'warrner-variant-c', WARRNER_URI . '/assets/css/variant-c.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
-	wp_enqueue_style( 'warrner-variant-d', WARRNER_URI . '/assets/css/variant-d.css', array( 'warrner-style', 'warrner-fonts-b' ), WARRNER_VERSION );
+	wp_enqueue_style( 'warrner-style', WARRNER_URI . '/assets/css/main.css', array( 'warrner-fonts' ), warrner_asset_version( '/assets/css/main.css' ) );
+	wp_enqueue_style( 'warrner-variant-b', WARRNER_URI . '/assets/css/variant-b.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-b.css' ) );
+	wp_enqueue_style( 'warrner-variant-c', WARRNER_URI . '/assets/css/variant-c.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-c.css' ) );
+	wp_enqueue_style( 'warrner-variant-d', WARRNER_URI . '/assets/css/variant-d.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-d.css' ) );
 
-	wp_enqueue_script( 'warrner-main', WARRNER_URI . '/assets/js/main.js', array(), WARRNER_VERSION, true );
+	wp_enqueue_script( 'warrner-main', WARRNER_URI . '/assets/js/main.js', array(), warrner_asset_version( '/assets/js/main.js' ), true );
 
 	wp_localize_script( 'warrner-main', 'warrnerData', array(
 		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
