@@ -94,6 +94,8 @@
 #variant-d-orig .vd-btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-base); }
 #variant-d-orig .vd-btn--ghost { background: transparent; color: inherit; border-color: currentColor; }
 #variant-d-orig .vd-btn--ghost:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+#variant-d-orig .vd-btn--phone { background: var(--vd-paper); color: var(--vd-forest-dark); border-color: var(--vd-gold); box-shadow: var(--shadow-base); }
+#variant-d-orig .vd-btn--phone:hover { background: var(--vd-cream); border-color: var(--vd-gold-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
 #variant-d-orig .vd-btn--block { width: 100%; justify-content: center; }
 
 /* ==========================================================================
@@ -466,6 +468,8 @@
 #variant-d .vd-btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-base); }
 #variant-d .vd-btn--ghost { background: transparent; color: inherit; border-color: currentColor; }
 #variant-d .vd-btn--ghost:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+#variant-d .vd-btn--phone { background: var(--vd-paper); color: var(--vd-forest-dark); border-color: var(--vd-gold); box-shadow: var(--shadow-base); }
+#variant-d .vd-btn--phone:hover { background: var(--vd-cream); border-color: var(--vd-gold-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
 #variant-d .vd-btn--block { width: 100%; justify-content: center; }
 
 /* ==========================================================================

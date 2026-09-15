@@ -68,7 +68,7 @@ $practice_areas = warrner_get_practice_areas();
 				<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
 				<div class="vd-hero__actions">
 					<a class="vd-btn vd-btn--primary" href="#consultation-e">Request a Free Consultation</a>
-					<a class="vd-btn vd-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
+					<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 				<ul class="vd-badges">
 					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>
@@ -460,7 +460,7 @@ $practice_areas = warrner_get_practice_areas();
 
 				<div class="hero__actions">
 					<a class="btn btn--primary" href="#consultation-a">Request a Free Consultation</a>
-					<a class="btn btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
+					<a class="btn btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 			</div>
 
@@ -709,7 +709,7 @@ $practice_areas = warrner_get_practice_areas();
 				<p class="vb-hero__coords"><?php echo warrner_address_coords_entities(); ?> &mdash; Indianapolis, Indiana</p>
 				<div class="vb-hero__actions">
 					<a class="vb-btn vb-btn--primary" href="#consultation-b">Request a Free Consultation</a>
-					<a class="vb-btn vb-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
+					<a class="vb-btn vb-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 			</div>
 			<div class="vb-hero__portrait">
@@ -1001,7 +1001,7 @@ $practice_areas = warrner_get_practice_areas();
 			<p class="vc-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system, from Indianapolis.</p>
 			<div class="vc-hero__actions">
 				<a class="vc-btn vc-btn--primary" href="#consultation-c">Request a Free Consultation</a>
-				<a class="vc-link" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?> →</a>
+				<a class="vc-btn vc-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 			</div>
 		</div>
 	</section>
@@ -1241,7 +1241,7 @@ $practice_areas = warrner_get_practice_areas();
 			<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
 			<div class="vd-hero__actions">
 				<a class="vd-btn vd-btn--primary" href="#consultation-d">Request a Free Consultation</a>
-				<a class="vd-btn vd-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
+				<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 			</div>
 			<ul class="vd-badges">
 				<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>

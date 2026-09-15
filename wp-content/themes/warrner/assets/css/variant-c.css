@@ -171,6 +171,9 @@
 #variant-c .vc-btn--primary { background: var(--vc-maroon); color: var(--vc-white); box-shadow: var(--shadow-base); }
 #variant-c .vc-btn--primary:hover { background: var(--vc-maroon-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
 #variant-c .vc-btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-base); }
+#variant-c .vc-btn--phone { background: var(--vc-white); color: var(--vc-maroon); box-shadow: var(--shadow-base); }
+#variant-c .vc-btn--phone:hover { background: var(--vc-gray-light); border-color: var(--vc-maroon-dark); color: var(--vc-maroon-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
+#variant-c .vc-btn--phone:active { transform: translateY(0); box-shadow: var(--shadow-base); }
 #variant-c .vc-btn--block { width: 100%; justify-content: center; }
 
 /* ==========================================================================

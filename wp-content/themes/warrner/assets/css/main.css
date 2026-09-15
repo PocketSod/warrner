@@ -229,6 +229,15 @@ a { color: inherit; }
 .btn--ghost:hover { background: rgba(250, 248, 243, 0.08); transform: translateY(-2px); }
 .btn--ghost:active { transform: translateY(0); }
 
+.btn--phone {
+	background: var(--color-paper);
+	border-color: var(--color-brass);
+	color: var(--color-ink);
+	box-shadow: var(--shadow-base);
+}
+.btn--phone:hover { background: var(--color-limestone); border-color: var(--color-brass-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
+.btn--phone:active { transform: translateY(0); box-shadow: var(--shadow-base); }
+
 .btn--block { width: 100%; }
 
 /* ==========================================================================

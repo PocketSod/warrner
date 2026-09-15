@@ -175,6 +175,9 @@
 #variant-b .vb-btn--ghost { background: transparent; color: var(--vb-maroon); }
 #variant-b .vb-btn--ghost:hover { background: rgba(102, 0, 0, 0.06); transform: translateY(-2px); }
 
+#variant-b .vb-btn--phone { background: var(--vb-blush); color: var(--vb-maroon-dark); box-shadow: var(--shadow-base); }
+#variant-b .vb-btn--phone:hover { background: var(--vb-white); border-color: var(--vb-maroon-dark); transform: translateY(-2px); box-shadow: var(--shadow-elevated); }
+
 #variant-b .vb-btn--block { width: 100%; justify-content: center; }
 
 /* ==========================================================================
