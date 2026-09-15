@@ -68,7 +68,7 @@ $practice_areas = warrner_get_practice_areas();
 				<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
 				<div class="vd-hero__actions">
 					<a class="vd-btn vd-btn--primary" href="#consultation-e">Request a Free Consultation</a>
-					<a class="vd-btn vd-btn--ghost" href="tel:+13175550100">Call (317) 555-0100</a>
+					<a class="vd-btn vd-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 				<ul class="vd-badges">
 					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>
@@ -389,16 +389,15 @@ $practice_areas = warrner_get_practice_areas();
 	<section class="vd-section vd-section--paper" aria-labelledby="location-h-e">
 		<div class="wrap vd-location">
 			<div class="vd-location__map">
-				<!-- PLACEHOLDER: confirm real office address before launch -->
 				<?php if ( defined( 'GOOGLE_MAPS_API_KEY' ) && GOOGLE_MAPS_API_KEY ) : ?>
 					<iframe
-						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=1+Monument+Circle,+Indianapolis,+IN+46204"
+						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=<?php echo warrner_address_maps_query(); ?>"
 						title="Warrner Legal office location"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
 				<?php else : ?>
-					<a class="vd-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=1+Monument+Circle,+Indianapolis,+IN+46204" target="_blank" rel="noopener">
+					<a class="vd-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=<?php echo warrner_address_maps_query(); ?>" target="_blank" rel="noopener">
 						View on Google Maps →
 					</a>
 				<?php endif; ?>
@@ -408,9 +407,9 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="location-h-e" class="vd-h2">Our Office</h2>
 				<dl class="vd-location__details">
 					<dt>Address</dt>
-					<dd><!-- PLACEHOLDER -->1 Monument Circle, Suite 400<br>Indianapolis, IN 46204</dd>
+					<dd><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></dd>
 					<dt>Phone</dt>
-					<dd><a href="tel:+13175550100">(317) 555-0100</a></dd>
+					<dd><a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></dd>
 					<dt>Office Hours</dt>
 					<dd>Monday–Friday, 9:00 AM–5:00 PM</dd>
 				</dl>
@@ -434,7 +433,7 @@ $practice_areas = warrner_get_practice_areas();
 			</div>
 			<div class="vd-footer__bottom">
 				<span>© <?php echo esc_html( date( 'Y' ) ); ?> Warrner Legal. Attorney Advertising.</span>
-				<span>Indianapolis, IN — 39.7684° N, 86.1581° W</span>
+				<span>Indianapolis, IN — <?php echo warrner_address_coords(); ?></span>
 			</div>
 		</div>
 	</div>
@@ -461,7 +460,7 @@ $practice_areas = warrner_get_practice_areas();
 
 				<div class="hero__actions">
 					<a class="btn btn--primary" href="#consultation-a">Request a Free Consultation</a>
-					<a class="btn btn--ghost" href="tel:+13175550100">Call (317) 555-0100</a>
+					<a class="btn btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 			</div>
 
@@ -642,16 +641,15 @@ $practice_areas = warrner_get_practice_areas();
 	<section class="section section--paper" aria-labelledby="location-heading-a">
 		<div class="wrap location">
 			<div class="location__map">
-				<!-- PLACEHOLDER: confirm real office address before launch -->
 				<?php if ( defined( 'GOOGLE_MAPS_API_KEY' ) && GOOGLE_MAPS_API_KEY ) : ?>
 					<iframe
-						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=1+Monument+Circle,+Indianapolis,+IN+46204"
+						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=<?php echo warrner_address_maps_query(); ?>"
 						title="Warrner Legal office location"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
 				<?php else : ?>
-					<a class="location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=1+Monument+Circle,+Indianapolis,+IN+46204" target="_blank" rel="noopener">
+					<a class="location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=<?php echo warrner_address_maps_query(); ?>" target="_blank" rel="noopener">
 						View on Google Maps →
 					</a>
 				<?php endif; ?>
@@ -661,13 +659,13 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="location-heading-a" class="h2">Our office</h2>
 				<dl class="location__details">
 					<dt>Address</dt>
-					<dd><!-- PLACEHOLDER -->1 Monument Circle, Suite 400<br>Indianapolis, IN 46204</dd>
+					<dd><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></dd>
 					<dt>Phone</dt>
-					<dd><a href="tel:+13175550100">(317) 555-0100</a></dd>
+					<dd><a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></dd>
 					<dt>Office Hours</dt>
 					<dd>Monday–Friday, 9:00 AM–5:00 PM</dd>
 					<dt>Parking</dt>
-					<dd><!-- PLACEHOLDER -->Metered street parking is available on Monument Circle; the Circle Centre garage is one block south.</dd>
+					<dd><!-- PLACEHOLDER: confirm real parking details -->Free on-site parking is available at the Shelby Street office.</dd>
 				</dl>
 			</div>
 		</div>
@@ -688,7 +686,7 @@ $practice_areas = warrner_get_practice_areas();
 			<li><a href="#results-heading-b">Case Results</a></li>
 			<li><a href="#consultation-b">Contact</a></li>
 		</ul>
-		<a class="vb-phone-pill" href="tel:+13175550100"><span aria-hidden="true">&#9742;</span> (317) 555-0100</a>
+		<a class="vb-phone-pill" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> <?php echo warrner_phone_display(); ?></a>
 	</div>
 
 	<!-- ==========================================================
@@ -708,10 +706,10 @@ $practice_areas = warrner_get_practice_areas();
 				<span class="vb-eyebrow">Immigration Law · Indianapolis, Indiana</span>
 				<h1 class="vb-h1">Precision counsel for a <span class="vb-accent">global journey</span>.</h1>
 				<p class="vb-lede">Warrner Legal brings classical legal authority and analytical precision to every immigration matter, from petition to oath.</p>
-				<p class="vb-hero__coords">39.7684&deg; N&nbsp;&nbsp;&nbsp;86.1581&deg; W &mdash; Indianapolis, Indiana</p>
+				<p class="vb-hero__coords"><?php echo warrner_address_coords_entities(); ?> &mdash; Indianapolis, Indiana</p>
 				<div class="vb-hero__actions">
 					<a class="vb-btn vb-btn--primary" href="#consultation-b">Request a Free Consultation</a>
-					<a class="vb-btn vb-btn--ghost" href="tel:+13175550100">Call (317) 555-0100</a>
+					<a class="vb-btn vb-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
 				</div>
 			</div>
 			<div class="vb-hero__portrait">
@@ -909,8 +907,8 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="consult-heading-b" class="vb-h2 vb-contact__heading">Do you have a case?</h2>
 				<p class="vb-lede vb-contact__lede">We offer free consultations, and respond to every inquiry within one business day.</p>
 				<dl class="vb-contact__details">
-					<div><span aria-hidden="true">&#9742;</span> <a href="tel:+13175550100">(317) 555-0100</a></div>
-					<div><span aria-hidden="true">&#128205;</span> <!-- PLACEHOLDER -->1 Monument Circle, Suite 400, Indianapolis, IN 46204</div>
+					<div><span aria-hidden="true">&#9742;</span> <a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></div>
+					<div><span aria-hidden="true">&#128205;</span> <?php echo warrner_address_street(); ?>, <?php echo warrner_address_city_state_zip(); ?></div>
 				</dl>
 			</div>
 			<form class="vb-intake" data-intake-form novalidate>
@@ -966,13 +964,13 @@ $practice_areas = warrner_get_practice_areas();
 			</div>
 			<div>
 				<h3 class="vb-footer__heading">Contact</h3>
-				<p><!-- PLACEHOLDER -->1 Monument Circle, Suite 400<br>Indianapolis, IN 46204</p>
-				<p><a href="tel:+13175550100">(317) 555-0100</a></p>
+				<p><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></p>
+				<p><a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></p>
 			</div>
 		</div>
 		<div class="wrap vb-footer__bottom">
 			<span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> Warrner Legal, PLLC. Attorney Advertising.<!-- PLACEHOLDER: confirm entity name/type --></span>
-			<span class="vb-footer__coords">39.7684&deg; N&nbsp;&nbsp;&nbsp;86.1581&deg; W</span>
+			<span class="vb-footer__coords"><?php echo warrner_address_coords_entities(); ?></span>
 		</div>
 	</div>
 
@@ -1003,7 +1001,7 @@ $practice_areas = warrner_get_practice_areas();
 			<p class="vc-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system, from Indianapolis.</p>
 			<div class="vc-hero__actions">
 				<a class="vc-btn vc-btn--primary" href="#consultation-c">Request a Free Consultation</a>
-				<a class="vc-link" href="tel:+13175550100">Call (317) 555-0100 →</a>
+				<a class="vc-link" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?> →</a>
 			</div>
 		</div>
 	</section>
@@ -1167,16 +1165,15 @@ $practice_areas = warrner_get_practice_areas();
 	<section class="vc-section vc-section--white" aria-labelledby="location-heading-c">
 		<div class="wrap vc-location">
 			<div class="vc-location__map">
-				<!-- PLACEHOLDER: confirm real office address before launch -->
 				<?php if ( defined( 'GOOGLE_MAPS_API_KEY' ) && GOOGLE_MAPS_API_KEY ) : ?>
 					<iframe
-						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=1+Monument+Circle,+Indianapolis,+IN+46204"
+						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=<?php echo warrner_address_maps_query(); ?>"
 						title="Warrner Legal office location"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
 				<?php else : ?>
-					<a class="vc-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=1+Monument+Circle,+Indianapolis,+IN+46204" target="_blank" rel="noopener">
+					<a class="vc-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=<?php echo warrner_address_maps_query(); ?>" target="_blank" rel="noopener">
 						View on Google Maps →
 					</a>
 				<?php endif; ?>
@@ -1186,9 +1183,9 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="location-heading-c" class="vc-h2">Our Office</h2>
 				<dl class="vc-location__details">
 					<dt>Address</dt>
-					<dd><!-- PLACEHOLDER -->1 Monument Circle, Suite 400<br>Indianapolis, IN 46204</dd>
+					<dd><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></dd>
 					<dt>Phone</dt>
-					<dd><a href="tel:+13175550100">(317) 555-0100</a></dd>
+					<dd><a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></dd>
 					<dt>Office Hours</dt>
 					<dd>Monday–Friday, 9:00 AM–5:00 PM</dd>
 				</dl>
@@ -1212,7 +1209,7 @@ $practice_areas = warrner_get_practice_areas();
 			</div>
 			<div class="vc-footer__bottom">
 				<span>© <?php echo esc_html( date( 'Y' ) ); ?> Warrner Legal. Attorney Advertising.</span>
-				<span>Indianapolis, IN — 39.7684° N, 86.1581° W</span>
+				<span>Indianapolis, IN — <?php echo warrner_address_coords(); ?></span>
 			</div>
 		</div>
 	</div>
@@ -1244,7 +1241,7 @@ $practice_areas = warrner_get_practice_areas();
 			<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
 			<div class="vd-hero__actions">
 				<a class="vd-btn vd-btn--primary" href="#consultation-d">Request a Free Consultation</a>
-				<a class="vd-btn vd-btn--ghost" href="tel:+13175550100">Call (317) 555-0100</a>
+				<a class="vd-btn vd-btn--ghost" href="<?php echo warrner_phone_tel_href(); ?>">Call <?php echo warrner_phone_display(); ?></a>
 			</div>
 			<ul class="vd-badges">
 				<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>
@@ -1529,16 +1526,15 @@ $practice_areas = warrner_get_practice_areas();
 	<section class="vd-section vd-section--paper" aria-labelledby="location-h-d">
 		<div class="wrap vd-location">
 			<div class="vd-location__map">
-				<!-- PLACEHOLDER: confirm real office address before launch -->
 				<?php if ( defined( 'GOOGLE_MAPS_API_KEY' ) && GOOGLE_MAPS_API_KEY ) : ?>
 					<iframe
-						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=1+Monument+Circle,+Indianapolis,+IN+46204"
+						src="https://www.google.com/maps/embed/v1/place?key=<?php echo esc_attr( GOOGLE_MAPS_API_KEY ); ?>&q=<?php echo warrner_address_maps_query(); ?>"
 						title="Warrner Legal office location"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade"
 					></iframe>
 				<?php else : ?>
-					<a class="vd-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=1+Monument+Circle,+Indianapolis,+IN+46204" target="_blank" rel="noopener">
+					<a class="vd-location__map-fallback" href="https://www.google.com/maps/search/?api=1&query=<?php echo warrner_address_maps_query(); ?>" target="_blank" rel="noopener">
 						View on Google Maps →
 					</a>
 				<?php endif; ?>
@@ -1548,9 +1544,9 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="location-h-d" class="vd-h2">Our Office</h2>
 				<dl class="vd-location__details">
 					<dt>Address</dt>
-					<dd><!-- PLACEHOLDER -->1 Monument Circle, Suite 400<br>Indianapolis, IN 46204</dd>
+					<dd><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></dd>
 					<dt>Phone</dt>
-					<dd><a href="tel:+13175550100">(317) 555-0100</a></dd>
+					<dd><a href="<?php echo warrner_phone_tel_href(); ?>"><?php echo warrner_phone_display(); ?></a></dd>
 					<dt>Office Hours</dt>
 					<dd>Monday–Friday, 9:00 AM–5:00 PM</dd>
 				</dl>
@@ -1574,7 +1570,7 @@ $practice_areas = warrner_get_practice_areas();
 			</div>
 			<div class="vd-footer__bottom">
 				<span>© <?php echo esc_html( date( 'Y' ) ); ?> Warrner Legal. Attorney Advertising.</span>
-				<span>Indianapolis, IN — 39.7684° N, 86.1581° W</span>
+				<span>Indianapolis, IN — <?php echo warrner_address_coords(); ?></span>
 			</div>
 		</div>
 	</div>

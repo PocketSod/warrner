@@ -11,6 +11,47 @@ define( 'WARRNER_VERSION', wp_get_theme()->get( 'Version' ) );
 define( 'WARRNER_DIR', get_stylesheet_directory() );
 define( 'WARRNER_URI', get_stylesheet_directory_uri() );
 
+/**
+ * Client contact info — single source of truth so it can't drift between
+ * pages. Every template must pull from these instead of hardcoding the
+ * address/phone.
+ */
+define( 'WARRNER_ADDRESS_STREET', '735 Shelby St, Suite 104' );
+define( 'WARRNER_ADDRESS_CITY_STATE_ZIP', 'Indianapolis, IN 46203' );
+define( 'WARRNER_ADDRESS_COORDS', '39.7522° N, 86.1400° W' );
+define( 'WARRNER_PHONE_DISPLAY', '(317) 203-9111' );
+define( 'WARRNER_PHONE_TEL', '+13172039111' );
+
+/**
+ * Escaped contact-info helpers for use in templates.
+ */
+function warrner_address_street() {
+	return esc_html( WARRNER_ADDRESS_STREET );
+}
+function warrner_address_city_state_zip() {
+	return esc_html( WARRNER_ADDRESS_CITY_STATE_ZIP );
+}
+function warrner_address_coords() {
+	return esc_html( WARRNER_ADDRESS_COORDS );
+}
+function warrner_phone_display() {
+	return esc_html( WARRNER_PHONE_DISPLAY );
+}
+function warrner_phone_tel_href() {
+	return esc_attr( 'tel:' . WARRNER_PHONE_TEL );
+}
+/**
+ * Same coordinates, formatted with HTML entities for spots that already used
+ * &deg;/&nbsp; instead of the literal ° character. Static, theme-authored
+ * markup — safe to echo unescaped.
+ */
+function warrner_address_coords_entities() {
+	return '39.7522&deg; N&nbsp;&nbsp;&nbsp;86.1400&deg; W';
+}
+function warrner_address_maps_query() {
+	return rawurlencode( WARRNER_ADDRESS_STREET . ', ' . WARRNER_ADDRESS_CITY_STATE_ZIP );
+}
+
 if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 	define( 'DISALLOW_FILE_EDIT', true );
 }
