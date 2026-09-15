@@ -34,6 +34,10 @@ const targets = {
     local: path.join(root, "wp-content", "themes", "warrner"),
     remote: joinRemote(FTP_REMOTE_ROOT, "wp-content/themes/warrner"),
   },
+  "mu-plugins": {
+    local: path.join(root, "wp-content", "mu-plugins"),
+    remote: joinRemote(FTP_REMOTE_ROOT, "wp-content/mu-plugins"),
+  },
 };
 
 const targetName = process.argv[2] || "theme";

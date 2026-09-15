@@ -5,7 +5,9 @@
   "scripts": {
     "screenshot": "node scripts/screenshot.mjs",
     "deploy": "node scripts/deploy.mjs",
-    "set-site-icon": "node scripts/set-site-icon.mjs"
+    "deploy:mu-plugins": "node scripts/deploy.mjs mu-plugins",
+    "set-site-icon": "node scripts/set-site-icon.mjs",
+    "purge-cache": "node scripts/purge-cache.mjs"
   },
   "dependencies": {
     "basic-ftp": "^6.2.0",

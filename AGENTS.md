@@ -30,6 +30,7 @@ Adjust the path for whichever theme/plugin directory you touched (e.g. `wp-conte
 5. git add <files> && git commit -m "describe change"
 6. git push origin main
 7. npm run deploy   (pushes wp-content/themes/warrner to the demo.toolsandtable.com FTP site)
+8. npm run purge-cache   (clears LiteSpeed's cache on the demo site so the deploy is actually visible)
 ```
 
 The two failure modes to avoid: editing the Laragon copy directly and forgetting to backport into git, or editing git and forgetting to sync into Laragon before checking it in browser.
@@ -41,6 +42,12 @@ The two failure modes to avoid: editing the Laragon copy directly and forgetting
 Credentials live in `.env` (gitignored, real secrets — never commit) based on `.env.example`. This is a distinct WordPress database/content from local Laragon — deploying the theme does not sync posts, pages, or plugin config, only the theme code itself.
 
 When the client gets their own Hostinger account, this same script works against it — just point `.env` at the new account's FTP credentials (or add a second target/env file) and re-run. **Before the first deploy to a new account, verify `FTP_REMOTE_ROOT` by listing the FTP login directory** (e.g. `client.list()` in a throwaway script) rather than assuming `public_html` — on `demo.toolsandtable.com` the FTP account's home directory already *is* the document root, so setting `FTP_REMOTE_ROOT=public_html` created a spurious nested `public_html/public_html/...` that never actually reached the live theme folder. Leave `FTP_REMOTE_ROOT` empty unless the listing shows `wp-admin`/`wp-content` sitting inside a `public_html` subfolder.
+
+### Purging the demo site's cache
+
+LiteSpeed Cache runs on the demo site and hides every deploy behind stale HTML/assets until purged. `npm run purge-cache` (`scripts/purge-cache.mjs`) calls an authenticated REST endpoint (`/wp-json/warrner/v1/purge-cache`) registered by `wp-content/mu-plugins/warrner-cache-purge.php`, which triggers `do_action('litespeed_purge_all')` server-side. It authenticates with the same WordPress Application Password (`WP_API_*` in `.env`) used by `set-site-icon.mjs`.
+
+This mu-plugin must itself be deployed before the endpoint exists: `npm run deploy:mu-plugins`. It's a normal tracked file — re-deploy it (via `deploy:mu-plugins`) any time it changes, same as the theme. If LiteSpeed Cache is ever deactivated or swapped for a different caching plugin, the endpoint no-ops safely rather than erroring (`has_action( 'litespeed_purge_all' )` check).
 
 ---
 
