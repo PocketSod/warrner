@@ -12,8 +12,7 @@
 		});
 	}
 
-	// Consultation intake form(s) — the homepage may show more than one
-	// while multiple design options are being reviewed side by side.
+	// Consultation intake form(s).
 	var forms = document.querySelectorAll('[data-intake-form]');
 	if (!forms.length || typeof window.warrnerData === 'undefined') {
 		return;
@@ -60,20 +59,7 @@
 		});
 	});
 
-	// Testimonial pull-quote carousel (Option C).
-	var carousel = document.querySelector('[data-quote-carousel]');
-	if (carousel) {
-		var slides = carousel.querySelectorAll('.vc-quote__slide');
-		var dots = carousel.querySelectorAll('.vc-quote__dot');
-		dots.forEach(function (dot, i) {
-			dot.addEventListener('click', function () {
-				slides.forEach(function (slide, j) { slide.setAttribute('data-active', String(i === j)); });
-				dots.forEach(function (d, j) { d.setAttribute('aria-current', String(i === j)); });
-			});
-		});
-	}
-
-	// FAQ accordion (Option D).
+	// FAQ accordion — used by Option A (the live homepage).
 	var accordion = document.querySelector('[data-accordion]');
 	if (accordion) {
 		var items = accordion.querySelectorAll('.vd-faq__item');
@@ -87,52 +73,4 @@
 		});
 	}
 
-	// Design-option toggle — review tool only, remove alongside the losing
-	// variant's markup once a direction is picked.
-	var toggleBtns = document.querySelectorAll('[data-variant-btn]');
-	var panels = document.querySelectorAll('[data-variant-panel]');
-	if (toggleBtns.length && panels.length) {
-		var STORAGE_KEY = 'warrnerVariant';
-
-		var setVariant = function (variant) {
-			panels.forEach(function (panel) {
-				panel.hidden = panel.getAttribute('data-variant-panel') !== variant;
-			});
-			toggleBtns.forEach(function (btn) {
-				btn.setAttribute('aria-pressed', String(btn.getAttribute('data-variant-btn') === variant));
-			});
-			try {
-				sessionStorage.setItem(STORAGE_KEY, variant);
-			} catch (e) { /* storage unavailable — ignore */ }
-		};
-
-		toggleBtns.forEach(function (btn) {
-			btn.addEventListener('click', function () {
-				setVariant(btn.getAttribute('data-variant-btn'));
-			});
-		});
-
-		var saved = null;
-		try {
-			saved = sessionStorage.getItem(STORAGE_KEY);
-		} catch (e) { /* storage unavailable — ignore */ }
-		if (saved) {
-			setVariant(saved);
-		}
-	}
-
-	// Horizontal scroll row arrow buttons (Option C practice areas).
-	document.querySelectorAll('[data-scroll-row]').forEach(function (row) {
-		var track = row.querySelector('[data-scroll-track]');
-		var prevBtn = row.querySelector('[data-scroll-prev]');
-		var nextBtn = row.querySelector('[data-scroll-next]');
-		if (!track) return;
-		var scrollByCard = function (dir) {
-			var card = track.querySelector('.vb-scroll-card');
-			var amount = card ? card.getBoundingClientRect().width + 24 : 240;
-			track.scrollBy({ left: dir * amount, behavior: 'smooth' });
-		};
-		if (prevBtn) prevBtn.addEventListener('click', function () { scrollByCard(-1); });
-		if (nextBtn) nextBtn.addEventListener('click', function () { scrollByCard(1); });
-	});
 })();

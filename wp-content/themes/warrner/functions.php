@@ -113,17 +113,18 @@ function warrner_enqueue_assets() {
 		null
 	);
 
-	// Option B fonts — from public/images/warrner_legal_brand_guide.md.
+	// Libre Baskerville/Montserrat — originally Option B's fonts, still used
+	// by Option A (variant-d.css) and archived by homepage-options-archive/.
 	wp_enqueue_style(
 		'warrner-fonts-b',
-		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap',
+		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap',
 		array(),
 		null
 	);
 
 	wp_enqueue_style( 'warrner-style', WARRNER_URI . '/assets/css/main.css', array( 'warrner-fonts' ), warrner_asset_version( '/assets/css/main.css' ) );
-	wp_enqueue_style( 'warrner-variant-b', WARRNER_URI . '/assets/css/variant-b.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-b.css' ) );
-	wp_enqueue_style( 'warrner-variant-c', WARRNER_URI . '/assets/css/variant-c.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-c.css' ) );
+	// Option A (the live homepage) — variant-b.css/variant-c.css (Options C/D)
+	// are no longer enqueued; see homepage-options-archive/.
 	wp_enqueue_style( 'warrner-variant-d', WARRNER_URI . '/assets/css/variant-d.css', array( 'warrner-style', 'warrner-fonts-b' ), warrner_asset_version( '/assets/css/variant-d.css' ) );
 
 	wp_enqueue_script( 'warrner-main', WARRNER_URI . '/assets/js/main.js', array(), warrner_asset_version( '/assets/js/main.js' ), true );
@@ -221,3 +222,4 @@ add_action( 'send_headers', 'warrner_security_headers' );
  * of the Claude API integration approach before it handles real client PII.
  */
 require_once WARRNER_DIR . '/inc/ai-lead-intake.php';
+require_once WARRNER_DIR . '/inc/seo.php';

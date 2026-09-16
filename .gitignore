@@ -41,5 +41,11 @@ npm-debug.log*
 # FTP credentials for demo deploy — never commit
 .env
 
+# Billing documents — contain EIN and client PII, never commit
+/invoices/
+
+# Generated copy-review exports — derived from front-page.php, not source of truth
+/content-review/
+
 # Claude Code local tool config — machine/session-specific
 .claude/

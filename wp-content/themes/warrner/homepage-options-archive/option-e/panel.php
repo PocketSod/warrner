@@ -1,112 +1,45 @@
-<?php
-/**
- * Homepage.
- *
- * This used to run five parallel design options behind a floating review
- * toggle; the client picked Option A, so the other four (and the toggle)
- * were removed. Their markup/CSS/JS are preserved in
- * homepage-options-archive/ (see its README) in case any component gets
- * reused later — nothing there is loaded by the live site.
- *
- * The "#variant-d" id, "vd-" class prefix, and "-e" suffix on section
- * ids/anchors below are what's left of that review process (Option A
- * reused Option D's component system, then the toggle briefly labeled it
- * "e") — not a description of the current page structure. Left as-is
- * rather than renamed: every id/anchor pair is internally consistent, and
- * a rename across ~400 lines risks breaking one without any functional
- * gain.
- *
- * Content marked [PLACEHOLDER] is copy that needs a real number, credential,
- * or quote before launch — left in bracket-free prose so it reads correctly,
- * but flagged here and in comments so nothing fabricated ships by accident.
- */
-
-get_header();
-
-$practice_areas = warrner_get_practice_areas();
-?>
-
-<main id="primary">
-
-<div id="variant-d">
+<div id="variant-d-orig" data-variant-panel="d" hidden>
 
 	<!-- ==========================================================
-	     A · Nav
+	     D · Nav
 	     ========================================================== -->
 	<div class="vd-topbar">
 		<img class="vd-logo" src="<?php echo esc_url( WARRNER_URI . '/assets/images/logo.png' ); ?>" alt="Warrner Legal">
 		<ul class="vd-nav">
-			<li><a href="#services-heading-e">Practice Areas</a></li>
-			<li><a href="#approach-heading-e">Our Approach</a></li>
-			<li><a href="#faq-heading-e">FAQ</a></li>
-			<li><a href="#consultation-e" class="vd-btn vd-btn--primary">Free Consultation</a></li>
+			<li><a href="#services-heading-d">Practice Areas</a></li>
+			<li><a href="#approach-heading-d">Our Approach</a></li>
+			<li><a href="#faq-heading-d">FAQ</a></li>
+			<li><a href="#consultation-d" class="vd-btn vd-btn--primary">Free Consultation</a></li>
 		</ul>
 	</div>
 
 	<!-- ==========================================================
-	     A · Hero
+	     D · Hero
 	     ========================================================== -->
-	<section class="vd-hero vd-hero--split">
-		<div class="wrap vd-hero__grid">
-			<div class="vd-hero__content">
-				<span class="vd-eyebrow">Immigration Law · Indianapolis</span>
-				<h1 class="vd-h1">Immigration law, guided by <span class="vd-accent">trust</span>.</h1>
-				<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
-				<div class="vd-hero__actions">
-					<a class="vd-btn vd-btn--primary" href="#consultation-e">Request a Free Consultation</a>
-					<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
-				</div>
-				<ul class="vd-badges">
-					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>
-					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->500+</div><div class="vd-badge__label">Clients Served</div></li>
-					<li><div class="vd-badge__num">IN</div><div class="vd-badge__label">State Bar</div></li>
-				</ul>
+	<section class="vd-hero">
+		<div class="wrap vd-hero__content">
+			<span class="vd-eyebrow">Immigration Law · Indianapolis</span>
+			<h1 class="vd-h1">Immigration law, guided by <span class="vd-accent">trust</span>.</h1>
+			<p class="vd-lede">Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.</p>
+			<div class="vd-hero__actions">
+				<a class="vd-btn vd-btn--primary" href="#consultation-d">Request a Free Consultation</a>
+				<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> Call <?php echo warrner_phone_display(); ?></a>
 			</div>
-			<div class="vd-hero__portrait">
-				<svg class="vd-hero__ring" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-					<circle cx="100" cy="100" r="99" stroke="var(--vd-gold)" stroke-width="1" opacity="0.35" />
-					<ellipse cx="100" cy="100" rx="99" ry="88" stroke="var(--vd-gold)" stroke-width="1" opacity="0.5" />
-					<ellipse cx="100" cy="100" rx="88" ry="99" stroke="var(--vd-gold)" stroke-width="1" opacity="0.5" />
-					<circle cx="100" cy="100" r="74" stroke="var(--vd-gold)" stroke-width="1.5" opacity="0.7" />
-					<line x1="100" y1="2" x2="107" y2="42" stroke="#C0043E" stroke-width="1.5" opacity="0.9" />
-					<line x1="35" y1="100" x2="165" y2="100" stroke="var(--vd-gold)" stroke-width="1" opacity="0.5" />
-					<circle cx="150" cy="100" r="3.5" fill="#C0043E" />
-				</svg>
-				<div class="vd-hero__photo">
-					<img src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-headshot.jpg' ); ?>" alt="Erin Warrner, founding attorney of Warrner Legal">
-				</div>
-			</div>
+			<ul class="vd-badges">
+				<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label">Years Practicing</div></li>
+				<li><div class="vd-badge__num"><!-- PLACEHOLDER -->500+</div><div class="vd-badge__label">Clients Served</div></li>
+				<li><div class="vd-badge__num">IN</div><div class="vd-badge__label">State Bar</div></li>
+			</ul>
 		</div>
 	</section>
 
 	<!-- ==========================================================
-	     A · Meet Erin (bio)
+	     D · Services grid
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" aria-labelledby="bio-heading-e">
-		<div class="wrap vd-bio">
-			<div class="vd-bio__photo">
-				<img src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-blazer.jpg' ); ?>" alt="Erin Warrner, founding attorney of Warrner Legal">
-			</div>
-			<div>
-				<span class="vd-eyebrow">Founding Attorney</span>
-				<h2 id="bio-heading-e" class="vd-h2">Erin Warrner</h2>
-				<p class="vd-lede"><!-- PLACEHOLDER: replace with real bio -->Erin founded Warrner Legal to give Indianapolis immigrant families and professionals direct access to experienced counsel, without the hand-off to junior staff common at larger firms.</p>
-				<ul class="vd-bio__credentials">
-					<li><!-- PLACEHOLDER -->J.D., [Law School]</li>
-					<li>Admitted to the Indiana State Bar</li>
-					<li><!-- PLACEHOLDER -->Member, American Immigration Lawyers Association (AILA)</li>
-				</ul>
-			</div>
-		</div>
-	</section>
-
-	<!-- ==========================================================
-	     A · Services grid
-	     ========================================================== -->
-	<section class="vd-section vd-section--paper" id="services-heading-e" aria-labelledby="services-h-e">
+	<section class="vd-section vd-section--paper" id="services-heading-d" aria-labelledby="services-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">How We Help</span>
-			<h2 id="services-h-e" class="vd-h2">Practice areas built on <span class="vd-accent">trust</span> and deep expertise</h2>
+			<h2 id="services-h-d" class="vd-h2">Practice areas built on <span class="vd-accent">trust</span> and deep expertise</h2>
 			<div class="vd-grid-3">
 				<?php foreach ( $practice_areas as $area ) : ?>
 					<a class="vd-card" href="<?php echo esc_url( $area['url'] ); ?>">
@@ -120,12 +53,12 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Process steps
+	     D · Process steps
 	     ========================================================== -->
-	<section class="vd-section vd-section--cream" aria-labelledby="steps-h-e">
+	<section class="vd-section vd-section--cream" aria-labelledby="steps-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">Getting Started</span>
-			<h2 id="steps-h-e" class="vd-h2">Simple to <span class="vd-accent">request</span>, thorough in delivery</h2>
+			<h2 id="steps-h-d" class="vd-h2">Simple to <span class="vd-accent">request</span>, thorough in delivery</h2>
 			<div class="vd-steps">
 				<div>
 					<div class="vd-step__num">1</div>
@@ -147,12 +80,12 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Fees
+	     D · Fees
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" aria-labelledby="fees-h-e">
+	<section class="vd-section vd-section--paper" aria-labelledby="fees-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">What It Costs</span>
-			<h2 id="fees-h-e" class="vd-h2">Fees built on <span class="vd-accent">clarity</span>, not surprises</h2>
+			<h2 id="fees-h-d" class="vd-h2">Fees built on <span class="vd-accent">clarity</span>, not surprises</h2>
 			<div class="vd-fees">
 				<div class="vd-fee">
 					<h3 class="vd-fee__title">Free Consultation</h3>
@@ -171,12 +104,12 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Case-type tag cloud
+	     D · Case-type tag cloud
 	     ========================================================== -->
-	<section class="vd-section vd-section--cream" aria-labelledby="tags-h-e">
+	<section class="vd-section vd-section--cream" aria-labelledby="tags-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">Filings We Handle</span>
-			<h2 id="tags-h-e" class="vd-h2">Every case type, from filing to <span class="vd-accent">decision</span></h2>
+			<h2 id="tags-h-d" class="vd-h2">Every case type, from filing to <span class="vd-accent">decision</span></h2>
 			<div class="vd-tags">
 				<span class="vd-tag">I-130 · Family Petition</span>
 				<span class="vd-tag">I-485 · Adjustment of Status</span>
@@ -191,13 +124,13 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Our approach (dark)
+	     D · Our approach (dark)
 	     ========================================================== -->
-	<section class="vd-section vd-section--forest" id="approach-heading-e" aria-labelledby="approach-h-e">
+	<section class="vd-section vd-section--forest" id="approach-heading-d" aria-labelledby="approach-h-d">
 		<div class="wrap vd-approach">
 			<div>
 				<span class="vd-eyebrow">Our Philosophy</span>
-				<h2 id="approach-h-e" class="vd-h2">Our <span class="vd-accent">approach</span> to your case</h2>
+				<h2 id="approach-h-d" class="vd-h2">Our <span class="vd-accent">approach</span> to your case</h2>
 				<ul class="vd-approach-list">
 					<li><strong>Direct Attorney Access</strong><span>You work with Erin directly — never handed off to a paralegal or call center.</span></li>
 					<li><strong>Clear Communication</strong><span>Plain-language updates at every stage, so you always know where your case stands.</span></li>
@@ -206,18 +139,18 @@ $practice_areas = warrner_get_practice_areas();
 				</ul>
 			</div>
 			<div class="vd-approach__portrait">
-				<img src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-warrner.jpg' ); ?>" alt="Erin Warrner">
+				<img src="<?php echo esc_url( WARRNER_URI . '/assets/images/erin-headshot.jpg' ); ?>" alt="Erin Warrner, founding attorney of Warrner Legal">
 			</div>
 		</div>
 	</section>
 
 	<!-- ==========================================================
-	     A · FAQ accordion
+	     D · FAQ accordion
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" id="faq-heading-e" aria-labelledby="faq-h-e">
+	<section class="vd-section vd-section--paper" id="faq-heading-d" aria-labelledby="faq-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">Questions</span>
-			<h2 id="faq-h-e" class="vd-h2">Common <span class="vd-accent">questions</span>, answered</h2>
+			<h2 id="faq-h-d" class="vd-h2">Common <span class="vd-accent">questions</span>, answered</h2>
 			<div class="vd-faq" data-accordion>
 				<div class="vd-faq__item" data-open="true">
 					<button type="button" class="vd-faq__q" aria-expanded="true">
@@ -255,26 +188,17 @@ $practice_areas = warrner_get_practice_areas();
 						<p><!-- PLACEHOLDER -->Yes. Call the office as soon as possible — deadlines in removal cases are strict, and earlier representation gives you more options.</p>
 					</div>
 				</div>
-				<div class="vd-faq__item" data-open="false">
-					<button type="button" class="vd-faq__q" aria-expanded="false">
-						Is it "Warner" or "Warrner" Legal?
-						<span class="vd-faq__icon" aria-hidden="true">+</span>
-					</button>
-					<div class="vd-faq__a">
-						<p>It's Warrner — spelled with two Rs (W-A-R-R-N-E-R). Warrner Legal is the Indianapolis immigration law practice of attorney Erin Warrner. If you searched for "Warner Legal" or "Warner Law," you're in the right place.</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- ==========================================================
-	     A · Testimonials
+	     D · Testimonials
 	     ========================================================== -->
-	<section class="vd-section vd-section--cream" aria-labelledby="testimonials-h-e">
+	<section class="vd-section vd-section--cream" aria-labelledby="testimonials-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">Client Outcomes</span>
-			<h2 id="testimonials-h-e" class="vd-h2">Who we've <span class="vd-accent">helped</span></h2>
+			<h2 id="testimonials-h-d" class="vd-h2">Who we've <span class="vd-accent">helped</span></h2>
 			<div class="vd-grid-3">
 				<figure class="vd-testimonial">
 					<p>"<!-- PLACEHOLDER -->Erin walked us through every step and always called back the same day."</p>
@@ -294,12 +218,12 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Timeline
+	     D · Timeline
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" aria-labelledby="timeline-h-e">
+	<section class="vd-section vd-section--paper" aria-labelledby="timeline-h-d">
 		<div class="wrap">
 			<span class="vd-eyebrow">What To Expect</span>
-			<h2 id="timeline-h-e" class="vd-h2">Your case, <span class="vd-accent">step by step</span></h2>
+			<h2 id="timeline-h-d" class="vd-h2">Your case, <span class="vd-accent">step by step</span></h2>
 			<div class="vd-timeline">
 				<div class="vd-timeline__item">
 					<div class="vd-timeline__stage">Stage 1</div>
@@ -326,41 +250,41 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · CTA banner
+	     D · CTA banner
 	     ========================================================== -->
 	<section class="vd-cta-banner">
 		<div class="wrap">
 			<h2 class="vd-h2">Ready to move forward?</h2>
 			<p class="vd-lede" style="margin-inline: auto; color: inherit; opacity: 0.85;">Schedule your free consultation today.</p>
-			<a class="vd-btn vd-btn--primary" href="#consultation-e" style="margin-top: var(--space-6);">Request a Free Consultation</a>
+			<a class="vd-btn vd-btn--primary" href="#consultation-d" style="margin-top: var(--space-6);">Request a Free Consultation</a>
 		</div>
 	</section>
 
 	<!-- ==========================================================
-	     A · Consultation form
+	     D · Consultation form
 	     ========================================================== -->
-	<section id="consultation-e" class="vd-section vd-section--forest" aria-labelledby="consult-h-e">
+	<section id="consultation-d" class="vd-section vd-section--forest" aria-labelledby="consult-h-d">
 		<div class="wrap" style="max-width: 640px;">
 			<span class="vd-eyebrow">Get Started</span>
-			<h2 id="consult-h-e" class="vd-h2">Request a free consultation</h2>
+			<h2 id="consult-h-d" class="vd-h2">Request a free consultation</h2>
 			<p class="vd-lede">Tell us briefly about your situation. We respond within one business day.</p>
 
 			<form class="vd-intake" data-intake-form novalidate>
 				<div class="vd-field">
-					<label for="intake-name-e">Full name</label>
-					<input type="text" id="intake-name-e" name="name" required autocomplete="name">
+					<label for="intake-name-d">Full name</label>
+					<input type="text" id="intake-name-d" name="name" required autocomplete="name">
 				</div>
 				<div class="vd-field">
-					<label for="intake-email-e">Email</label>
-					<input type="email" id="intake-email-e" name="email" required autocomplete="email">
+					<label for="intake-email-d">Email</label>
+					<input type="email" id="intake-email-d" name="email" required autocomplete="email">
 				</div>
 				<div class="vd-field">
-					<label for="intake-phone-e">Phone</label>
-					<input type="tel" id="intake-phone-e" name="phone" autocomplete="tel">
+					<label for="intake-phone-d">Phone</label>
+					<input type="tel" id="intake-phone-d" name="phone" autocomplete="tel">
 				</div>
 				<div class="vd-field">
-					<label for="intake-practice-area-e">Practice area</label>
-					<select id="intake-practice-area-e" name="practice_area">
+					<label for="intake-practice-area-d">Practice area</label>
+					<select id="intake-practice-area-d" name="practice_area">
 						<?php foreach ( $practice_areas as $area ) : ?>
 							<option value="<?php echo esc_attr( $area['label'] ); ?>"><?php echo esc_html( $area['label'] ); ?></option>
 						<?php endforeach; ?>
@@ -368,8 +292,8 @@ $practice_areas = warrner_get_practice_areas();
 					</select>
 				</div>
 				<div class="vd-field">
-					<label for="intake-description-e">Briefly describe your situation</label>
-					<textarea id="intake-description-e" name="case_description" rows="4"></textarea>
+					<label for="intake-description-d">Briefly describe your situation</label>
+					<textarea id="intake-description-d" name="case_description" rows="4"></textarea>
 				</div>
 
 				<button type="submit" class="vd-btn vd-btn--primary vd-btn--block">Request My Consultation</button>
@@ -379,9 +303,9 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Location
+	     D · Location
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" aria-labelledby="location-h-e">
+	<section class="vd-section vd-section--paper" aria-labelledby="location-h-d">
 		<div class="wrap vd-location">
 			<div class="vd-location__map">
 				<?php if ( defined( 'GOOGLE_MAPS_API_KEY' ) && GOOGLE_MAPS_API_KEY ) : ?>
@@ -399,7 +323,7 @@ $practice_areas = warrner_get_practice_areas();
 			</div>
 			<div>
 				<span class="vd-eyebrow">Visit Us</span>
-				<h2 id="location-h-e" class="vd-h2">Our Office</h2>
+				<h2 id="location-h-d" class="vd-h2">Our Office</h2>
 				<dl class="vd-location__details">
 					<dt>Address</dt>
 					<dd><?php echo warrner_address_street(); ?><br><?php echo warrner_address_city_state_zip(); ?></dd>
@@ -413,7 +337,7 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Footer
+	     D · Footer
 	     ========================================================== -->
 	<div class="vd-footer">
 		<div class="wrap">
@@ -433,9 +357,4 @@ $practice_areas = warrner_get_practice_areas();
 		</div>
 	</div>
 
-</div><!-- /#variant-d (Option A) -->
-
-</main>
-
-<?php
-get_footer();
+</div><!-- /#variant-d-orig -->
