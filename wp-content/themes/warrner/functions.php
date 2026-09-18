@@ -60,6 +60,8 @@ if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
  * Theme support & nav menus.
  */
 function warrner_setup() {
+	load_theme_textdomain( 'warrner', WARRNER_DIR . '/languages' );
+
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'custom-logo', array(
@@ -166,33 +168,33 @@ add_action( 'init', 'warrner_register_attorney_cpt' );
 function warrner_get_practice_areas() {
 	return array(
 		array(
-			'label'       => 'Family-Based Immigration',
-			'description' => 'Petitions to bring spouses, children, and parents to Indianapolis.',
+			'label'       => __( 'Family-Based Immigration', 'warrner' ),
+			'description' => __( 'Petitions to bring spouses, children, and parents to Indianapolis.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/family-based-immigration/' ),
 		),
 		array(
-			'label'       => 'Employment-Based Immigration',
-			'description' => 'Work visas and employer sponsorship, from petition to green card.',
+			'label'       => __( 'Employment-Based Immigration', 'warrner' ),
+			'description' => __( 'Work visas and employer sponsorship, from petition to green card.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/employment-based-immigration/' ),
 		),
 		array(
-			'label'       => 'Deportation & Removal Defense',
-			'description' => 'Representation in immigration court when your case is on the line.',
+			'label'       => __( 'Deportation & Removal Defense', 'warrner' ),
+			'description' => __( 'Representation in immigration court when your case is on the line.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/removal-defense/' ),
 		),
 		array(
-			'label'       => 'Asylum & Humanitarian Relief',
-			'description' => 'Protection for those fleeing persecution or crisis abroad.',
+			'label'       => __( 'Asylum & Humanitarian Relief', 'warrner' ),
+			'description' => __( 'Protection for those fleeing persecution or crisis abroad.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/asylum/' ),
 		),
 		array(
-			'label'       => 'Naturalization & Citizenship',
-			'description' => 'Guidance through the N-400 process, from filing to the oath.',
+			'label'       => __( 'Naturalization & Citizenship', 'warrner' ),
+			'description' => __( 'Guidance through the N-400 process, from filing to the oath.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/citizenship/' ),
 		),
 		array(
-			'label'       => 'DACA & Deferred Action',
-			'description' => 'Initial requests and renewals handled carefully and on time.',
+			'label'       => __( 'DACA & Deferred Action', 'warrner' ),
+			'description' => __( 'Initial requests and renewals handled carefully and on time.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/daca/' ),
 		),
 	);

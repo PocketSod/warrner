@@ -16,14 +16,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WARRNER_SEO_DESCRIPTION', 'Warrner Legal is the Indianapolis immigration law practice of attorney Erin Warrner — family-based, employment-based, and humanitarian immigration, naturalization, and removal defense. Free consultations.' );
+/**
+ * Wrapped as functions (not constants) so the translation lookup happens at
+ * render time, after Polylang/WPML/TranslatePress have set the request's
+ * locale — a define() would evaluate __() too early, while functions.php is
+ * still loading and the locale is still the default.
+ */
+function warrner_seo_title() {
+	return __( 'Warrner Legal | Indianapolis Immigration Attorney', 'warrner' );
+}
+function warrner_seo_description() {
+	return __( 'Warrner Legal is the Indianapolis immigration law practice of attorney Erin Warrner — family-based, employment-based, and humanitarian immigration, naturalization, and removal defense. Free consultations.', 'warrner' );
+}
 
 /**
  * Front page gets a keyword/location-rich title instead of the bare site name.
  */
 function warrner_document_title_parts( $title_parts ) {
 	if ( is_front_page() ) {
-		$title_parts = array( 'title' => 'Warrner Legal | Indianapolis Immigration Attorney' );
+		$title_parts = array( 'title' => warrner_seo_title() );
 	}
 	return $title_parts;
 }
@@ -34,13 +45,13 @@ add_filter( 'document_title_parts', 'warrner_document_title_parts' );
  */
 function warrner_seo_head() {
 	$is_front    = is_front_page();
-	$title       = $is_front ? 'Warrner Legal | Indianapolis Immigration Attorney' : wp_get_document_title();
-	$description = $is_front ? WARRNER_SEO_DESCRIPTION : get_bloginfo( 'description' );
+	$title       = $is_front ? warrner_seo_title() : wp_get_document_title();
+	$description = $is_front ? warrner_seo_description() : get_bloginfo( 'description' );
 	$url         = $is_front ? home_url( '/' ) : get_permalink();
 	$image       = WARRNER_URI . '/assets/images/erin-headshot.jpg';
 
 	if ( ! $description ) {
-		$description = WARRNER_SEO_DESCRIPTION;
+		$description = warrner_seo_description();
 	}
 
 	echo "\n" . '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
