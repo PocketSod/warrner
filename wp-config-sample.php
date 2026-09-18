@@ -89,7 +89,13 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-
+/**
+ * Gate the public front end behind the branded "coming soon" notice
+ * (wp-content/mu-plugins/warrner-coming-soon.php). Leave commented out on
+ * Laragon and the demo review site; uncomment only on the real production
+ * install until real content is ready to go live, then remove it.
+ */
+// define( 'WARRNER_COMING_SOON', true );
 
 /* That's all, stop editing! Happy publishing. */
 

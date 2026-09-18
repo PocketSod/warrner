@@ -21,6 +21,7 @@ define( 'WARRNER_ADDRESS_CITY_STATE_ZIP', 'Indianapolis, IN 46203' );
 define( 'WARRNER_ADDRESS_COORDS', '39.7522° N, 86.1400° W' );
 define( 'WARRNER_PHONE_DISPLAY', '(317) 203-9111' );
 define( 'WARRNER_PHONE_TEL', '+13172039111' );
+define( 'WARRNER_EMAIL', 'erin@erinwlegal.com' );
 
 /**
  * Escaped contact-info helpers for use in templates.
@@ -39,6 +40,12 @@ function warrner_phone_display() {
 }
 function warrner_phone_tel_href() {
 	return esc_attr( 'tel:' . WARRNER_PHONE_TEL );
+}
+function warrner_email() {
+	return esc_html( WARRNER_EMAIL );
+}
+function warrner_email_href() {
+	return esc_attr( 'mailto:' . WARRNER_EMAIL );
 }
 /**
  * Same coordinates, formatted with HTML entities for spots that already used

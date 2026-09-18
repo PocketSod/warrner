@@ -17,6 +17,18 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 - **Production hosting not purchased yet.** `demo.toolsandtable.com` is a
   temporary review site on a *different* Hostinger account and will not
   become production — see "Production go-live plan" below.
+- **GoDaddy DNS access for `erinwlegal.com` obtained.** Still waiting on the
+  client's own Hostinger account purchase before pointing the domain
+  anywhere. When that happens: only change the website's A/CNAME records —
+  MX/SPF/autodiscover must stay untouched, they serve Erin's live M365
+  inbox (`erin@erinwlegal.com`).
+- **Coming-soon gate built but disabled everywhere.**
+  `wp-content/mu-plugins/warrner-coming-soon.php` shows a branded
+  "coming soon" notice (name/phone/email/address) to logged-out visitors,
+  but only when `WARRNER_COMING_SOON` is defined `true` in that install's
+  `wp-config.php` — off by default so it never appears on Laragon or the
+  demo site. Turn it on on the fresh production install once purchased,
+  turn it back off when real content is ready to go live.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -33,6 +45,33 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-18 — Coming-soon gate added, email contact constant added
+- New `wp-content/mu-plugins/warrner-coming-soon.php` +
+  `wp-content/mu-plugins/warrner-coming-soon/coming-soon.css`: a
+  `template_redirect` gate that shows a branded coming-soon notice (name,
+  phone, email, address, pulled from the theme's existing contact-info
+  constants) to logged-out front-end visitors, with a 503 + `Retry-After`
+  header so search engines don't index it as the real site. Logged-in
+  admins (`manage_options`) always pass through to the real site.
+- Deliberately off everywhere by default — only activates when
+  `WARRNER_COMING_SOON` is defined `true` in an install's own
+  `wp-config.php` (documented in `wp-config-sample.php`), which is
+  per-environment and not version-controlled. This is meant for the fresh
+  production Hostinger install once purchased, not Laragon or the demo
+  review site.
+- Why now: client obtained GoDaddy DNS access for the production domain
+  (`erinwlegal.com`) but hasn't purchased the production Hostinger account
+  yet, so there's nothing to point DNS at. Building the gate now means it's
+  ready to flip on the moment that install exists, before real content is
+  entered.
+- Added `WARRNER_EMAIL` (`erin@erinwlegal.com`) to the theme's centralized
+  contact-info block in `functions.php` (alongside the existing
+  phone/address constants) plus `warrner_email()` /
+  `warrner_email_href()` helpers — no page used a public email before this.
+- Deploy note: `npm run deploy:mu-plugins` already uploads the whole
+  `mu-plugins` directory recursively, so the new CSS subfolder ships with
+  no changes needed to `scripts/deploy.mjs`.
 
 ### 2026-09-18 — Privacy Policy & Terms of Use pages added
 - New `page-legal.php` template plus typography rules in `main.css` for
