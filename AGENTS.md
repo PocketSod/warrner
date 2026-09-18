@@ -2,9 +2,10 @@
 
 ## START OF SESSION CHECKLIST
 
-1. **Confirm Laragon is running** — this repo is source only; nothing renders until Laragon serves it.
-2. **Check your branch:** `git branch` — this project uses a single `main` branch, no `dev`/`feature` split.
-3. **Invoke the `frontend-design` skill** before writing any theme/template code.
+1. **Read `CHANGELOG.md`**, at least the "Open items" section and the most recent few entries — it records what changed, when, and *why*, including decisions that override the "obvious" choice (e.g. which i18n plugin, which Hostinger account is production) and bugs already found once. Append a dated entry there for anything non-obvious you change this session.
+2. **Confirm Laragon is running** — this repo is source only; nothing renders until Laragon serves it.
+3. **Check your branch:** `git branch` — this project uses a single `main` branch, no `dev`/`feature` split.
+4. **Invoke the `frontend-design` skill** before writing any theme/template code.
 
 ---
 
@@ -63,6 +64,7 @@ D:\Projects\Warrner\                      ← git repo, source of truth
 ├── .env                                  ← FTP credentials, gitignored — copy from .env.example
 ├── public\images\                        ← brand asset source (logos, photos) — not synced automatically, pull into the theme as needed
 ├── wp-config-sample.php                  ← reference only, not the real config
+├── CHANGELOG.md                          ← dated log of what changed and why — read at session start
 └── AGENTS.md / CLAUDE.md / README.md
 
 D:\laragon\www\Warrner\                   ← Laragon-served WP install, NOT the git repo
