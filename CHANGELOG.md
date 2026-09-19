@@ -12,11 +12,22 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ---
 
-## Open items (as of 2026-09-18)
+## Open items (as of 2026-09-19)
 
-- **Production hosting not purchased yet.** `demo.toolsandtable.com` is a
-  temporary review site on a *different* Hostinger account and will not
-  become production — see "Production go-live plan" below.
+- **Production hosting account mix-up, being corrected with Hostinger
+  support.** While purchasing a new Hostinger subscription for Erin's
+  production account (2026-09-19), the checkout flow updated the
+  purchaser's *own* existing Hostinger account profile (name/address) with
+  Erin's details instead of keeping them separate. The purchaser is
+  working with Hostinger support to correct the profile back. Once
+  resolved, revisit whether this new subscription should end up under a
+  genuinely separate account/login (e.g. Erin's own email) as the original
+  plan intended (see "Production go-live plan" below), or stay under the
+  developer's account managed on her behalf — decide and record here so
+  it's clear which account owns production going forward.
+- `demo.toolsandtable.com` is a temporary review site on a *different*,
+  unaffected Hostinger account and will not become production — see
+  "Production go-live plan" below.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
