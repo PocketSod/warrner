@@ -32,12 +32,12 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   domain until the production site is ready to show. When it happens, only
   change the website's A/CNAME records. MX/SPF/autodiscover must stay
   untouched, they serve Erin's live M365 inbox (`erin@erinwlegal.com`).
-- **Coming-soon gate built (off by default), not yet enabled on
-  production.** `wp-content/mu-plugins/warrner-coming-soon.php` shows a
-  branded notice to logged-out visitors only when `WARRNER_COMING_SOON` is
-  defined `true` in that install's own `wp-config.php`. Enable it on the
-  production install before pointing erinwlegal.com at it, and remove the
-  define when real content is ready to go live.
+- **Coming-soon gate is ON on the production temp domain** (since
+  2026-09-19). `WARRNER_COMING_SOON` is defined true in that install's
+  `wp-config.php` (the one line, marked with a comment). Remove that line to
+  go live. It was added over FTP; a pre-edit copy of the file is not kept in
+  the repo. Keep it on until real content is entered, and before pointing
+  erinwlegal.com at the install.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -73,6 +73,9 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 - Theme and `warrner-cache-purge.php` deployed; `purge-cache:prod` confirmed
   the Application Password and LiteSpeed purge endpoint work. Homepage
   renders with the Warrner theme.
+- Coming-soon gate enabled on this install by adding the define to the
+  production `wp-config.php`. Verified logged out: 503, Retry-After,
+  noindex, wp-login.php still reachable.
 - Hostinger's installer pre-installed plugins (`hostinger`,
   `hostinger-reach`, `hostinger-easy-onboarding`, `wordpress-importer`) and
   two Hostinger mu-plugins. Not reviewed or removed yet.
