@@ -38,8 +38,10 @@ wp-cli.phar
 node_modules/
 npm-debug.log*
 
-# FTP credentials for demo deploy — never commit
+# FTP credentials for demo/production deploys — never commit
 .env
+.env.*
+!.env.example
 
 # Billing documents — contain EIN and client PII, never commit
 /invoices/

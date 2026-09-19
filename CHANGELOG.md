@@ -28,6 +28,16 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 - `demo.toolsandtable.com` is a temporary review site on a *different*,
   unaffected Hostinger account and will not become production — see
   "Production go-live plan" below.
+- **GoDaddy DNS access for `erinwlegal.com` obtained.** Do not repoint the
+  domain until the production site is ready to show. When it happens, only
+  change the website's A/CNAME records. MX/SPF/autodiscover must stay
+  untouched, they serve Erin's live M365 inbox (`erin@erinwlegal.com`).
+- **Coming-soon gate built (off by default), not yet enabled on
+  production.** `wp-content/mu-plugins/warrner-coming-soon.php` shows a
+  branded notice to logged-out visitors only when `WARRNER_COMING_SOON` is
+  defined `true` in that install's own `wp-config.php`. Enable it on the
+  production install before pointing erinwlegal.com at it, and remove the
+  define when real content is ready to go live.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -44,6 +54,54 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-19: Production Hostinger site created, first deploy to temp domain
+- New Hostinger site (Premium plan, WordPress) set up on the temporary domain
+  `lavenderblush-koala-486471.hostingersite.com`. erinwlegal.com is NOT
+  attached yet; DNS at GoDaddy is untouched.
+- Deploy scripts now take `--prod` to read `.env.production` instead of
+  `.env` (demo). New npm scripts: `deploy:prod`, `deploy:mu-plugins:prod`,
+  `purge-cache:prod`. Plain `npm run deploy` still targets demo. `.gitignore`
+  now covers `.env.*` (previously only the exact name `.env`), with
+  `.env.example` excepted.
+- **FTP root is not `public_html`.** The FTP login lands in the account home.
+  The document root is
+  `domains/<site-domain>/public_html`, so `FTP_REMOTE_ROOT` in
+  `.env.production` is that full path. The folder name contains the site's
+  domain, so re-list the FTP login and update `FTP_REMOTE_ROOT` after
+  erinwlegal.com is attached, before the final deploy.
+- Theme and `warrner-cache-purge.php` deployed; `purge-cache:prod` confirmed
+  the Application Password and LiteSpeed purge endpoint work. Homepage
+  renders with the Warrner theme.
+- Hostinger's installer pre-installed plugins (`hostinger`,
+  `hostinger-reach`, `hostinger-easy-onboarding`, `wordpress-importer`) and
+  two Hostinger mu-plugins. Not reviewed or removed yet.
+- Not yet done on production: Privacy Policy and Terms of Use pages (they
+  live in each site's database, see 2026-09-18), Polylang, SMTP for the
+  intake form, placeholder copy replacement.
+- Git Bash rewrites a leading `/` in arguments into a Windows path, which
+  broke an FTP directory listing here the same way it broke the permalink
+  option on 2026-09-18. Pass remote paths without a leading slash.
+
+### 2026-09-18: Coming-soon gate added, email contact constant added
+- New `wp-content/mu-plugins/warrner-coming-soon.php` and
+  `wp-content/mu-plugins/warrner-coming-soon/coming-soon.css`: a
+  `template_redirect` gate that shows a branded coming-soon notice (name,
+  phone, email, address, from the theme's contact-info constants) to
+  logged-out front-end visitors, with a 503 and `Retry-After` header plus
+  `noindex` so search engines don't treat it as the real site. Logged-in
+  admins (`manage_options`) always pass through.
+- Off everywhere by default. It only activates when `WARRNER_COMING_SOON` is
+  defined `true` in an install's own `wp-config.php` (documented in
+  `wp-config-sample.php`), so it never shows on Laragon or demo.
+- Added `WARRNER_EMAIL` (`erin@erinwlegal.com`) to the theme's contact-info
+  block in `functions.php`, with `warrner_email()` and `warrner_email_href()`
+  helpers. No page used a public email before this.
+- 2026-09-19 follow-up: added the "Website by PocketSod" credit (standing
+  site-wide rule) to the coming-soon page, and removed em dashes from its
+  copy.
+- `npm run deploy:mu-plugins` uploads the mu-plugins directory recursively,
+  so the CSS subfolder ships with no change to `scripts/deploy.mjs`.
 
 ### 2026-09-18 — Privacy Policy & Terms of Use pages added
 - New `page-legal.php` template plus typography rules in `main.css` for
@@ -128,8 +186,9 @@ than assuming this summary is complete). In short:
   live email is M365 (`erin@erinwlegal.com`) — any DNS work must preserve
   MX/SPF/autodiscover records untouched; only the website's A/CNAME
   records should change.
-- The client's own Hostinger account has **not been purchased yet** — it
-  is separate from the ToolsandTable account `demo.toolsandtable.com`
+- The production Hostinger subscription was purchased 2026-09-19 (see the
+  entry in the Log and the open item above about which account owns it).
+  It is separate from the ToolsandTable account `demo.toolsandtable.com`
   lives on, which stays as an ongoing review/staging site and does not
   become production.
 - There is no real content in any WordPress database yet — practice areas

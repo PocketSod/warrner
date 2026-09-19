@@ -1,15 +1,15 @@
 // Deploys theme (and other targets, as added) to the Hostinger demo site over FTP.
-// Usage: node scripts/deploy.mjs [target]   (default target: theme)
+// Usage: node scripts/deploy.mjs [target] [--prod]   (default target: theme; --prod reads .env.production)
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { Client } from "basic-ftp";
-import { loadEnv } from "./lib/env.mjs";
+import { loadTargetEnv } from "./lib/env.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-loadEnv(path.join(root, ".env"));
+const args = loadTargetEnv(root);
 
 const {
   FTP_HOST,
@@ -40,7 +40,7 @@ const targets = {
   },
 };
 
-const targetName = process.argv[2] || "theme";
+const targetName = args[0] || "theme";
 const target = targets[targetName];
 if (!target) {
   console.error(`Unknown deploy target "${targetName}". Available: ${Object.keys(targets).join(", ")}`);

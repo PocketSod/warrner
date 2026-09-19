@@ -1,0 +1,147 @@
+:root {
+	--color-ink: #1B2531;
+	--color-ink-70: rgba(27, 37, 49, 0.7);
+	--color-limestone: #E7E2D3;
+	--color-stone: #C9C2AC;
+	--color-brass: #B08D4F;
+	--color-brass-dark: #8C6E3A;
+	--color-paper: #FAF8F3;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-6: 24px;
+	--space-8: 32px;
+	--radius-md: 8px;
+	--radius-lg: 16px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--space-6);
+	background: var(--color-limestone);
+	background-image:
+		radial-gradient(circle at 12% 8%, rgba(176, 141, 79, 0.10), transparent 45%),
+		radial-gradient(circle at 88% 92%, rgba(27, 37, 49, 0.06), transparent 50%);
+	font-family: 'Public Sans', -apple-system, sans-serif;
+	color: var(--color-ink);
+}
+
+.cs-card {
+	max-width: 480px;
+	width: 100%;
+	background: var(--color-paper);
+	border: 1px solid var(--color-stone);
+	border-radius: var(--radius-lg);
+	padding: var(--space-8) var(--space-6);
+	text-align: center;
+	box-shadow:
+		0 1px 2px rgba(27, 37, 49, 0.06),
+		0 12px 32px rgba(27, 37, 49, 0.10),
+		0 32px 64px -16px rgba(176, 141, 79, 0.18);
+}
+
+.cs-logo {
+	max-width: 180px;
+	height: auto;
+	margin: 0 auto var(--space-6);
+	display: block;
+}
+
+.cs-eyebrow {
+	font-family: 'IBM Plex Mono', ui-monospace, monospace;
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--color-brass-dark);
+	margin: 0 0 var(--space-3);
+}
+
+h1 {
+	font-family: 'Bitter', Georgia, serif;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	font-size: clamp(24px, 4vw, 30px);
+	line-height: 1.25;
+	margin: 0 0 var(--space-4);
+	color: var(--color-ink);
+}
+
+.cs-lede {
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--color-ink-70);
+	margin: 0 0 var(--space-8);
+}
+
+.cs-contact {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+	padding-top: var(--space-6);
+	border-top: 1px solid var(--color-stone);
+}
+
+.cs-contact-item {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--color-ink);
+	text-decoration: none;
+	transition: color 0.15s ease, transform 0.15s ease;
+}
+
+a.cs-contact-item:hover {
+	color: var(--color-brass-dark);
+	transform: translateY(-1px);
+}
+
+a.cs-contact-item:focus-visible {
+	outline: 2px solid var(--color-brass);
+	outline-offset: 3px;
+	border-radius: var(--radius-md);
+}
+
+a.cs-contact-item:active {
+	transform: translateY(0);
+	color: var(--color-brass-dark);
+}
+
+.cs-address {
+	font-weight: 500;
+	color: var(--color-ink-70);
+}
+
+.cs-credit {
+	margin: var(--space-6) 0 0;
+	font-size: 12px;
+	color: var(--color-ink-70);
+}
+
+.cs-credit a {
+	color: var(--color-ink);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.cs-credit a:hover {
+	color: var(--color-brass-dark);
+}
+
+.cs-credit a:focus-visible {
+	outline: 2px solid var(--color-brass);
+	outline-offset: 3px;
+	border-radius: var(--radius-md);
+}
+
+@media (max-width: 400px) {
+	.cs-card {
+		padding: var(--space-6) var(--space-4);
+	}
+}

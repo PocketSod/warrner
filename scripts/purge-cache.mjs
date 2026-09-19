@@ -1,14 +1,14 @@
 // Purges LiteSpeed Cache on the remote WP install via the REST endpoint
 // registered by wp-content/mu-plugins/warrner-cache-purge.php. That
 // mu-plugin must be deployed first: node scripts/deploy.mjs mu-plugins
-// Usage: node scripts/purge-cache.mjs
+// Usage: node scripts/purge-cache.mjs [--prod]
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadEnv } from "./lib/env.mjs";
+import { loadTargetEnv } from "./lib/env.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-loadEnv(path.join(root, ".env"));
+loadTargetEnv(root);
 
 const { WP_API_BASE_URL, WP_API_USER, WP_API_APP_PASSWORD } = process.env;
 if (!WP_API_BASE_URL || !WP_API_USER || !WP_API_APP_PASSWORD) {
