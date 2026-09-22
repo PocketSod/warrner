@@ -16,13 +16,11 @@ that talks to all of this, see [SCRIPTS.md](SCRIPTS.md).
 Local (Laragon)  --deploy-->  Dev (dev.erinwlegal.com)  --deploy-->  Prod (erinwlegal.com)
 ```
 
-**Status as of 2026-09-22:** `dev.erinwlegal.com` exists — created via the
-Hostinger API (website + WordPress install), theme deployed via FTP and
-activated. **Not yet done:** the DNS `A` record (the account holder adds
-this directly in GoDaddy, not via API — see §2), so the site isn't
-publicly reachable yet, and the WP Application Password for `.env.dev`
-(needs DNS/wp-admin access first). `demo.toolsandtable.com` is being
-retired from this project — see §1a.
+**Status as of 2026-09-22: fully live.** `dev.erinwlegal.com` is created,
+DNS resolves, HTTPS is issued, the Warrner theme is deployed and active,
+and `.env.dev`'s Application Password is verified working end to end
+(FTP deploy → REST auth confirmed via a real `purge-cache:dev` run).
+`demo.toolsandtable.com` is being retired from this project — see §1a.
 
 | | Local | Dev | Prod |
 |---|---|---|---|
@@ -109,19 +107,44 @@ no migration).
 
 | | Local | Dev (dev.erinwlegal.com) | Prod |
 |---|---|---|---|
-| WP-admin URL | http://warrner.test/wp-admin | https://dev.erinwlegal.com/wp-admin (not reachable until DNS, see §2) | https://erinwlegal.com/wp-admin |
-| Active theme | `warrner` | `warrner` — confirmed active via API | `warrner` |
-| Active plugins | (WP core only, no caching plugin) | Not audited yet | `hostinger` (Hostinger Tools), `litespeed-cache` |
+| WP-admin URL | http://warrner.test/wp-admin | https://dev.erinwlegal.com/wp-admin | https://erinwlegal.com/wp-admin |
+| Active theme | `warrner` | `warrner` — confirmed via API **and** a live screenshot | `warrner` |
+| Active plugins | (WP core only, no caching plugin) | `hostinger` (Hostinger Tools) only — **no LiteSpeed Cache on this install** | `hostinger` (Hostinger Tools), `litespeed-cache` |
 | mu-plugins | `warrner-cache-purge.php`, `warrner-coming-soon.php` | same — deployed via FTP 2026-09-22 | same |
 | Coming-soon gate | Off | Off (mu-plugin present but `WARRNER_COMING_SOON` isn't defined in this install's `wp-config.php`) | **On** — `WARRNER_COMING_SOON` defined `true` in prod's `wp-config.php` only |
-| SSL | n/a (local) | Pending — needs the DNS record in §2 first, then likely auto-issues the same way Prod's did | Verified: Let's Encrypt, auto-issued, expires ~2026-12-18 |
+| SSL | n/a (local) | Verified: Let's Encrypt, auto-issued once DNS resolved, expires ~2026-12-21. HTTP→HTTPS redirect confirmed working. | Verified: Let's Encrypt, auto-issued, expires ~2026-12-18 |
 | Backups | None (not backed up anywhere — see DISASTER-RECOVERY.md) | Not yet checked | Hostinger automatic **weekly** backups (Premium plan default). Manual/daily backups are paid upgrades, not purchased. |
-| Application Password | n/a | Not yet created — needs wp-admin access, which needs DNS first | Stored in `.env.production` |
+| Application Password | n/a | Stored in `.env.dev`, verified working | Stored in `.env.production` |
+
+**Fresh-install gotcha found and fixed (2026-09-22):** the theme
+activation call initially reported success, but this account's
+`hostinger-easy-onboarding` plugin (present by default on every fresh
+Hostinger WordPress install, already removed from Prod) silently
+reactivated Hostinger's own AI theme afterward, without any further API
+call. The homepage rendered as WordPress's unstyled default sample post
+until this was caught by actually screenshotting the live site rather
+than trusting the API's activation response. Fixed by removing
+`hostinger-easy-onboarding` (and `hostinger-reach`, same as Prod) and
+re-activating `warrner`, which then held. **Takeaway: after any WordPress
+API action here, verify the actual rendered page, not just the API's own
+response** — a 200 with "Request accepted" doesn't mean the end state
+stuck.
 
 The WordPress admin account on Dev was created via the Hostinger API
 (login `wildridge`, generated password given to the developer directly,
-not stored in this repo). `demo.toolsandtable.com`'s WordPress install
-still exists but is no longer tracked in this table — see §1a.
+not stored in this repo) — that generated password didn't work when
+tested at `wp-login.php`; used a Hostinger auto-login link (`POST
+.../wordpress/{software}/login/links`, or hPanel's own "WP Admin" button)
+to get in instead, without resolving why. Once in, a new password was set
+by hand and a fresh Application Password created for `.env.dev` — that
+one is confirmed working (verified with a real `purge-cache:dev` call).
+**Note the username split:** `WP_API_USER` for Dev is `wildridge` (the
+actual account username WordPress kept after stripping the `@` from what
+was requested at creation, see the gotcha above), not the email — unlike
+Prod, where the real username happens to equal the email, so the two
+aren't interchangeable here. `demo.toolsandtable.com`'s WordPress install
+still exists but is no longer tracked in this table —
+see §1a.
 
 **Removed from prod (2026-09-22):** `hostinger-easy-onboarding`,
 `hostinger-reach`, `wordpress-importer` — see CHANGELOG.md. Kept
@@ -138,7 +161,7 @@ tracked content:
 | File | Covers | Template |
 |---|---|---|
 | `.env` | `demo.toolsandtable.com` FTP + WP Application Password (legacy — no longer Warrner's Dev, see §1a) | `.env.example` |
-| `.env.dev` | `dev.erinwlegal.com` FTP (works now) + WP Application Password (pending — see §4) | `.env.example` |
+| `.env.dev` | `dev.erinwlegal.com` FTP + WP Application Password, both verified working | `.env.example` |
 | `.env.production` | Prod FTP + WP Application Password + `HOSTINGER_API_TOKEN` | `.env.example` |
 | `.claude/settings.local.json` | Claude Code's own local Bash permission rules (not a site credential) | n/a, machine-specific |
 

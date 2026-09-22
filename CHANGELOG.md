@@ -14,15 +14,18 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Open items (as of 2026-09-22)
 
-- **`dev.erinwlegal.com` being set up as the new Dev environment**,
-  replacing `demo.toolsandtable.com` for this project (see the
-  2026-09-22 "Dev environment moved" log entry below). Not yet created as
-  of this writing — follow CHANGELOG entries forward from here for
-  progress.
+- **Permalinks not verified on Dev or Prod.** `functions.php`'s CPT
+  rewrite rules and practice-area URLs assume pretty permalinks
+  (`/%postname%/`, matching what's set locally), but this hasn't been
+  checked on either the new `dev.erinwlegal.com` or on production —
+  neither was explicitly set during their respective setups. Check
+  Settings → Permalinks on both.
 - `demo.toolsandtable.com`'s Warrner WordPress install is being retired
-  (maintenance notice, not deletion) now that Dev is moving — see the same
-  log entry. The account/domain itself stays active as a general PocketSod
-  demo asset for other projects, unrelated to Warrner.
+  (maintenance notice, not deletion) now that Dev has moved to
+  `dev.erinwlegal.com` — see the 2026-09-22 log entries below. The
+  account/domain itself stays active as a general PocketSod demo asset
+  for other projects, unrelated to Warrner. The retirement notice itself
+  hasn't been built or deployed yet.
 - **DNS cutover done 2026-09-19: erinwlegal.com now points at Hostinger.**
   Only the root `A` record was changed (from "Parked" to `194.164.64.201`).
   `www` is a CNAME to the root and follows it. MX, SPF, DKIM, autodiscover
@@ -56,6 +59,44 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-22: dev.erinwlegal.com fully verified end to end
+- DNS resolved after the account holder added the `A` record on GoDaddy;
+  HTTPS auto-issued the same way Prod's did (Let's Encrypt, expires
+  ~2026-12-21), HTTP→HTTPS redirect confirmed working.
+- **Found and fixed a fresh-install gotcha:** the theme activation call
+  from the earlier entry below reported success, but
+  `hostinger-easy-onboarding` (present by default on this fresh install,
+  already removed from Prod) silently reactivated Hostinger's own AI
+  theme afterward. The homepage was serving WordPress's unstyled default
+  sample post until this was caught by actually screenshotting the live
+  site rather than trusting the API's "Request accepted" response.
+  Removed `hostinger-easy-onboarding` and `hostinger-reach` (matching
+  Prod's cleanup), re-activated `warrner`, confirmed via a second
+  screenshot that it now renders correctly and holds. Lesson for next
+  time: verify the rendered page after any Hostinger API action, not just
+  the API's own response.
+- Dev has **no LiteSpeed Cache plugin** (unlike Prod/demo) — confirmed
+  intentional-by-absence, not a bug; `purge-cache:dev` correctly no-ops
+  ("LiteSpeed Cache is not active on this site") rather than erroring.
+- The WP admin password generated at install time (via the API) didn't
+  work at `wp-login.php` — cause not resolved. Worked around with a
+  Hostinger auto-login link (`POST .../wordpress/{software}/login/links`)
+  instead of debugging it, since that got the developer in immediately.
+  Once in: set a real password by hand, created a fresh Application
+  Password, added it to `.env.dev`, and confirmed it works with a real
+  `purge-cache:dev` call.
+- **`WP_API_USER` for Dev is `wildridge`, not the email** —
+  `wildridge@pocketsod.com` was requested as the login at install time,
+  but WordPress strips non-alphanumeric characters from usernames, so it
+  became `wildridge`. Unlike Prod (where the real username happens to
+  equal the email), these aren't interchangeable on this install. First
+  attempt to fill in `.env.dev` used the email and had to be corrected.
+- `dev.erinwlegal.com` is now considered fully set up: theme deployed and
+  active, mu-plugins deployed, FTP and REST API both verified. Not yet
+  done: permalinks haven't been checked on Dev or Prod (flagged as an
+  open item), and Dev's plugin/theme state hasn't been synced into
+  `functions.php`-level checks the way Prod's was.
 
 ### 2026-09-22: dev.erinwlegal.com created — site, WordPress, theme all live
 - Created via the Hostinger API (`HOSTINGER_API_TOKEN`, same one used for
