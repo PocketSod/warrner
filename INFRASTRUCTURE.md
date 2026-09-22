@@ -13,24 +13,46 @@ that talks to all of this, see [SCRIPTS.md](SCRIPTS.md).
 ## 1. The three environments
 
 ```
-Local (Laragon)  --deploy-->  Dev (demo.toolsandtable.com)  --deploy-->  Prod (erinwlegal.com)
+Local (Laragon)  --deploy-->  Dev (dev.erinwlegal.com)  --deploy-->  Prod (erinwlegal.com)
 ```
+
+**Transitioning as of 2026-09-22:** Dev is moving from
+`demo.toolsandtable.com` to `dev.erinwlegal.com`, a new site under the same
+Hostinger account as production. `demo.toolsandtable.com` is being retired
+from this project — see §1a. Until `dev.erinwlegal.com` is created and
+verified, treat this table as the target state, not yet fully live; check
+CHANGELOG.md's most recent entries for exactly how far the cutover has
+gotten.
 
 | | Local | Dev | Prod |
 |---|---|---|---|
-| URL | http://warrner.test | https://demo.toolsandtable.com | https://erinwlegal.com |
+| URL | http://warrner.test | https://dev.erinwlegal.com | https://erinwlegal.com |
 | Purpose | Day-to-day development | Client review/staging | The real site |
-| Hosting | Laragon (this machine) | Hostinger — "ToolsandTable" account | Hostinger — production account |
+| Hosting | Laragon (this machine) | Hostinger — same account as Prod | Hostinger — production account |
 | Version controlled? | No (WP core + DB local only) | No | No |
-| Deploy command | — (edit source, sync to Laragon) | `npm run deploy:dev` / `deploy` | `npm run deploy:prod` |
-| Credentials file | n/a | `.env` | `.env.production` |
+| Deploy command | — (edit source, sync to Laragon) | `npm run deploy:dev` | `npm run deploy:prod` |
+| Credentials file | n/a | `.env.dev` (new) | `.env.production` |
 | Coming-soon gate | Off (never defined) | Off (never defined) | **On** — see §4 |
 | Real client content? | No | No | No (fresh install, nothing migrated) |
 
-**Important:** Dev (`demo.toolsandtable.com`) and Prod (`erinwlegal.com`) are
-on **two different Hostinger accounts/logins**, not two sites on one
-account. `demo.toolsandtable.com` will never become production — it's a
-permanent staging site. See §3.
+**Important:** Dev and Prod are now on the **same Hostinger account**
+(admin login `wildridge@pocketsod.com`, see §3), as two separate website
+installs. That's a change from the original setup, where Dev
+(`demo.toolsandtable.com`) was a different account entirely.
+
+### 1a. `demo.toolsandtable.com` — retired from this project, not deleted
+
+As of 2026-09-22, `demo.toolsandtable.com` is no longer part of Warrner's
+Dev pipeline. The account and domain stay active as a general-purpose
+PocketSod asset, reusable for demoing other projects. The Warrner
+WordPress install currently running there is being retired: replaced with
+a maintenance/retired notice rather than deleted outright, since
+decommissioning the hosting site itself needs hPanel access to that
+account (see §3), and a live URL some people may still have bookmarked
+shouldn't just go blank or 404. Deploy scripts and credentials targeting
+it (`.env`, the unsuffixed `deploy`/`purge-cache` npm scripts) are kept
+working for now in case that account is needed for another project
+demo, but no longer documented here as "Warrner Dev".
 
 ---
 
@@ -61,10 +83,10 @@ DISASTER-RECOVERY.md §5.
 | Account | What it's for | Login / owner | Notes |
 |---|---|---|---|
 | **GitHub** — `PocketSod/warrner` | Source of truth for theme/plugin code | git user `w1ldr1` | Single `main` branch. Only remote configured (`origin`). |
-| **GoDaddy** | Domain registration + DNS for `erinwlegal.com` | Not documented here — confirm who holds login | Nameservers stay GoDaddy's, see §2 |
+| **GoDaddy** | Domain registration + DNS for `erinwlegal.com` | Not documented here — confirm who holds login | Nameservers stay GoDaddy's, see §2. DNS changes are made directly by the account holder, not via API — see CHANGELOG.md 2026-09-22. |
 | **Microsoft 365** | Erin's live mailbox, `erin@erinwlegal.com` | Erin's own account | Unaffected by any WordPress/hosting work as long as DNS mail records are untouched |
-| **Hostinger — Dev account** ("ToolsandTable") | Hosts `demo.toolsandtable.com` | Not documented here — confirm login | Separate account from prod; not reachable via the `HOSTINGER_API_TOKEN` used for prod (that token only sees the prod site) |
-| **Hostinger — Prod account** | Hosts `erinwlegal.com` | wp-admin/API user `wildridge@pocketsod.com`; FTP username `u483557243` | **Ownership unresolved** — see the "Production hosting account mix-up" open item in CHANGELOG.md. A checkout-flow bug merged the purchaser's own Hostinger profile with Erin's details; being corrected with Hostinger support. Decide whether this account moves to Erin's own login before launch. |
+| **Hostinger — "ToolsandTable" account** | Hosts `demo.toolsandtable.com` | Not documented here — confirm login | No longer Warrner's Dev site (see §1a) — kept as a general PocketSod demo asset for other projects. Not reachable via the `HOSTINGER_API_TOKEN` used for Prod (that token only sees the account below). |
+| **Hostinger — Prod + Dev account** | Hosts `erinwlegal.com` (Prod) and, once created, `dev.erinwlegal.com` (Dev) | Admin login `wildridge@pocketsod.com`; FTP username on the erinwlegal.com site is `u483557243` | **Ownership resolved 2026-09-22**: this is the developer's admin account for the hosting, used on Erin's behalf. (Earlier "Production hosting account mix-up" open item in CHANGELOG.md is closed.) |
 
 **Hostinger prod plan:** "Premium Web Hosting", $131.88/yr, auto-renew on,
 subscription created 2026-09-19 (per the Hostinger billing API). The API
@@ -81,16 +103,19 @@ sets of users/plugins/settings. None of them share content — see
 `CHANGELOG.md`'s "Production go-live plan" section for why (fresh install,
 no migration).
 
-| | Local | Dev | Prod |
+| | Local | Dev (dev.erinwlegal.com, once created) | Prod |
 |---|---|---|---|
-| WP-admin URL | http://warrner.test/wp-admin | https://demo.toolsandtable.com/wp-admin | https://erinwlegal.com/wp-admin |
+| WP-admin URL | http://warrner.test/wp-admin | https://dev.erinwlegal.com/wp-admin | https://erinwlegal.com/wp-admin |
 | Active theme | `warrner` | `warrner` | `warrner` |
-| Active plugins | (WP core only, no caching plugin) | LiteSpeed Cache (implied by purge tooling — not re-audited this session) | `hostinger` (Hostinger Tools), `litespeed-cache` |
-| mu-plugins | `warrner-cache-purge.php`, `warrner-coming-soon.php` | same | same |
+| Active plugins | (WP core only, no caching plugin) | Not yet created — expect similar to Prod once set up | `hostinger` (Hostinger Tools), `litespeed-cache` |
+| mu-plugins | `warrner-cache-purge.php`, `warrner-coming-soon.php` | same, once deployed | same |
 | Coming-soon gate | Off | Off | **On** — `WARRNER_COMING_SOON` defined `true` in prod's `wp-config.php` only |
-| SSL | n/a (local) | Assumed active, not re-verified this session | Verified: Let's Encrypt, auto-issued, expires ~2026-12-18 |
-| Backups | None (not backed up anywhere — see DISASTER-RECOVERY.md) | Not checked this session | Hostinger automatic **weekly** backups (Premium plan default). Manual/daily backups are paid upgrades, not purchased. |
-| Application Password | n/a | Stored in `.env` | Stored in `.env.production` |
+| SSL | n/a (local) | Not yet created | Verified: Let's Encrypt, auto-issued, expires ~2026-12-18 |
+| Backups | None (not backed up anywhere — see DISASTER-RECOVERY.md) | Not yet created | Hostinger automatic **weekly** backups (Premium plan default). Manual/daily backups are paid upgrades, not purchased. |
+| Application Password | n/a | Will be stored in `.env.dev` | Stored in `.env.production` |
+
+`demo.toolsandtable.com`'s WordPress install still exists but is no longer
+tracked in this table — see §1a.
 
 **Removed from prod (2026-09-22):** `hostinger-easy-onboarding`,
 `hostinger-reach`, `wordpress-importer` — see CHANGELOG.md. Kept
@@ -106,17 +131,17 @@ tracked content:
 
 | File | Covers | Template |
 |---|---|---|
-| `.env` | Dev (demo) FTP + WP Application Password | `.env.example` |
+| `.env` | `demo.toolsandtable.com` FTP + WP Application Password (legacy — no longer Warrner's Dev, see §1a) | `.env.example` |
+| `.env.dev` | `dev.erinwlegal.com` FTP + WP Application Password, once created | `.env.example` |
 | `.env.production` | Prod FTP + WP Application Password + `HOSTINGER_API_TOKEN` | `.env.example` |
 | `.claude/settings.local.json` | Claude Code's own local Bash permission rules (not a site credential) | n/a, machine-specific |
 
 `HOSTINGER_API_TOKEN` (added 2026-09-22) is a **full Hostinger-account**
 bearer token, not scoped to just the one site — it can see billing,
-domains, and VPS on whichever Hostinger login created it, not only
-`erinwlegal.com`. Created with a 1-month expiration
-(~2026-10-22); regenerate in hPanel → API when it lapses, or sooner if the
-account-ownership question above resolves and it should move to a
-different login.
+domains, and VPS on whichever Hostinger login created it. It will also be
+able to see `dev.erinwlegal.com` once that's created, since it's the same
+account. Created with a 1-month expiration (~2026-10-22); regenerate in
+hPanel → API when it lapses.
 
 None of these files back up anywhere except this machine. If the machine
 is lost, every credential must be regenerated from its provider's

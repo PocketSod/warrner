@@ -37,10 +37,16 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 
 ## Environments at a glance
 
+**Transitioning as of 2026-09-22:** Dev is moving from
+`demo.toolsandtable.com` to `dev.erinwlegal.com` (same Hostinger account as
+Prod). `demo.toolsandtable.com` stays active as a general PocketSod demo
+asset for other projects, not as Warrner's Dev site — see
+INFRASTRUCTURE.md §1a.
+
 | | Local | Dev | Prod |
 |---|---|---|---|
-| URL | http://warrner.test | https://demo.toolsandtable.com | https://erinwlegal.com |
-| Status | Working | Working | Working, gated behind coming-soon |
+| URL | http://warrner.test | https://dev.erinwlegal.com *(not yet created)* | https://erinwlegal.com |
+| Status | Working | Pending | Working, gated behind coming-soon |
 | Has real content? | No | No | No |
 
 Full detail: [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
@@ -54,7 +60,7 @@ items" section, which is the authoritative source if they ever disagree.)
 
 | Item | Status |
 |---|---|
-| Who owns the production Hostinger account | **Unresolved** — mix-up with Hostinger support, see CHANGELOG.md |
+| `dev.erinwlegal.com` setup | In progress — replacing `demo.toolsandtable.com` as Warrner's Dev site |
 | Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
 | SMTP for the intake form | Not set up — currently uses PHP's default `wp_mail()`, which shared hosting often spam-filters |
 | Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |
@@ -78,6 +84,8 @@ items" section, which is the authoritative source if they ever disagree.)
 | Option A selected from 5 homepage variants | 2026-09-16 | Client review |
 | Coming-soon gate, off by default per-environment | 2026-09-18 | Lets prod infrastructure go live before content does |
 | Deploy pipeline named Local → Dev → Prod | 2026-09-22 | Made the existing (unnamed) pipeline explicit in script names |
+| Dev moved to `dev.erinwlegal.com`, same account as Prod | 2026-09-22 | `demo.toolsandtable.com` repurposed as a general PocketSod demo asset for other projects |
+| Hostinger account ownership resolved | 2026-09-22 | `wildridge@pocketsod.com` is the developer's admin login for the account, managed on Erin's behalf |
 
 ---
 
@@ -88,8 +96,8 @@ items" section, which is the authoritative source if they ever disagree.)
 | GitHub (`PocketSod/warrner`) | Yes |
 | GoDaddy (DNS/registrar) | Login not documented — needs filling in |
 | Microsoft 365 (Erin's mailbox) | Erin's own account |
-| Hostinger — Dev | Login not documented — needs filling in |
-| Hostinger — Prod | `wildridge@pocketsod.com`, ownership unresolved |
+| Hostinger — "ToolsandTable" (demo, other projects) | Login not documented — needs filling in |
+| Hostinger — Prod + Dev | `wildridge@pocketsod.com` — resolved 2026-09-22 |
 
 ---
 

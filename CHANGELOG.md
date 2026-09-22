@@ -12,22 +12,17 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ---
 
-## Open items (as of 2026-09-19)
+## Open items (as of 2026-09-22)
 
-- **Production hosting account mix-up, being corrected with Hostinger
-  support.** While purchasing a new Hostinger subscription for Erin's
-  production account (2026-09-19), the checkout flow updated the
-  purchaser's *own* existing Hostinger account profile (name/address) with
-  Erin's details instead of keeping them separate. The purchaser is
-  working with Hostinger support to correct the profile back. Once
-  resolved, revisit whether this new subscription should end up under a
-  genuinely separate account/login (e.g. Erin's own email) as the original
-  plan intended (see "Production go-live plan" below), or stay under the
-  developer's account managed on her behalf — decide and record here so
-  it's clear which account owns production going forward.
-- `demo.toolsandtable.com` is a temporary review site on a *different*,
-  unaffected Hostinger account and will not become production — see
-  "Production go-live plan" below.
+- **`dev.erinwlegal.com` being set up as the new Dev environment**,
+  replacing `demo.toolsandtable.com` for this project (see the
+  2026-09-22 "Dev environment moved" log entry below). Not yet created as
+  of this writing — follow CHANGELOG entries forward from here for
+  progress.
+- `demo.toolsandtable.com`'s Warrner WordPress install is being retired
+  (maintenance notice, not deletion) now that Dev is moving — see the same
+  log entry. The account/domain itself stays active as a general PocketSod
+  demo asset for other projects, unrelated to Warrner.
 - **DNS cutover done 2026-09-19: erinwlegal.com now points at Hostinger.**
   Only the root `A` record was changed (from "Parked" to `194.164.64.201`).
   `www` is a CNAME to the root and follows it. MX, SPF, DKIM, autodiscover
@@ -61,6 +56,32 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-22: Hostinger account ownership resolved; Dev environment moving to dev.erinwlegal.com
+- **Account mix-up (opened 2026-09-19) resolved.** `wildridge@pocketsod.com`
+  is confirmed as the developer's admin login for the Hostinger account
+  hosting `erinwlegal.com`, managed on Erin's behalf. (Original incident:
+  purchasing the production subscription on 2026-09-19 had overwritten the
+  purchaser's own Hostinger profile with Erin's details instead of keeping
+  them separate; corrected with Hostinger support before this resolution.)
+- **Dev environment is moving from `demo.toolsandtable.com` to
+  `dev.erinwlegal.com`**, a new site under the same Hostinger account as
+  production, replacing the old cross-account Dev setup. Reason: keeps
+  Dev and Prod under one account/login instead of two, and frees
+  `demo.toolsandtable.com` for its original purpose — the client wants to
+  keep that domain/account as a general-purpose demo site for *other*
+  PocketSod projects, not tied to Warrner specifically.
+- `demo.toolsandtable.com`'s current Warrner WordPress install is being
+  retired: a maintenance/retired notice rather than deletion, since fully
+  decommissioning it needs hPanel access to that account, and a live URL
+  people may have bookmarked shouldn't just go blank. The domain/account
+  itself is NOT being torn down.
+- `INFRASTRUCTURE.md` and `PROJECT-STATUS.md` updated to match (new §1a in
+  INFRASTRUCTURE.md explains the demo retirement specifically). Not yet
+  done as of this entry: creating `dev.erinwlegal.com` in hPanel, wiring up
+  `.env.dev`, deploying the theme/mu-plugins there, adding its DNS record
+  (GoDaddy — the account holder is making this change directly, not via
+  API), and actually deploying the retirement notice to demo.
 
 ### 2026-09-22: Added infrastructure, disaster-recovery, scripts, and status docs
 - Four new root-level reference docs, distinct from this file on purpose:
