@@ -42,17 +42,26 @@ installs. That's a change from the original setup, where Dev
 
 As of 2026-09-22, `demo.toolsandtable.com` is no longer part of Warrner's
 Dev pipeline. The account and domain stay active as a general-purpose
-PocketSod asset, reusable for demoing other projects. The Warrner
-WordPress install currently running there is being retired: replaced with
-a maintenance/retired notice rather than deleted outright, since
-decommissioning the hosting site itself needs hPanel access to that
-account (see §3), and a live URL some people may still have bookmarked
-shouldn't just go blank or 404. Deploy scripts and credentials targeting
-it are kept working under explicit `:demo` names (`deploy:demo`,
-`deploy:mu-plugins:demo`, `purge-cache:demo`, plus the original unsuffixed
+PocketSod asset, reusable for demoing other projects. **Retired, live as
+of 2026-09-22:** `https://demo.toolsandtable.com/` now shows a neutral
+"this preview is no longer active" notice (410 Gone, noindex, no Warrner
+branding) instead of the real site, via
+`wp-content/mu-plugins/warrner-demo-retired.php`, gated by
+`WARRNER_DEMO_RETIRED` in that install's own `wp-config.php` — a notice
+rather than deletion, since decommissioning the hosting site itself needs
+hPanel access to that account (see §3), and a live URL some people may
+have bookmarked shouldn't just go blank or 404. Logged-in admins still
+reach the real site through the gate, same mechanism as the coming-soon
+plugin. To reuse this domain for a different project later: remove the
+`WARRNER_DEMO_RETIRED` line from its `wp-config.php`.
+
+Deploy scripts and credentials targeting it are kept working under
+explicit `:demo` names (`deploy:demo`, `deploy:mu-plugins:demo`,
+`purge-cache:demo`, plus the original unsuffixed
 `deploy`/`deploy:mu-plugins`/`purge-cache`, unchanged for backward
-compatibility) in case that account is needed for another project demo,
-but no longer documented here as "Warrner Dev" — that name now means
+compatibility) — these were needed to deploy and purge the retirement
+notice itself, and stay available for whenever the account is reused. No
+longer documented here as "Warrner Dev" — that name now means
 `dev.erinwlegal.com`.
 
 ---

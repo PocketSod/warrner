@@ -37,17 +37,18 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 
 ## Environments at a glance
 
-**Status as of 2026-09-22:** `dev.erinwlegal.com` created (site +
-WordPress + theme, same Hostinger account as Prod), replacing
-`demo.toolsandtable.com` as Warrner's Dev site. Not publicly reachable yet
-— needs a GoDaddy DNS record, which the account holder adds directly (not
-via API). `demo.toolsandtable.com` stays active as a general PocketSod
-demo asset for other projects — see INFRASTRUCTURE.md §1a.
+**Status as of 2026-09-22:** `dev.erinwlegal.com` is fully live and
+verified (DNS, HTTPS, theme, FTP + REST auth), replacing
+`demo.toolsandtable.com` as Warrner's Dev site. `demo.toolsandtable.com`
+now shows a neutral retirement notice instead of the Warrner site, and
+stays active as a general PocketSod demo asset for other projects — see
+INFRASTRUCTURE.md §1a. Permalinks confirmed correct on Dev and Prod, no
+fix needed.
 
 | | Local | Dev | Prod |
 |---|---|---|---|
-| URL | http://warrner.test | https://dev.erinwlegal.com *(pending DNS)* | https://erinwlegal.com |
-| Status | Working | Site + theme live, awaiting DNS | Working, gated behind coming-soon |
+| URL | http://warrner.test | https://dev.erinwlegal.com | https://erinwlegal.com |
+| Status | Working | Working | Working, gated behind coming-soon |
 | Has real content? | No | No | No |
 
 Full detail: [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
@@ -61,7 +62,6 @@ items" section, which is the authoritative source if they ever disagree.)
 
 | Item | Status |
 |---|---|
-| `dev.erinwlegal.com` DNS record | Site/theme/WordPress are live; waiting on the GoDaddy `A` record (host `dev` → `194.164.64.201`) and the resulting WP Application Password |
 | Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
 | SMTP for the intake form | Not set up — currently uses PHP's default `wp_mail()`, which shared hosting often spam-filters |
 | Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |
@@ -87,6 +87,7 @@ items" section, which is the authoritative source if they ever disagree.)
 | Deploy pipeline named Local → Dev → Prod | 2026-09-22 | Made the existing (unnamed) pipeline explicit in script names |
 | Dev moved to `dev.erinwlegal.com`, same account as Prod | 2026-09-22 | `demo.toolsandtable.com` repurposed as a general PocketSod demo asset for other projects |
 | Hostinger account ownership resolved | 2026-09-22 | `wildridge@pocketsod.com` is the developer's admin login for the account, managed on Erin's behalf |
+| `demo.toolsandtable.com` retired with a notice, not deleted | 2026-09-22 | Keeps the URL from going blank/404 for anyone with it bookmarked; account is reused for other projects |
 
 ---
 

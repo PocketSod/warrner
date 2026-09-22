@@ -14,18 +14,6 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Open items (as of 2026-09-22)
 
-- **Permalinks not verified on Dev or Prod.** `functions.php`'s CPT
-  rewrite rules and practice-area URLs assume pretty permalinks
-  (`/%postname%/`, matching what's set locally), but this hasn't been
-  checked on either the new `dev.erinwlegal.com` or on production —
-  neither was explicitly set during their respective setups. Check
-  Settings → Permalinks on both.
-- `demo.toolsandtable.com`'s Warrner WordPress install is being retired
-  (maintenance notice, not deletion) now that Dev has moved to
-  `dev.erinwlegal.com` — see the 2026-09-22 log entries below. The
-  account/domain itself stays active as a general PocketSod demo asset
-  for other projects, unrelated to Warrner. The retirement notice itself
-  hasn't been built or deployed yet.
 - **DNS cutover done 2026-09-19: erinwlegal.com now points at Hostinger.**
   Only the root `A` record was changed (from "Parked" to `194.164.64.201`).
   `www` is a CNAME to the root and follows it. MX, SPF, DKIM, autodiscover
@@ -59,6 +47,37 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-22: Permalinks verified; demo.toolsandtable.com retired
+- **Permalinks confirmed already correct on Dev and Prod, no fix needed.**
+  `/wp-json/` returns 200 on both (only possible with pretty-permalink
+  rewrite rules in place), and `dev.erinwlegal.com/hello-world/` (the
+  default sample post) resolves directly with a 200. Couldn't test a real
+  content URL on Prod the same way, since the coming-soon gate intercepts
+  everything except REST requests — the `/wp-json/` result is the
+  available evidence there.
+- **`demo.toolsandtable.com` retired.** New
+  `wp-content/mu-plugins/warrner-demo-retired.php` +
+  `warrner-demo-retired/retired.css`: same `template_redirect`-gate
+  mechanism as the coming-soon plugin (admin/REST/cron/CLI bypass,
+  `WARRNER_DEMO_RETIRED` define required in that install's own
+  `wp-config.php`, off everywhere else by default), but deliberately
+  **not** Warrner-branded — neutral copy and palette, links to
+  pocketsod.com, since this domain/account is being kept as a
+  general-purpose demo asset for other projects, not something
+  Warrner-specific. Returns `410 Gone` (genuinely retired) rather than the
+  coming-soon page's `503`/`Retry-After` (temporarily unavailable).
+- Deployed the mu-plugin to all three sites (inert on Dev/Prod without the
+  wp-config define) for consistency, then added the define to demo's
+  `wp-config.php` over FTP (backup kept locally first, same pattern as the
+  coming-soon rollout). Verified: `https://demo.toolsandtable.com/`
+  returns 410 with the correct copy, `wp-login.php` still reachable,
+  Dev/Prod unaffected.
+- `demo.toolsandtable.com`'s own FTP/WP credentials (`.env`, the
+  unsuffixed and `:demo`-suffixed npm scripts) are unchanged and still
+  point at it — needed to deploy and purge this retirement notice, and
+  will be needed again whenever that account is reused for a different
+  project (remove the wp-config define at that point).
 
 ### 2026-09-22: dev.erinwlegal.com fully verified end to end
 - DNS resolved after the account holder added the `A` record on GoDaddy;

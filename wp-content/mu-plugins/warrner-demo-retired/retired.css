@@ -1,0 +1,80 @@
+:root {
+	--color-ink: #24272B;
+	--color-ink-60: rgba(36, 39, 43, 0.6);
+	--color-paper: #FFFFFF;
+	--color-line: #E2E4E7;
+	--space-4: 16px;
+	--space-6: 24px;
+	--space-8: 32px;
+	--radius-lg: 12px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--space-6);
+	background: #F4F5F6;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	color: var(--color-ink);
+}
+
+.dr-card {
+	max-width: 420px;
+	width: 100%;
+	background: var(--color-paper);
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-lg);
+	padding: var(--space-8) var(--space-6);
+	text-align: center;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+	font-size: 20px;
+	line-height: 1.3;
+	margin: 0 0 var(--space-4);
+	color: var(--color-ink);
+}
+
+.dr-lede {
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--color-ink-60);
+	margin: 0 0 var(--space-6);
+}
+
+.dr-credit {
+	font-size: 13px;
+	margin: 0;
+	padding-top: var(--space-4);
+	border-top: 1px solid var(--color-line);
+}
+
+.dr-credit a {
+	color: var(--color-ink);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.dr-credit a:hover {
+	color: var(--color-ink-60);
+}
+
+.dr-credit a:focus-visible {
+	outline: 2px solid var(--color-ink);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
+@media (max-width: 400px) {
+	.dr-card {
+		padding: var(--space-6) var(--space-4);
+	}
+}
