@@ -37,16 +37,17 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 
 ## Environments at a glance
 
-**Transitioning as of 2026-09-22:** Dev is moving from
-`demo.toolsandtable.com` to `dev.erinwlegal.com` (same Hostinger account as
-Prod). `demo.toolsandtable.com` stays active as a general PocketSod demo
-asset for other projects, not as Warrner's Dev site — see
-INFRASTRUCTURE.md §1a.
+**Status as of 2026-09-22:** `dev.erinwlegal.com` created (site +
+WordPress + theme, same Hostinger account as Prod), replacing
+`demo.toolsandtable.com` as Warrner's Dev site. Not publicly reachable yet
+— needs a GoDaddy DNS record, which the account holder adds directly (not
+via API). `demo.toolsandtable.com` stays active as a general PocketSod
+demo asset for other projects — see INFRASTRUCTURE.md §1a.
 
 | | Local | Dev | Prod |
 |---|---|---|---|
-| URL | http://warrner.test | https://dev.erinwlegal.com *(not yet created)* | https://erinwlegal.com |
-| Status | Working | Pending | Working, gated behind coming-soon |
+| URL | http://warrner.test | https://dev.erinwlegal.com *(pending DNS)* | https://erinwlegal.com |
+| Status | Working | Site + theme live, awaiting DNS | Working, gated behind coming-soon |
 | Has real content? | No | No | No |
 
 Full detail: [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
@@ -60,7 +61,7 @@ items" section, which is the authoritative source if they ever disagree.)
 
 | Item | Status |
 |---|---|
-| `dev.erinwlegal.com` setup | In progress — replacing `demo.toolsandtable.com` as Warrner's Dev site |
+| `dev.erinwlegal.com` DNS record | Site/theme/WordPress are live; waiting on the GoDaddy `A` record (host `dev` → `194.164.64.201`) and the resulting WP Application Password |
 | Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
 | SMTP for the intake form | Not set up — currently uses PHP's default `wp_mail()`, which shared hosting often spam-filters |
 | Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |

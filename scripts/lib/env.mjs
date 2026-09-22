@@ -19,17 +19,21 @@ export function loadEnv(file) {
   }
 }
 
-// Picks the env file from a --prod flag (.env.production) or the default
-// (.env, the demo site). Returns the argv with that flag removed so callers can
-// keep reading positional args from it.
+// Picks the env file from a --prod or --dev flag, or the default (.env,
+// demo.toolsandtable.com — kept as a general PocketSod demo asset, no
+// longer this project's Dev site as of 2026-09-22, see INFRASTRUCTURE.md).
+// Returns argv with the flag removed so callers can keep reading their own
+// positional args from it.
 export function loadTargetEnv(root, argv = process.argv.slice(2)) {
   const isProd = argv.includes("--prod");
-  const file = isProd ? ".env.production" : ".env";
-  if (isProd && !existsSync(path.join(root, file))) {
-    console.error(`--prod needs ${file}. Copy .env.example to ${file} and fill in the production values.`);
+  const isDev = argv.includes("--dev");
+  const file = isProd ? ".env.production" : isDev ? ".env.dev" : ".env";
+  const label = isProd ? "PRODUCTION" : isDev ? "DEV (dev.erinwlegal.com)" : "demo.toolsandtable.com";
+  if ((isProd || isDev) && !existsSync(path.join(root, file))) {
+    console.error(`--${isProd ? "prod" : "dev"} needs ${file}. Copy .env.example to ${file} and fill in the values.`);
     process.exit(1);
   }
   loadEnv(path.join(root, file));
-  console.log(`Target: ${isProd ? "PRODUCTION" : "demo"} (${file})`);
-  return argv.filter((arg) => arg !== "--prod");
+  console.log(`Target: ${label} (${file})`);
+  return argv.filter((arg) => arg !== "--prod" && arg !== "--dev");
 }

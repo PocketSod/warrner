@@ -57,6 +57,46 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-22: dev.erinwlegal.com created — site, WordPress, theme all live
+- Created via the Hostinger API (`HOSTINGER_API_TOKEN`, same one used for
+  the plugin cleanup): `POST /api/hosting/v1/websites` (new website on
+  production's existing order), then
+  `POST .../wordpress/installations` to install WordPress on it. Both
+  calls are async; polled the corresponding list endpoints until each
+  completed. See SCRIPTS.md for the exact request shapes.
+- **WordPress strips non-alphanumeric characters from the admin login** —
+  requested `wildridge@pocketsod.com`, got back `wildridge`. Worth knowing
+  before assuming a login value stuck.
+- **Discovered the account's FTP login is account-wide, not per-site.**
+  The same FTP credentials already in `.env.production`
+  (`u483557243`) could immediately list `dev.erinwlegal.com`'s folder with
+  no new FTP account needed — confirmed by listing both sites' directories
+  with the same login before deploying anything. This means dev's FTP
+  works *before* DNS exists, since FTP routes by folder, not hostname.
+- Deployed the theme and mu-plugins via `npm run deploy:dev` /
+  `deploy:mu-plugins:dev`, then activated the Warrner theme via the
+  Hostinger API (`POST .../themes/activate`) since it deploys inactive by
+  default (production's stock themes are still there too, inactive,
+  matching Prod's pre-cleanup state — not removed yet).
+- **`:dev` npm scripts and `loadTargetEnv` redefined** to point at the new
+  `.env.dev`/`dev.erinwlegal.com`, not `demo.toolsandtable.com`. The old
+  demo-targeting scripts are still there under explicit `:demo` names
+  (`deploy:demo`, `deploy:mu-plugins:demo`, `purge-cache:demo`) plus the
+  original unsuffixed names, unchanged, so nothing broke for whoever reuses
+  that account for a different project.
+- **Not yet done:** the GoDaddy DNS `A` record (host `dev` →
+  `194.164.64.201`, same server as Prod) — the account holder is adding
+  this directly, not via API. Until that resolves: the site isn't publicly
+  reachable, HTTPS hasn't been issued, and the WP Application Password for
+  `.env.dev` can't be created (needs wp-admin access). A generated WP admin
+  login/password was given directly to the developer, not stored in this
+  repo or its history.
+- Corrected an earlier mistake in SCRIPTS.md: SSL/HTTPS management *is*
+  available via this API (found while researching this work), an earlier
+  note said it wasn't, based on an incomplete remote-doc summary rather
+  than the actual OpenAPI spec. See SCRIPTS.md's correction note for what
+  went wrong and how it was caught.
+
 ### 2026-09-22: Hostinger account ownership resolved; Dev environment moving to dev.erinwlegal.com
 - **Account mix-up (opened 2026-09-19) resolved.** `wildridge@pocketsod.com`
   is confirmed as the developer's admin login for the Hostinger account

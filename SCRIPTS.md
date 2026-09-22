@@ -183,9 +183,47 @@ in a committed script yet — calls were made inline as needed. Base URL
 - `GET /api/billing/v1/subscriptions`, `GET /api/domains/v1/portfolio`,
   `GET /api/vps/v1/virtual-machines` — used once to confirm the token's
   actual scope (it's full-account, not limited to one site).
+- `POST /api/hosting/v1/websites` (body: `{ "domain", "order_id" }`) —
+  create a new website under an existing hosting order. Async — poll
+  `GET /api/hosting/v1/websites` until the domain appears. Used 2026-09-22
+  to create `dev.erinwlegal.com` on the same order as production.
+- `POST /api/hosting/v1/accounts/{username}/wordpress/installations`
+  (body: `{ domain, site_title, credentials: { email, login, password },
+  auto_updates }`) — install WordPress on an existing (empty) website.
+  Async — poll `GET /api/hosting/v1/wordpress/installations` (filter by
+  `domain` client-side) until `is_valid: true`. **WordPress silently
+  strips non-alphanumeric characters from `login`** — an email-shaped
+  login like `wildridge@pocketsod.com` came back as `wildridge`; check the
+  poll result for the actual username rather than assuming the value you
+  sent stuck.
+- `GET .../wordpress/{software}/themes`, `POST .../themes/activate` (body:
+  `{ "theme": "slug" }`) — list and activate a theme, so a freshly-deployed
+  theme doesn't sit inactive behind WordPress's default.
+- Note: there is **no FTP-account-creation endpoint anywhere in this API.**
+  Not needed so far because this Hostinger account uses one account-wide
+  FTP login (`u483557243`, same as the account username) that can reach
+  every website's folder under it — confirmed by listing both
+  `erinwlegal.com`'s and `dev.erinwlegal.com`'s directories with the same
+  credentials. Don't assume this holds on every Hostinger account/plan.
 
-**Not available on this plan/via this API:** SSL/HTTPS management (only
-exists under a separate `agency-hosting` product tier) and backups (no
-public API endpoint at all, on any tier — hPanel only). Both were verified
-directly instead: HTTPS via a raw TLS check against the live site, backups
-by looking at the hPanel Backups panel by hand.
+**Correction (2026-09-22):** an earlier version of this doc said SSL/HTTPS
+management wasn't available on this plan's API. That was wrong — checked
+against a remote doc summary that missed them. The real OpenAPI spec (see
+below) has `POST/GET/DELETE
+/api/hosting/v1/accounts/{username}/websites/{domain}/ssl*` and an
+HTTPS-redirect toggle, under the plain `hosting/v1` prefix, not the
+`agency-hosting` tier. Not used yet since Prod's certificate was
+auto-issued by Hostinger without any API call — worth trying directly
+against these endpoints before assuming HTTPS needs to be verified purely
+by an external TLS check again.
+
+Backups genuinely have no public API endpoint on any tier, that part of
+the original note still holds — hPanel → Backups only.
+
+**Getting the real endpoint list, reliably:** summarizing Hostinger's docs
+pages through a fetch-and-summarize tool missed real endpoints (the SSL
+mistake above). The full machine-readable spec is at
+`https://developers.hostinger.com/openapi/openapi.json` (~1.5MB) —
+download it once and grep/parse it locally rather than asking a
+summarizer to describe pages of it; that's how the endpoints in this
+section were actually confirmed.

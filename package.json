@@ -5,15 +5,18 @@
   "scripts": {
     "screenshot": "node scripts/screenshot.mjs",
     "deploy": "node scripts/deploy.mjs",
-    "deploy:dev": "node scripts/deploy.mjs",
+    "deploy:demo": "node scripts/deploy.mjs",
+    "deploy:dev": "node scripts/deploy.mjs --dev",
     "deploy:mu-plugins": "node scripts/deploy.mjs mu-plugins",
-    "deploy:mu-plugins:dev": "node scripts/deploy.mjs mu-plugins",
+    "deploy:mu-plugins:demo": "node scripts/deploy.mjs mu-plugins",
+    "deploy:mu-plugins:dev": "node scripts/deploy.mjs mu-plugins --dev",
     "deploy:prod": "node scripts/deploy.mjs --prod",
     "deploy:mu-plugins:prod": "node scripts/deploy.mjs mu-plugins --prod",
     "purge-cache:prod": "node scripts/purge-cache.mjs --prod",
     "set-site-icon": "node scripts/set-site-icon.mjs",
     "purge-cache": "node scripts/purge-cache.mjs",
-    "purge-cache:dev": "node scripts/purge-cache.mjs",
+    "purge-cache:demo": "node scripts/purge-cache.mjs",
+    "purge-cache:dev": "node scripts/purge-cache.mjs --dev",
     "generate-invoice": "node scripts/generate-invoice.mjs"
   },
   "dependencies": {
