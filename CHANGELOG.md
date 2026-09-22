@@ -40,12 +40,11 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   erin@erinwlegal.com. WordPress's `siteurl` option still reads `http://`
   while `home` is `https://` (no mixed-content links found); set both to
   https in Settings > General when convenient.
-- **Coming-soon gate is ON on the production temp domain** (since
+- **Coming-soon gate is ON on production (erinwlegal.com)** (since
   2026-09-19). `WARRNER_COMING_SOON` is defined true in that install's
-  `wp-config.php` (the one line, marked with a comment). Remove that line to
-  go live. It was added over FTP; a pre-edit copy of the file is not kept in
-  the repo. Keep it on until real content is entered, and before pointing
-  erinwlegal.com at the install.
+  `wp-config.php` (the one line, marked with a comment). Remove that line
+  when real content is ready to go live. It was added over FTP; a pre-edit
+  copy of the file is not kept in the repo.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -62,6 +61,36 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-22: Backups confirmed, deploy scripts labeled Local > Dev > Prod, settings file fixed
+- **Backups confirmed working, no setup needed.** hPanel > erinwlegal.com >
+  Files > Backups shows automated **weekly** backups already running on the
+  Premium plan (latest 2026-09-20, next scheduled 2026-09-27). Manual
+  on-demand backup creation is locked (Business tier+); Daily backups is a
+  paid add-on ($2.09/mo) not purchased. No action taken, this is the plan's
+  default behavior working as intended.
+- **Deploy pipeline is Local (Laragon) > Dev (demo.toolsandtable.com) > Prod
+  (erinwlegal.com).** Added `:dev`-suffixed aliases in `package.json`
+  (`deploy:dev`, `deploy:mu-plugins:dev`, `purge-cache:dev`) that point at
+  the same demo commands as the existing unsuffixed `deploy` /
+  `deploy:mu-plugins` / `purge-cache`, so both names work — the unsuffixed
+  ones stay since AGENTS.md and habit already reference them. Nothing about
+  the actual deploy targets changed, this only makes the three-stage
+  pipeline explicit in the script names. The workflow itself (edit source >
+  sync to Laragon > verify locally > demo > prod) was already what
+  AGENTS.md's Editing Protocol describes.
+- **Fixed `.claude/settings.local.json`** (gitignored, machine-local):
+  it had a missing comma and was failing to parse, meaning none of its
+  permission rules were in effect. While fixing it, also narrowed it —
+  removed a blanket `Bash(node -e ' *)` rule that auto-allowed *any* inline
+  node script without a permission prompt (added at some point outside this
+  session, origin unclear), and an unused `Bash(vercel ls *)` entry (no
+  Vercel involvement in this project). Kept the narrow
+  `Bash(node wpconfig.mjs apply)` rule and the `git add`/`commit`/`push`
+  rules. A Bash permission rule only controls whether a command is allowed
+  to run without a system prompt — it doesn't substitute for checking with
+  the user before anything production-impacting, per AGENTS.md's Approval
+  Gates.
 
 ### 2026-09-22: Hostinger API token wired up; unused plugins removed from production
 - Created a Hostinger account-level API token (hPanel > API), one-month
