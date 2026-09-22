@@ -48,6 +48,31 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-22: DKIM signing enabled on Microsoft 365
+- Erin was getting screened as spam on outbound mail. Investigated: the
+  DKIM CNAME records (`selector1`/`selector2._domainkey`) were already
+  correctly present in GoDaddy's DNS, added during the original 2026-09-19
+  cutover and verified still resolving correctly — this was never a
+  DNS/hosting gap. The missing piece was purely on the Microsoft 365 side:
+  DKIM signing has to be manually toggled on per-domain in the Microsoft
+  365 admin portal (Security → Email & collaboration → Policies & rules →
+  Threat policies → DKIM) even once the DNS records exist. Not something
+  we can do ourselves — needs Erin's (or her M365 admin's) own login.
+  Relayed instructions to her; she's since enabled it.
+- **Not independently verified yet** — no access to her inbox or M365
+  admin to confirm signing is actually active, only that she was able to
+  turn the toggle on (which itself confirms the DNS records were detected
+  correctly). Real confirmation needs either a mail-tester.com test send,
+  or checking a sent message's headers for a `DKIM-Signature: d=
+  erinwlegal.com` line. Follow up once available.
+- Also surfaced: no DMARC record (`_dmarc` TXT) currently exists on
+  `erinwlegal.com`. Not added — DKIM alone often resolves spam-screening;
+  only add DMARC if the problem persists after this.
+- Separate, still-open ask to the same tenant: SMTP AUTH needs enabling
+  for `erin@erinwlegal.com` specifically, for the intake form's SMTP
+  connector (see the entry below) — different toggle, different feature,
+  don't conflate the two when following up with her.
+
 ### 2026-09-22: SMTP connector built; production admin_email bug fixed
 - **Found and fixed a real bug:** production's `admin_email` (what
   `warrner_send_intake_notification()` in `inc/ai-lead-intake.php` sends
