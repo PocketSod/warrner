@@ -97,6 +97,24 @@ define( 'WP_DEBUG', false );
  */
 // define( 'WARRNER_COMING_SOON', true );
 
+/**
+ * Route wp_mail() through SMTP instead of PHP's default mail() transport
+ * (wp-content/mu-plugins/warrner-smtp.php). Off unless WARRNER_SMTP_HOST is
+ * set. For Microsoft 365: host smtp.office365.com, port 587, secure 'tls'.
+ * WARRNER_SMTP_USERNAME must be a mailbox with SMTP AUTH enabled for it in
+ * the Exchange admin center (often off by default) — the password is an
+ * app password or the mailbox password, per that tenant's auth policy.
+ * Never commit real values here; each install sets its own in its own
+ * (gitignored) wp-config.php.
+ */
+// define( 'WARRNER_SMTP_HOST', 'smtp.office365.com' );
+// define( 'WARRNER_SMTP_PORT', 587 );
+// define( 'WARRNER_SMTP_SECURE', 'tls' );
+// define( 'WARRNER_SMTP_USERNAME', 'erin@erinwlegal.com' );
+// define( 'WARRNER_SMTP_PASSWORD', '' );
+// define( 'WARRNER_SMTP_FROM_EMAIL', 'erin@erinwlegal.com' );
+// define( 'WARRNER_SMTP_FROM_NAME', 'Warrner Legal' );
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */

@@ -48,6 +48,46 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-22: SMTP connector built; production admin_email bug fixed
+- **Found and fixed a real bug:** production's `admin_email` (what
+  `warrner_send_intake_notification()` in `inc/ai-lead-intake.php` sends
+  to) was `wildridge@pocketsod.com`, not `erin@erinwlegal.com` — leftover
+  from the account used to set up the install. Any real intake submission
+  would have emailed the developer, not Erin. Fixed via
+  `PATCH /wp-json/wp/v2/settings`. Dev's `admin_email` was left as
+  `wildridge@pocketsod.com` on purpose, so test submissions there don't
+  land in Erin's inbox.
+- **New `wp-content/mu-plugins/warrner-smtp.php`**: routes `wp_mail()`
+  through SMTP via the `phpmailer_init` hook, per the go-live plan's
+  recommendation (no third-party plugin, matching every other mu-plugin
+  in this repo). Off by default everywhere — only activates when
+  `WARRNER_SMTP_HOST` is defined in that install's own `wp-config.php`
+  (documented in `wp-config-sample.php`, alongside the other per-install
+  constants: port, secure mode, username, password, From address/name).
+  Also forces the PHPMailer From address to match the authenticated
+  mailbox, since Microsoft 365 (and most providers) reject or flag mail
+  where they don't match, and logs `wp_mail` failures via `error_log`,
+  but only when SMTP is actually configured.
+- Deployed to all three sites (demo, dev, prod) — inert everywhere until
+  the constants are set. Confirmed all three still respond with their
+  existing status codes (410 demo, 200 dev, 503 prod), unaffected.
+- **Not done: the actual credential.** This needs something from Erin's
+  M365 side that isn't in our control: SMTP AUTH has to be explicitly
+  enabled for the sending mailbox (`erin@erinwlegal.com`, recommended,
+  since mail already lives there) in the Exchange admin center — it's
+  off by default on most modern tenants, the same category of manual
+  step as the DKIM toggle from earlier today. Then a password (an app
+  password, or the mailbox password depending on that tenant's MFA/auth
+  policy) goes into production's `wp-config.php` as
+  `WARRNER_SMTP_PASSWORD`, never into this repo. Given this tenant
+  already needed a manual DKIM enable, it may also have Conditional
+  Access policies that block classic SMTP AUTH entirely regardless of an
+  app password — if so, the fallback is an OAuth2/Graph API send instead
+  of SMTP, which is a bigger follow-up, not attempted here.
+- Test plan once the credential exists: submit the intake form on
+  production, confirm the email lands in Erin's actual inbox (not spam),
+  check `wp-content/debug.log` or the server error log if it doesn't.
+
 ### 2026-09-22: Permalinks verified; demo.toolsandtable.com retired
 - **Permalinks confirmed already correct on Dev and Prod, no fix needed.**
   `/wp-json/` returns 200 on both (only possible with pretty-permalink

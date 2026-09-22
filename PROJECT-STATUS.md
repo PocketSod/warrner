@@ -63,7 +63,7 @@ items" section, which is the authoritative source if they ever disagree.)
 | Item | Status |
 |---|---|
 | Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
-| SMTP for the intake form | Not set up — currently uses PHP's default `wp_mail()`, which shared hosting often spam-filters |
+| SMTP for the intake form | Mu-plugin built and deployed (off by default). Needs one thing from Erin's M365 side: SMTP AUTH enabled for the sending mailbox + a password, see CHANGELOG.md |
 | Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |
 | Practice-area pages | `functions.php` still returns hardcoded placeholder data; real pages not built |
 | Attorney CPT | Empty — needs at least Erin's own bio/headshot |
