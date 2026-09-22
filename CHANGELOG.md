@@ -28,10 +28,18 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 - `demo.toolsandtable.com` is a temporary review site on a *different*,
   unaffected Hostinger account and will not become production — see
   "Production go-live plan" below.
-- **GoDaddy DNS access for `erinwlegal.com` obtained.** Do not repoint the
-  domain until the production site is ready to show. When it happens, only
-  change the website's A/CNAME records. MX/SPF/autodiscover must stay
-  untouched, they serve Erin's live M365 inbox (`erin@erinwlegal.com`).
+- **DNS cutover done 2026-09-19: erinwlegal.com now points at Hostinger.**
+  Only the root `A` record was changed (from "Parked" to `194.164.64.201`).
+  `www` is a CNAME to the root and follows it. MX, SPF, DKIM, autodiscover
+  and the other Microsoft 365 records were left untouched and verified
+  afterwards against GoDaddy's nameserver. Nameservers stay at GoDaddy
+  (`ns33`/`ns34.domaincontrol.com`). Do NOT switch to Hostinger nameservers,
+  it would drop the mail records. HTTPS is live (Let's Encrypt, issued by
+  Hostinger within minutes of the DNS change); http and www both 301 to
+  https://erinwlegal.com. Still to confirm: a real send/receive test on
+  erin@erinwlegal.com. WordPress's `siteurl` option still reads `http://`
+  while `home` is `https://` (no mixed-content links found); set both to
+  https in Settings > General when convenient.
 - **Coming-soon gate is ON on the production temp domain** (since
   2026-09-19). `WARRNER_COMING_SOON` is defined true in that install's
   `wp-config.php` (the one line, marked with a comment). Remove that line to
@@ -55,7 +63,39 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-22: Hostinger API token wired up; unused plugins removed from production
+- Created a Hostinger account-level API token (hPanel > API), one-month
+  expiration, stored as `HOSTINGER_API_TOKEN` in `.env.production` only, not
+  committed. It's a full-account bearer token (billing/domains/VPS visible,
+  not scoped to just this site) since the token-creation screen has no
+  per-scope picker; the checkbox scope picker seen earlier is for the MCP
+  connector config, not this token. Used read-only first to confirm scope
+  before any write call.
+- Re-verified HTTPS directly against the live site (not via API, Hostinger's
+  SSL management isn't exposed on this plan's public API, only under an
+  `agency-hosting` product tier): valid Let's Encrypt cert for erinwlegal.com,
+  http and www both redirect to https.
+- Confirmed via the API that backups have no public API endpoint on any
+  plan, hPanel-only (Dashboard > Backups). Not yet checked by a human.
+- Removed 3 of 5 pre-installed WordPress plugins via the API
+  (`POST .../wordpress/{id}/plugins/uninstall`): `hostinger-easy-onboarding`,
+  `hostinger-reach` (email marketing upsell), `wordpress-importer` (unused,
+  was inactive). Kept `hostinger` (Hostinger Tools, likely backs hPanel's
+  one-click WP Admin login/security scanning, not confirmed) and
+  `litespeed-cache` (required by `warrner-cache-purge.php`). Confirmed via a
+  follow-up list call and a homepage/wp-login check that the site still
+  works.
+- The plugin-uninstall API call was blocked once by Claude Code's auto-mode
+  classifier (same as the `wp-config.php` edit on 2026-09-19); needed a
+  Bash permission rule before it would run.
+
 ### 2026-09-19: Production Hostinger site created, first deploy to temp domain
+- Later the same day: erinwlegal.com was attached to the Hostinger site and
+  the DNS `A` record was pointed at it (see Open items). Attaching the domain
+  renamed the FTP folder to `domains/erinwlegal.com/public_html` and the temp
+  `*.hostingersite.com` address stopped serving the site (403/404), so
+  `FTP_REMOTE_ROOT` and `WP_API_BASE_URL` in `.env.production` now use the
+  real domain. The site is only reachable through erinwlegal.com from here.
 - New Hostinger site (Premium plan, WordPress) set up on the temporary domain
   `lavenderblush-koala-486471.hostingersite.com`. erinwlegal.com is NOT
   attached yet; DNS at GoDaddy is untouched.
