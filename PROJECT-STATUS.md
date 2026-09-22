@@ -1,0 +1,101 @@
+# Project Status
+
+A snapshot, not a log — **current** state, at a glance. For the dated
+history of *why* things are the way they are, see
+[CHANGELOG.md](CHANGELOG.md); that file stays the one place decisions get
+recorded. This file gets its summary tables updated as things change, not a
+new entry every time — day-to-day changes still go in CHANGELOG.md only.
+
+---
+
+## What this is
+
+Warrner Legal — a WordPress site for Erin Warrner, an Indianapolis
+immigration attorney (PocketSod-developed). Custom theme, no page builder,
+no SEO plugin (SEO handled directly in `inc/seo.php`).
+
+## Current phase
+
+**Pre-launch.** Production infrastructure is live at `erinwlegal.com`
+(DNS, HTTPS, hosting all working), but the public site is hidden behind a
+coming-soon gate. Real content has not been entered anywhere yet — see
+"What's blocking launch" below.
+
+## Document map
+
+| Document | What it's for |
+|---|---|
+| [AGENTS.md](AGENTS.md) | Working rules and conventions for anyone (human or AI) editing this repo |
+| [README.md](README.md) | Local dev environment setup |
+| [CHANGELOG.md](CHANGELOG.md) | Dated log of what changed and why — **the canonical history**, read this for context on any decision |
+| [INFRASTRUCTURE.md](INFRASTRUCTURE.md) | Current layout: environments, accounts, domains, credentials map |
+| [DISASTER-RECOVERY.md](DISASTER-RECOVERY.md) | Backup coverage and step-by-step recovery per failure scenario |
+| [SCRIPTS.md](SCRIPTS.md) | Every script/tool: what it does, what it needs, what it touches |
+| `docs/Production-Launch-and-Multilingual-Plan.docx` | Full go-live + multilingual plan. **Kept local-only, not committed** (client's explicit call) — read it directly, don't rely on the summary in CHANGELOG.md alone |
+
+---
+
+## Environments at a glance
+
+| | Local | Dev | Prod |
+|---|---|---|---|
+| URL | http://warrner.test | https://demo.toolsandtable.com | https://erinwlegal.com |
+| Status | Working | Working | Working, gated behind coming-soon |
+| Has real content? | No | No | No |
+
+Full detail: [INFRASTRUCTURE.md](INFRASTRUCTURE.md).
+
+---
+
+## What's blocking launch
+
+(Live list — this table should stay in sync with CHANGELOG.md's "Open
+items" section, which is the authoritative source if they ever disagree.)
+
+| Item | Status |
+|---|---|
+| Who owns the production Hostinger account | **Unresolved** — mix-up with Hostinger support, see CHANGELOG.md |
+| Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
+| SMTP for the intake form | Not set up — currently uses PHP's default `wp_mail()`, which shared hosting often spam-filters |
+| Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |
+| Practice-area pages | `functions.php` still returns hardcoded placeholder data; real pages not built |
+| Attorney CPT | Empty — needs at least Erin's own bio/headshot |
+| "Attorney Advertising" footer link | Points to `#`, no page exists |
+| Privacy Policy / Terms attorney review | Drafted, not attorney-reviewed |
+| Spanish translation | First draft (142 strings), needs a fluent/legal reviewer's pass |
+| Coming-soon gate | Intentionally **on** until the above is resolved |
+
+---
+
+## Key decisions (pointers, not full rationale — see CHANGELOG.md for that)
+
+| Decision | Date | Why (one line) |
+|---|---|---|
+| WordPress over Next.js/Vercel | 2026-08-13 | Client's hosting/CMS preference |
+| Split-repo workflow (Laragon not version-controlled) | 2026-08-13 | Keeps WP core/uploads out of git |
+| `demo.toolsandtable.com` as permanent staging, not a path to production | 2026-09-15 | Stable review link without exposing the local machine |
+| Polylang over TranslatePress | 2026-09-16 | Client wants per-language SEO URLs and 3+ languages eventually |
+| Option A selected from 5 homepage variants | 2026-09-16 | Client review |
+| Coming-soon gate, off by default per-environment | 2026-09-18 | Lets prod infrastructure go live before content does |
+| Deploy pipeline named Local → Dev → Prod | 2026-09-22 | Made the existing (unnamed) pipeline explicit in script names |
+
+---
+
+## Accounts & access (summary — full detail in INFRASTRUCTURE.md)
+
+| Account | Documented here? |
+|---|---|
+| GitHub (`PocketSod/warrner`) | Yes |
+| GoDaddy (DNS/registrar) | Login not documented — needs filling in |
+| Microsoft 365 (Erin's mailbox) | Erin's own account |
+| Hostinger — Dev | Login not documented — needs filling in |
+| Hostinger — Prod | `wildridge@pocketsod.com`, ownership unresolved |
+
+---
+
+## Maintenance note
+
+Update the tables above when their underlying facts change (a new
+environment, a resolved blocker, a new account). Keep new *decisions* and
+their reasoning in CHANGELOG.md, not here — this file should stay a
+snapshot you can read in two minutes, not a second changelog.

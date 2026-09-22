@@ -62,6 +62,28 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-22: Added infrastructure, disaster-recovery, scripts, and status docs
+- Four new root-level reference docs, distinct from this file on purpose:
+  `INFRASTRUCTURE.md` (current layout of environments/accounts/domains/
+  credentials), `DISASTER-RECOVERY.md` (backup coverage + step-by-step
+  recovery per failure scenario, including honest gaps like the unchecked
+  demo backup coverage and the single-file DNS zone export), `SCRIPTS.md`
+  (every script: purpose, usage, what it touches, including the ad hoc
+  FTP-listing/wp-config/TLS-check scripts used during the production setup
+  that were never committed to the repo), and `PROJECT-STATUS.md` (a
+  snapshot, not a log — current phase, launch blockers, key decisions as
+  pointers back to this file).
+- These are **snapshots that reference this file**, not a second
+  changelog — CHANGELOG.md stays the one place decisions and their
+  reasoning get recorded. Keep the new docs' tables in sync as things
+  change, but put new *why* in CHANGELOG.md as always.
+- No secrets in any of them — credentials are referenced by which
+  gitignored `.env*` file holds them, never included directly.
+- Two open questions surfaced while writing these that weren't written
+  down anywhere before: who holds the GoDaddy login, and who holds the
+  Dev-Hostinger ("ToolsandTable" account) login. Neither is documented in
+  this repo yet.
+
 ### 2026-09-22: Backups confirmed, deploy scripts labeled Local > Dev > Prod, settings file fixed
 - **Backups confirmed working, no setup needed.** hPanel > erinwlegal.com >
   Files > Backups shows automated **weekly** backups already running on the
