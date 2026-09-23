@@ -29,6 +29,7 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 | [README.md](README.md) | Local dev environment setup |
 | [CHANGELOG.md](CHANGELOG.md) | Dated log of what changed and why — **the canonical history**, read this for context on any decision |
 | [ROADMAP.md](ROADMAP.md) | Sequenced plan of remaining tasks and recommended improvements — what to do next, not just what's true now |
+| [ACCOUNTS.md](ACCOUNTS.md) | Every account this project uses, who holds it, and what needs to transfer for a full handover to Erin — **keep this current** |
 | [INFRASTRUCTURE.md](INFRASTRUCTURE.md) | Current layout: environments, accounts, domains, credentials map |
 | [DISASTER-RECOVERY.md](DISASTER-RECOVERY.md) | Backup coverage and step-by-step recovery per failure scenario |
 | [SCRIPTS.md](SCRIPTS.md) | Every script/tool: what it does, what it needs, what it touches |
@@ -92,7 +93,7 @@ items" section, which is the authoritative source if they ever disagree.)
 
 ---
 
-## Accounts & access (summary — full detail in INFRASTRUCTURE.md)
+## Accounts & access (summary — full handover-oriented detail in ACCOUNTS.md)
 
 | Account | Documented here? |
 |---|---|

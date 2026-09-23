@@ -91,6 +91,11 @@ DISASTER-RECOVERY.md §5.
 
 ## 3. Accounts
 
+For the ownership/handover angle on these same accounts (what needs to
+transfer to Erin, billing, access grants) see [ACCOUNTS.md](ACCOUNTS.md).
+This section covers the same list from the "how the tooling uses it"
+angle.
+
 | Account | What it's for | Login / owner | Notes |
 |---|---|---|---|
 | **GitHub** — `PocketSod/warrner` | Source of truth for theme/plugin code | git user `w1ldr1` | Single `main` branch. Only remote configured (`origin`). |

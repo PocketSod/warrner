@@ -48,6 +48,26 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-23: Added ACCOUNTS.md
+- New root-level doc, explicitly for eventual handover to Erin: every
+  account this project touches, who holds it now, where to manage it,
+  and what needs to transfer before a real handover. Cross-linked from
+  PROJECT-STATUS.md and INFRASTRUCTURE.md rather than duplicating their
+  content wholesale.
+- Surfaced two things while writing it that weren't written down before:
+  it's unconfirmed whether Erin's own payment method is on file for the
+  Hostinger Prod+Dev subscription, or the developer's, that's a separate
+  question from the admin-login-ownership question already resolved
+  2026-09-22. And the GitHub repo (`PocketSod/warrner`) is currently
+  entirely under the developer's own account, with no access granted to
+  Erin at all — worth fixing well before any actual handover, so the
+  business isn't locked out of its own site's source code.
+- Confirmed demo's WordPress admin username is `wildridge@gmail.com`
+  (the developer's personal address), distinct from Dev's `wildridge`
+  and Prod's `wildridge@pocketsod.com` — all three are developer-personal
+  logins; flagged that Erin should have her own Administrator login on
+  production rather than relying solely on the developer's.
+
 ### 2026-09-23: Added ROADMAP.md
 - New root-level doc: a sequenced plan (4 phases — in-flight items,
   content/legal readiness, launch mechanics, multilingual rollout) plus a
