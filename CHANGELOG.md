@@ -48,6 +48,29 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-23: Defined handover scope; confirmed Hostinger billing
+- **Confirmed: the Hostinger Prod+Dev account is registered in Erin's
+  name; the developer's payment method is on file.** Updates the "who's
+  actually being billed" open question from ACCOUNTS.md — it's her
+  account, not a shared-payment-method question about whose account it
+  is.
+- New `HANDOVER.md`: defines what a future handover to Erin would
+  actually contain. In scope: the project directory (all tracked files
+  minus secrets), a full `git bundle` of commit history (doesn't require
+  giving her access to the developer's GitHub account), the Hostinger
+  Prod+Dev account, and GoDaddy pending the open question below. Out of
+  scope, with reasoning: Laragon (no real content, disposable local
+  tooling), the GitHub account itself (its history travels via the
+  bundle instead), the "ToolsandTable" Hostinger account (not
+  Warrner-specific), and old credentials in the `.env*` files (regenerate
+  fresh rather than hand over live secrets).
+- **Open question surfaced, not yet answered: who holds the GoDaddy
+  account?** Same shape of question as Hostinger, not yet asked. Matters
+  more than Hostinger, arguably — losing the domain means losing the
+  website and Erin's email simultaneously, not just hosting.
+- Nothing executed yet — this is a plan, not a transfer. See
+  HANDOVER.md's own maintenance note.
+
 ### 2026-09-23: Added ACCOUNTS.md
 - New root-level doc, explicitly for eventual handover to Erin: every
   account this project touches, who holds it now, where to manage it,

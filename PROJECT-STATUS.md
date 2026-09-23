@@ -30,6 +30,7 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 | [CHANGELOG.md](CHANGELOG.md) | Dated log of what changed and why — **the canonical history**, read this for context on any decision |
 | [ROADMAP.md](ROADMAP.md) | Sequenced plan of remaining tasks and recommended improvements — what to do next, not just what's true now |
 | [ACCOUNTS.md](ACCOUNTS.md) | Every account this project uses, who holds it, and what needs to transfer for a full handover to Erin — **keep this current** |
+| [HANDOVER.md](HANDOVER.md) | What a handover actually contains (scope, what's excluded and why) and the step-by-step for when it happens — defined, not yet executed |
 | [INFRASTRUCTURE.md](INFRASTRUCTURE.md) | Current layout: environments, accounts, domains, credentials map |
 | [DISASTER-RECOVERY.md](DISASTER-RECOVERY.md) | Backup coverage and step-by-step recovery per failure scenario |
 | [SCRIPTS.md](SCRIPTS.md) | Every script/tool: what it does, what it needs, what it touches |
