@@ -18,7 +18,7 @@ For the underlying account list this draws from, see
 | **Project directory** | The full contents of `D:\Projects\Warrner`, minus secrets (`.env`, `.env.dev`, `.env.production`, `.claude/`) — theme code, mu-plugins, scripts, and every doc in this repo (`AGENTS.md`, `CHANGELOG.md`, `ROADMAP.md`, `ACCOUNTS.md`, `INFRASTRUCTURE.md`, `DISASTER-RECOVERY.md`, `SCRIPTS.md`, this file, `README.md`). |
 | **Full git history** | A `git bundle` (single file, complete commit history) included alongside the project directory. Doesn't require access to the developer's GitHub account — see "What's deliberately excluded" below for why this is split out from GitHub access itself. |
 | **Hostinger account (Prod + Dev)** | The account itself — already in Erin's name (confirmed 2026-09-23) — plus working access to it. Covers both `erinwlegal.com` and `dev.erinwlegal.com`, everything stored there: WordPress database/content, media uploads, the deployed theme/plugin files, backups. |
-| **GoDaddy account** | **Status unconfirmed — see Open Questions below.** If it's the developer's account, the domain registration itself needs to move to Erin's own account, not just get a login shared. |
+| **GoDaddy account** | **Already resolved, best case: Erin owns it.** The developer has delegated guest/admin access, not a shared login — confirmed 2026-09-23. Nothing needs to transfer; at actual offboarding this is a one-click revoke of the developer's delegate access, not a registrar transfer. |
 | **Microsoft 365** | Already entirely hers — nothing to do here. |
 
 ## What's deliberately excluded, and why
@@ -34,17 +34,19 @@ For the underlying account list this draws from, see
 
 ## Open questions (must be resolved before this plan is "complete")
 
-- **Who holds the GoDaddy account?** Same question already answered for
-  Hostinger, not yet answered for GoDaddy. This is arguably higher-stakes
-  than Hostinger, since it controls both the website's domain and Erin's
-  live email simultaneously.
 - **Hostinger billing.** Account is confirmed in Erin's name; the
   developer's payment method is currently on file. Decide if/when this
   moves to a payment method in her own name.
 - **Does Erin want her own separate Hostinger login**, or is receiving
   the existing admin credentials sufficient? A separate login is cleaner
   (her own password, her own 2FA, revocable independently) but is an
-  extra step versus just handing over what already exists.
+  extra step versus just handing over what already exists. GoDaddy
+  already works this way (delegated access, not a shared login) — worth
+  asking whether Hostinger supports the same model instead of matching
+  Hostinger's current shared-login pattern.
+- **Exact GoDaddy access tier** (guest vs. admin) — confirmed the
+  account is Erin's and access is delegated, not yet confirmed which
+  specific permission level. Low priority, doesn't block anything.
 
 ---
 
@@ -53,15 +55,15 @@ For the underlying account list this draws from, see
 Not urgent today — this is the reference for when a handover (full or
 partial) actually happens.
 
-1. **Resolve the open questions above first.** Don't start executing
-   transfers around an unconfirmed domain-ownership question.
+1. **Resolve the remaining open questions above first**, particularly
+   the Hostinger billing/separate-login ones.
 2. **Hostinger:** either reset the password on the existing admin login
    and hand the new password to Erin directly (not over email/chat), or
    add her as a separate user if Hostinger's plan supports it. Move
    billing to her payment method if that's been decided.
-3. **GoDaddy:** whatever the resolution to the open question above
-   turns out to require — could be nothing (if already hers), could be
-   a registrar-level account transfer (if not).
+3. **GoDaddy:** already resolved — nothing to transfer. At this step,
+   just confirm Erin still wants the developer's delegate access removed
+   as part of the handover (revoke it in her GoDaddy account settings).
 4. **Generate the git bundle**: `git bundle create warrner-full-history.bundle --all`
    from the project directory, on a day everything's committed and
    pushed.

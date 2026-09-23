@@ -48,6 +48,16 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-23: GoDaddy ownership resolved — best case of any account here
+- **Erin owns the GoDaddy account.** The developer has delegated
+  guest/admin access (exact tier unconfirmed), not a shared login —
+  closes the open question from earlier today. Updated ACCOUNTS.md and
+  HANDOVER.md: nothing needs to transfer for GoDaddy at handover time,
+  just a revoke of the developer's delegated access.
+- Worth revisiting later: whether Hostinger supports a similar delegated
+  -access model instead of the shared admin login it currently uses —
+  GoDaddy's setup here is the better pattern of the two.
+
 ### 2026-09-23: Defined handover scope; confirmed Hostinger billing
 - **Confirmed: the Hostinger Prod+Dev account is registered in Erin's
   name; the developer's payment method is on file.** Updates the "who's

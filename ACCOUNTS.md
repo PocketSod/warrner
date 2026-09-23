@@ -19,7 +19,7 @@ hers · ⚪ not Erin's concern (developer's own tooling/asset)
 
 | Account | What it's for | Who holds it now | Where to manage it | Handover |
 |---|---|---|---|---|
-| **GoDaddy** | Registers `erinwlegal.com`, hosts its DNS records | **Not documented in this repo — confirm and fill in.** Developer has been making DNS changes; unclear if the account itself is Erin's or the developer's. | godaddy.com, sign in | 🔴 **If this is the developer's account, the domain needs to transfer to Erin's own GoDaddy account eventually** — a domain a business doesn't own the registration for is a real risk if the relationship ends. Confirm which case this is, soon, not just at handover time. |
+| **GoDaddy** | Registers `erinwlegal.com`, hosts its DNS records | **Erin owns the account.** Developer has delegated access (guest or admin — exact tier not yet confirmed) rather than a shared login. Confirmed 2026-09-23. | godaddy.com, sign in | 🟡 Best-case setup of any account here — nothing to transfer, since it's already hers. At actual offboarding, this just means Erin revoking the developer's delegate access, not a registrar transfer. Worth confirming the exact permission tier (guest vs. admin) at some point, and whether Hostinger could use a similar delegated-access model instead of a shared login. |
 
 ## Website hosting
 
