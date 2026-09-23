@@ -48,6 +48,19 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-23: Added ROADMAP.md
+- New root-level doc: a sequenced plan (4 phases — in-flight items,
+  content/legal readiness, launch mechanics, multilingual rollout) plus a
+  "Recommended improvements" section for things worth doing but not
+  blocking launch. Distinct from PROJECT-STATUS.md (a snapshot of current
+  state) and this file (dated history of *why*) — this one answers "what
+  do I do next, in what order, and who's it waiting on."
+- Consolidates items that were previously scattered across CHANGELOG's
+  Open Items, PROJECT-STATUS's blocking table, and DISASTER-RECOVERY's
+  known-gaps list into one ordered plan, without removing them from those
+  other docs — each still serves its own purpose (history, snapshot,
+  recovery-specific gaps).
+
 ### 2026-09-22: DKIM signing enabled on Microsoft 365
 - Erin was getting screened as spam on outbound mail. Investigated: the
   DKIM CNAME records (`selector1`/`selector2._domainkey`) were already

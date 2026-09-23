@@ -28,6 +28,7 @@ coming-soon gate. Real content has not been entered anywhere yet — see
 | [AGENTS.md](AGENTS.md) | Working rules and conventions for anyone (human or AI) editing this repo |
 | [README.md](README.md) | Local dev environment setup |
 | [CHANGELOG.md](CHANGELOG.md) | Dated log of what changed and why — **the canonical history**, read this for context on any decision |
+| [ROADMAP.md](ROADMAP.md) | Sequenced plan of remaining tasks and recommended improvements — what to do next, not just what's true now |
 | [INFRASTRUCTURE.md](INFRASTRUCTURE.md) | Current layout: environments, accounts, domains, credentials map |
 | [DISASTER-RECOVERY.md](DISASTER-RECOVERY.md) | Backup coverage and step-by-step recovery per failure scenario |
 | [SCRIPTS.md](SCRIPTS.md) | Every script/tool: what it does, what it needs, what it touches |
