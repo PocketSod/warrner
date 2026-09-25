@@ -62,6 +62,11 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   confirm with her.
 - `es_ES.mo` regenerated with Spanish for the new strings; the 9 retired
   strings were dropped.
+- Deployed to dev.erinwlegal.com for Erin to review (`npm run deploy:dev`).
+  Also ran the plain `npm run deploy` by mistake, which targets the
+  retired demo.toolsandtable.com; harmless, that site stays behind its
+  410 gate. Use the `:dev` scripts for review deploys. `/es/` is 404 on
+  dev because Polylang is only set up locally.
 
 ### 2026-09-23: GoDaddy ownership resolved — best case of any account here
 - **Erin owns the GoDaddy account.** The developer has delegated
