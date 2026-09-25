@@ -45,7 +45,7 @@ $practice_areas = warrner_get_practice_areas();
 			<li><a href="#services-heading-e"><?php esc_html_e( 'Practice Areas', 'warrner' ); ?></a></li>
 			<li><a href="#approach-heading-e"><?php esc_html_e( 'Our Approach', 'warrner' ); ?></a></li>
 			<li><a href="#faq-heading-e"><?php esc_html_e( 'FAQ', 'warrner' ); ?></a></li>
-			<li><a href="#consultation-e" class="vd-btn vd-btn--primary"><?php esc_html_e( 'Free Consultation', 'warrner' ); ?></a></li>
+			<li><a href="#consultation-e" class="vd-btn vd-btn--primary"><?php esc_html_e( 'Schedule a Consultation', 'warrner' ); ?></a></li>
 		</ul>
 		<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
 			<?php $vd_languages = pll_the_languages( array( 'raw' => true, 'hide_if_empty' => false ) ); ?>
@@ -74,7 +74,7 @@ $practice_areas = warrner_get_practice_areas();
 				<h1 class="vd-h1"><?php esc_html_e( 'Immigration law, guided by', 'warrner' ); ?> <span class="vd-accent"><?php esc_html_e( 'trust', 'warrner' ); ?></span>.</h1>
 				<p class="vd-lede"><?php esc_html_e( "Warrner Legal represents individuals and families across every stage of the U.S. immigration system — with the personal attention a larger firm can't offer.", 'warrner' ); ?></p>
 				<div class="vd-hero__actions">
-					<a class="vd-btn vd-btn--primary" href="#consultation-e"><?php esc_html_e( 'Request a Free Consultation', 'warrner' ); ?></a>
+					<a class="vd-btn vd-btn--primary" href="#consultation-e"><?php esc_html_e( 'Request a Consultation', 'warrner' ); ?></a>
 					<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> <?php esc_html_e( 'Call', 'warrner' ); ?> <?php echo warrner_phone_display(); ?></a>
 				</div>
 				<ul class="vd-badges">
@@ -176,8 +176,8 @@ $practice_areas = warrner_get_practice_areas();
 			<h2 id="fees-h-e" class="vd-h2"><?php esc_html_e( 'Fees built on', 'warrner' ); ?> <span class="vd-accent"><?php esc_html_e( 'clarity', 'warrner' ); ?></span>, <?php esc_html_e( 'not surprises', 'warrner' ); ?></h2>
 			<div class="vd-fees">
 				<div class="vd-fee">
-					<h3 class="vd-fee__title"><?php esc_html_e( 'Free Consultation', 'warrner' ); ?></h3>
-					<p class="vd-fee__desc"><?php esc_html_e( "Your first conversation costs nothing — we'll tell you honestly whether we can help.", 'warrner' ); ?></p>
+					<h3 class="vd-fee__title"><!-- PLACEHOLDER: add consultation fee amount once Erin confirms it --><?php esc_html_e( 'Initial Consultation', 'warrner' ); ?></h3>
+					<p class="vd-fee__desc"><?php esc_html_e( 'A paid one-on-one meeting with Erin to review your situation and explain your options before you commit to anything more.', 'warrner' ); ?></p>
 				</div>
 				<div class="vd-fee">
 					<h3 class="vd-fee__title"><!-- PLACEHOLDER: confirm real fee structure --><?php esc_html_e( 'Flat-Fee Petitions', 'warrner' ); ?></h3>
@@ -203,7 +203,6 @@ $practice_areas = warrner_get_practice_areas();
 				<span class="vd-tag"><?php esc_html_e( 'I-485 · Adjustment of Status', 'warrner' ); ?></span>
 				<span class="vd-tag"><?php esc_html_e( 'N-400 · Naturalization', 'warrner' ); ?></span>
 				<span class="vd-tag"><?php esc_html_e( 'I-589 · Asylum', 'warrner' ); ?></span>
-				<span class="vd-tag"><?php esc_html_e( 'H-1B · Work Visa', 'warrner' ); ?></span>
 				<span class="vd-tag"><?php esc_html_e( 'DACA Renewal', 'warrner' ); ?></span>
 				<span class="vd-tag"><?php esc_html_e( 'I-751 · Removal of Conditions', 'warrner' ); ?></span>
 				<span class="vd-tag vd-tag--outline"><?php esc_html_e( 'Removal Defense', 'warrner' ); ?></span>
@@ -307,7 +306,7 @@ $practice_areas = warrner_get_practice_areas();
 				</figure>
 				<figure class="vd-testimonial">
 					<p>"<!-- PLACEHOLDER --><?php esc_html_e( 'Direct, honest, and always reachable.', 'warrner' ); ?>"</p>
-					<figcaption><cite>— <?php esc_html_e( 'Client, Employment Visa', 'warrner' ); ?></cite></figcaption>
+					<figcaption><cite>— <?php esc_html_e( 'Client, Naturalization', 'warrner' ); ?></cite></figcaption>
 				</figure>
 			</div>
 			<p class="vd-lede" style="font-size: var(--text-xs); margin-top: var(--space-8);"><?php esc_html_e( 'Case results and testimonials describe past outcomes for specific clients and do not guarantee a similar result in any future matter.', 'warrner' ); ?></p>
@@ -352,8 +351,8 @@ $practice_areas = warrner_get_practice_areas();
 	<section class="vd-cta-banner">
 		<div class="wrap">
 			<h2 class="vd-h2"><?php esc_html_e( 'Ready to move forward?', 'warrner' ); ?></h2>
-			<p class="vd-lede" style="margin-inline: auto; color: inherit; opacity: 0.85;"><?php esc_html_e( 'Schedule your free consultation today.', 'warrner' ); ?></p>
-			<a class="vd-btn vd-btn--primary" href="#consultation-e" style="margin-top: var(--space-6);"><?php esc_html_e( 'Request a Free Consultation', 'warrner' ); ?></a>
+			<p class="vd-lede" style="margin-inline: auto; color: inherit; opacity: 0.85;"><?php esc_html_e( 'Schedule your consultation today.', 'warrner' ); ?></p>
+			<a class="vd-btn vd-btn--primary" href="#consultation-e" style="margin-top: var(--space-6);"><?php esc_html_e( 'Request a Consultation', 'warrner' ); ?></a>
 		</div>
 	</section>
 
@@ -363,7 +362,7 @@ $practice_areas = warrner_get_practice_areas();
 	<section id="consultation-e" class="vd-section vd-section--forest" aria-labelledby="consult-h-e">
 		<div class="wrap" style="max-width: 640px;">
 			<span class="vd-eyebrow"><?php esc_html_e( 'Get Started', 'warrner' ); ?></span>
-			<h2 id="consult-h-e" class="vd-h2"><?php esc_html_e( 'Request a free consultation', 'warrner' ); ?></h2>
+			<h2 id="consult-h-e" class="vd-h2"><?php esc_html_e( 'Request a consultation', 'warrner' ); ?></h2>
 			<p class="vd-lede"><?php esc_html_e( 'Tell us briefly about your situation. We respond within one business day.', 'warrner' ); ?></p>
 
 			<form class="vd-intake" data-intake-form novalidate>

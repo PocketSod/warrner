@@ -48,6 +48,21 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 
 ## Log
 
+### 2026-09-25: Consultations are paid; employment immigration removed
+- Erin reviewed the draft and said she will charge for consults, and that
+  she does not do employment visas. Removed every "free consultation"
+  claim (nav, hero, fee card, CTA banner, form heading, meta description)
+  and the Employment-Based practice area, H-1B tag, and "Employment Visa"
+  testimonial caption. The intake form's practice-area dropdown reads the
+  same list, so it updated with it.
+- Fee card now says "Initial Consultation" and describes it as paid, with
+  a `PLACEHOLDER` comment for the fee amount, which Erin has not given yet.
+- Her note also said "or immigration". Read as employment-based
+  immigration only, since the rest of the site is an immigration practice;
+  confirm with her.
+- `es_ES.mo` regenerated with Spanish for the new strings; the 9 retired
+  strings were dropped.
+
 ### 2026-09-23: GoDaddy ownership resolved — best case of any account here
 - **Erin owns the GoDaddy account.** The developer has delegated
   guest/admin access (exact tier unconfirmed), not a shared login —

@@ -180,11 +180,6 @@ function warrner_get_practice_areas() {
 			'url'         => home_url( '/practice-areas/family-based-immigration/' ),
 		),
 		array(
-			'label'       => __( 'Employment-Based Immigration', 'warrner' ),
-			'description' => __( 'Work visas and employer sponsorship, from petition to green card.', 'warrner' ),
-			'url'         => home_url( '/practice-areas/employment-based-immigration/' ),
-		),
-		array(
 			'label'       => __( 'Deportation & Removal Defense', 'warrner' ),
 			'description' => __( 'Representation in immigration court when your case is on the line.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/removal-defense/' ),
