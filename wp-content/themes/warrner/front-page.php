@@ -78,8 +78,8 @@ $practice_areas = warrner_get_practice_areas();
 					<a class="vd-btn vd-btn--phone" href="<?php echo warrner_phone_tel_href(); ?>"><span aria-hidden="true">&#9742;</span> <?php esc_html_e( 'Call', 'warrner' ); ?> <?php echo warrner_phone_display(); ?></a>
 				</div>
 				<ul class="vd-badges">
-					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->10+</div><div class="vd-badge__label"><?php esc_html_e( 'Years Practicing', 'warrner' ); ?></div></li>
-					<li><div class="vd-badge__num"><!-- PLACEHOLDER -->500+</div><div class="vd-badge__label"><?php esc_html_e( 'Clients Served', 'warrner' ); ?></div></li>
+					<li><div class="vd-badge__num">15+</div><div class="vd-badge__label"><?php esc_html_e( 'Years Practicing', 'warrner' ); ?></div></li>
+					<li><div class="vd-badge__num">500+</div><div class="vd-badge__label"><?php esc_html_e( 'Clients Served', 'warrner' ); ?></div></li>
 					<li><div class="vd-badge__num">IN</div><div class="vd-badge__label"><?php esc_html_e( 'State Bar', 'warrner' ); ?></div></li>
 				</ul>
 			</div>
@@ -113,9 +113,10 @@ $practice_areas = warrner_get_practice_areas();
 				<h2 id="bio-heading-e" class="vd-h2">Erin Warrner</h2>
 				<p class="vd-lede"><!-- PLACEHOLDER: replace with real bio --><?php esc_html_e( 'Erin founded Warrner Legal to give Indianapolis immigrant families and professionals direct access to experienced counsel, without the hand-off to junior staff common at larger firms.', 'warrner' ); ?></p>
 				<ul class="vd-bio__credentials">
-					<li><!-- PLACEHOLDER --><?php esc_html_e( 'J.D., [Law School]', 'warrner' ); ?></li>
-					<li><?php esc_html_e( 'Admitted to the Indiana State Bar', 'warrner' ); ?></li>
-					<li><!-- PLACEHOLDER --><?php esc_html_e( 'Member, American Immigration Lawyers Association (AILA)', 'warrner' ); ?></li>
+					<li><?php esc_html_e( 'J.D., Indiana University Robert H. McKinney School of Law, 2010', 'warrner' ); ?></li>
+					<li><?php esc_html_e( 'Admitted to practice in Indiana and the U.S. District Court for the Southern District of Indiana', 'warrner' ); ?></li>
+					<li><?php esc_html_e( 'Member, American Immigration Lawyers Association (AILA)', 'warrner' ); ?></li>
+					<li><?php esc_html_e( 'Member, Indiana State Bar Association', 'warrner' ); ?></li>
 				</ul>
 			</div>
 		</div>
@@ -176,12 +177,12 @@ $practice_areas = warrner_get_practice_areas();
 			<h2 id="fees-h-e" class="vd-h2"><?php esc_html_e( 'Fees built on', 'warrner' ); ?> <span class="vd-accent"><?php esc_html_e( 'clarity', 'warrner' ); ?></span>, <?php esc_html_e( 'not surprises', 'warrner' ); ?></h2>
 			<div class="vd-fees">
 				<div class="vd-fee">
-					<h3 class="vd-fee__title"><!-- PLACEHOLDER: add consultation fee amount once Erin confirms it --><?php esc_html_e( 'Initial Consultation', 'warrner' ); ?></h3>
-					<p class="vd-fee__desc"><?php esc_html_e( 'A paid one-on-one meeting with Erin to review your situation and explain your options before you commit to anything more.', 'warrner' ); ?></p>
+					<h3 class="vd-fee__title"><?php esc_html_e( 'Initial Consultation', 'warrner' ); ?></h3>
+					<p class="vd-fee__desc"><?php esc_html_e( 'A one-on-one meeting with Erin to review your situation and explain your options before you commit to anything more.', 'warrner' ); ?></p>
 				</div>
 				<div class="vd-fee">
-					<h3 class="vd-fee__title"><!-- PLACEHOLDER: confirm real fee structure --><?php esc_html_e( 'Flat-Fee Petitions', 'warrner' ); ?></h3>
-					<p class="vd-fee__desc"><?php esc_html_e( 'Most petitions are billed at a flat rate, agreed to in writing before we start.', 'warrner' ); ?></p>
+					<h3 class="vd-fee__title"><?php esc_html_e( 'Flat Fees', 'warrner' ); ?></h3>
+					<p class="vd-fee__desc"><?php esc_html_e( 'Most cases are billed at a flat rate, agreed to in writing before we start.', 'warrner' ); ?></p>
 				</div>
 				<div class="vd-fee">
 					<h3 class="vd-fee__title"><?php esc_html_e( 'Payment Plans Available', 'warrner' ); ?></h3>
@@ -222,7 +223,7 @@ $practice_areas = warrner_get_practice_areas();
 					<li><strong><?php esc_html_e( 'Direct Attorney Access', 'warrner' ); ?></strong><span><?php esc_html_e( 'You work with Erin directly — never handed off to a paralegal or call center.', 'warrner' ); ?></span></li>
 					<li><strong><?php esc_html_e( 'Clear Communication', 'warrner' ); ?></strong><span><?php esc_html_e( 'Plain-language updates at every stage, so you always know where your case stands.', 'warrner' ); ?></span></li>
 					<li><strong><?php esc_html_e( 'Personal Attention', 'warrner' ); ?></strong><span><?php esc_html_e( 'Every case is different. We take the time to understand yours.', 'warrner' ); ?></span></li>
-					<li><strong><?php esc_html_e( 'Community Rooted', 'warrner' ); ?></strong><span><!-- PLACEHOLDER -->10+ <?php esc_html_e( 'years serving immigrant families in Indianapolis.', 'warrner' ); ?></span></li>
+					<li><strong><?php esc_html_e( 'Community Rooted', 'warrner' ); ?></strong><span>15+ <?php esc_html_e( 'years serving immigrant families in Indianapolis.', 'warrner' ); ?></span></li>
 				</ul>
 			</div>
 			<div class="vd-approach__portrait">
@@ -245,7 +246,7 @@ $practice_areas = warrner_get_practice_areas();
 						<span class="vd-faq__icon" aria-hidden="true">+</span>
 					</button>
 					<div class="vd-faq__a">
-						<p><!-- PLACEHOLDER --><?php esc_html_e( "It depends on the case type — some petitions take months, others longer. We'll give you a realistic timeline at your consultation.", 'warrner' ); ?></p>
+						<p><?php esc_html_e( "Often a long time. Many immigration cases take years, and government processing times are outside anyone's control, so no one can guarantee a timeline. We'll tell you what to expect for your type of case at your consultation.", 'warrner' ); ?></p>
 					</div>
 				</div>
 				<div class="vd-faq__item" data-open="false">
@@ -254,7 +255,7 @@ $practice_areas = warrner_get_practice_areas();
 						<span class="vd-faq__icon" aria-hidden="true">+</span>
 					</button>
 					<div class="vd-faq__a">
-						<p><!-- PLACEHOLDER --><?php esc_html_e( "Any immigration paperwork you've already filed, identification documents, and a summary of your situation. We'll tell you exactly what's needed when you schedule.", 'warrner' ); ?></p>
+						<p><?php esc_html_e( "All of your paperwork, including anything you're not sure matters. Erin reviews every document, because details that seem unimportant can change a case. Before your consultation, we'll send you a list of items to send us ahead of time.", 'warrner' ); ?></p>
 					</div>
 				</div>
 				<div class="vd-faq__item" data-open="false">
@@ -289,34 +290,9 @@ $practice_areas = warrner_get_practice_areas();
 	</section>
 
 	<!-- ==========================================================
-	     A · Testimonials
-	     ========================================================== -->
-	<section class="vd-section vd-section--cream" aria-labelledby="testimonials-h-e">
-		<div class="wrap">
-			<span class="vd-eyebrow"><?php esc_html_e( 'Client Outcomes', 'warrner' ); ?></span>
-			<h2 id="testimonials-h-e" class="vd-h2"><?php esc_html_e( "Who we've", 'warrner' ); ?> <span class="vd-accent"><?php esc_html_e( 'helped', 'warrner' ); ?></span></h2>
-			<div class="vd-grid-3">
-				<figure class="vd-testimonial">
-					<p>"<!-- PLACEHOLDER --><?php esc_html_e( 'Erin walked us through every step and always called back the same day.', 'warrner' ); ?>"</p>
-					<figcaption><cite>— <?php esc_html_e( 'Client, Family-Based Petition', 'warrner' ); ?></cite></figcaption>
-				</figure>
-				<figure class="vd-testimonial">
-					<p>"<!-- PLACEHOLDER --><?php esc_html_e( 'I finally understood what was happening with my case instead of just waiting and hoping.', 'warrner' ); ?>"</p>
-					<figcaption><cite>— <?php esc_html_e( 'Client, Asylum Case', 'warrner' ); ?></cite></figcaption>
-				</figure>
-				<figure class="vd-testimonial">
-					<p>"<!-- PLACEHOLDER --><?php esc_html_e( 'Direct, honest, and always reachable.', 'warrner' ); ?>"</p>
-					<figcaption><cite>— <?php esc_html_e( 'Client, Naturalization', 'warrner' ); ?></cite></figcaption>
-				</figure>
-			</div>
-			<p class="vd-lede" style="font-size: var(--text-xs); margin-top: var(--space-8);"><?php esc_html_e( 'Case results and testimonials describe past outcomes for specific clients and do not guarantee a similar result in any future matter.', 'warrner' ); ?></p>
-		</div>
-	</section>
-
-	<!-- ==========================================================
 	     A · Timeline
 	     ========================================================== -->
-	<section class="vd-section vd-section--paper" aria-labelledby="timeline-h-e">
+	<section class="vd-section vd-section--cream" aria-labelledby="timeline-h-e">
 		<div class="wrap">
 			<span class="vd-eyebrow"><?php esc_html_e( 'What To Expect', 'warrner' ); ?></span>
 			<h2 id="timeline-h-e" class="vd-h2"><?php esc_html_e( 'Your case,', 'warrner' ); ?> <span class="vd-accent"><?php esc_html_e( 'step by step', 'warrner' ); ?></span></h2>

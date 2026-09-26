@@ -199,6 +199,11 @@ function warrner_get_practice_areas() {
 			'description' => __( 'Initial requests and renewals handled carefully and on time.', 'warrner' ),
 			'url'         => home_url( '/practice-areas/daca/' ),
 		),
+		array(
+			'label'       => __( 'Criminal Defense for Immigrants', 'warrner' ),
+			'description' => __( 'Defense in criminal cases with your immigration status kept in view at every step.', 'warrner' ),
+			'url'         => home_url( '/practice-areas/criminal-defense-for-immigrants/' ),
+		),
 	);
 }
 

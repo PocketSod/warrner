@@ -26,7 +26,7 @@ function warrner_seo_title() {
 	return __( 'Warrner Legal | Indianapolis Immigration Attorney', 'warrner' );
 }
 function warrner_seo_description() {
-	return __( 'Warrner Legal is the Indianapolis immigration law practice of attorney Erin Warrner: family-based and humanitarian immigration, naturalization, DACA, and removal defense.', 'warrner' );
+	return __( 'Warrner Legal is the Indianapolis immigration law practice of attorney Erin Warrner: family-based and humanitarian immigration, naturalization, DACA, removal defense, and criminal defense for immigrants.', 'warrner' );
 }
 
 /**

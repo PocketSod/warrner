@@ -40,13 +40,44 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   not yet attorney-reviewed.
 - "Attorney Advertising" footer link still points to `#` — no page exists
   yet.
-- Homepage bio/credentials still contain bracketed `[PLACEHOLDER]` copy
-  (years practicing, clients served, law school, AILA membership) — needs
-  real numbers/facts from Erin before launch.
+- Homepage bio paragraph is still sample copy (`PLACEHOLDER` comment in
+  front-page.php); Erin has not sent her own few sentences yet. Credentials,
+  stats, fees and two FAQ answers are now real (2026-09-26).
+- Testimonials section is removed until Erin sends real quotes with
+  permission. Restore the markup from commit 9868b2f's front-page.php and
+  swap in her quotes; the heading/disclaimer Spanish strings are still in
+  `es_ES.mo`.
+- Removal-proceedings FAQ answer still carries a `PLACEHOLDER` comment;
+  Erin has not reviewed it.
 
 ---
 
 ## Log
+
+### 2026-09-26: Erin's answers to the missing-info list
+- Added "Criminal Defense for Immigrants" as a sixth practice area (grid
+  and intake dropdown both read `warrner_get_practice_areas()`), and to the
+  meta description. Its card copy is ours, not hers; she should confirm it
+  fits what she does in criminal cases.
+- Consultation: Erin will likely do free consults briefly, then charge
+  (usually $150, up to 30 min). She asked for plain "consultation" with no
+  price or free/paid wording for now, so the fee card no longer says
+  "paid" and the fee-amount placeholder is gone. Do not add a price until
+  she has her intake set up.
+- Stats: 15+ years (practicing since 2011) and 500+ clients (counts all
+  immigration cases, nonprofit work included).
+- Credentials: J.D., IU Robert H. McKinney School of Law, 2010; admitted in
+  Indiana and the S.D. Indiana federal court; AILA member; Indiana State
+  Bar Association member. The old "Admitted to the Indiana State Bar" line
+  was replaced because it conflated admission with ISBA membership.
+- Fees confirmed: flat fee for most cases, payment plans offered. Card
+  retitled "Flat Fees" / "Most cases" since not every matter is a petition.
+- FAQ answers for case length and what to bring rewritten from her notes.
+- Testimonials section removed (samples only; she is collecting real ones).
+  The timeline section changed from paper to cream so the page still
+  alternates backgrounds where testimonials used to sit.
+- `es_ES.mo` updated with the 11 new strings; replaced strings and sample
+  quotes dropped (136 entries).
 
 ### 2026-09-25: Consultations are paid; employment immigration removed
 - Erin reviewed the draft and said she will charge for consults, and that
