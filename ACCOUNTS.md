@@ -66,6 +66,7 @@ Roadmap phase comes up (see [ROADMAP.md](ROADMAP.md)).
 |---|---|---|
 | Google Search Console (and optionally Bing Webmaster Tools) | Submitting the sitemap once the site is publicly launched | ROADMAP.md Phase 3 |
 | Google Analytics (or equivalent) | If Erin wants visitor analytics — not yet decided | ROADMAP.md Phase 3 |
+| Brevo | Sending the intake form's notification emails over SMTP (decided 2026-09-26). Should be created in Erin's name, or with her email as owner, so it doesn't need transferring later. Free tier covers the volume. | ROADMAP.md Phase 1, item 2 |
 | Anthropic (Claude API) | Only if the stubbed AI lead-scoring feature (`inc/ai-lead-intake.php`) is ever reviewed and turned on | Not scheduled — flagged as needing a security/consent review first, see ROADMAP.md |
 
 ---

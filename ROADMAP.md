@@ -19,14 +19,13 @@ Nothing here blocks anything else in this phase; they can happen in any order.
    2026-09-22 but it's unconfirmed — send a test via mail-tester.com, or
    check a sent message's headers for `DKIM-Signature: d=erinwlegal.com`.
    See CHANGELOG.md's 2026-09-22 DKIM entry.
-2. **Resolve SMTP AUTH for the intake form.** *(Erin, then Claude)* Enable
-   Authenticated SMTP on her mailbox, check whether an app password is
-   available. Two outcomes:
-   - App password works → hand it over, Claude adds it to production's
-     `wp-config.php` as `WARRNER_SMTP_PASSWORD`, test the intake form.
-   - Not available / blocked by Conditional Access → decide whether to
-     pursue the Microsoft Graph API alternative (see Recommended
-     Improvements below) instead of continuing to fight SMTP AUTH.
+2. **Set up Brevo for the intake form.** *(Developer, then Claude)* Decided
+   2026-09-26, replacing the M365 SMTP AUTH plan, so nothing is needed
+   from Erin's tenant. Create the Brevo account (ideally in Erin's name),
+   authenticate `notify.erinwlegal.com`, add the DNS records Brevo lists
+   at GoDaddy, generate an SMTP key, then set the constants in
+   production's `wp-config.php` and test the intake form. Steps in
+   CHANGELOG.md's 2026-09-26 Brevo entry.
 3. **Confirm `siteurl` matches `home`.** *(Claude, quick check)* `home` is
    confirmed `https://erinwlegal.com`. `siteurl` specifically wasn't
    independently re-verified this session (it isn't exposed by the default
@@ -120,12 +119,6 @@ Full detail: `docs/Production-Launch-and-Multilingual-Plan.docx`
 Not blocking launch. Worth doing, roughly in priority order.
 
 ### Security / durability
-- **Decide on the Microsoft Graph API mail path** if SMTP AUTH turns out
-  to be blocked (Phase 1, item 2). More setup, but doesn't put a real
-  password in a server config file and won't be silently killed by
-  Conditional Access. See the conversation from 2026-09-22 for what this
-  involves (app registration, `Mail.Send` permission, an Application
-  Access Policy scoping it to just her mailbox).
 - **`HOSTINGER_API_TOKEN` expires ~2026-10-22.** *(Developer)* One-month
   token, will need regenerating in hPanel → API before then or any
   Hostinger-API-dependent work (theme/plugin management on Dev/Prod)

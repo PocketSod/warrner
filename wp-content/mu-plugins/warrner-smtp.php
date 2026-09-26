@@ -21,9 +21,10 @@ add_action( 'phpmailer_init', function ( $phpmailer ) {
 	$phpmailer->Password   = defined( 'WARRNER_SMTP_PASSWORD' ) ? WARRNER_SMTP_PASSWORD : '';
 	$phpmailer->SMTPSecure = defined( 'WARRNER_SMTP_SECURE' ) ? WARRNER_SMTP_SECURE : 'tls';
 
-	// M365 (and most providers) reject or flag mail where the From address
-	// doesn't match the authenticated mailbox. Force it to match rather
-	// than trust wp_mail()'s default wordpress@<host> From.
+	// Providers reject or flag mail from a sender they haven't verified.
+	// Force a known From rather than trust wp_mail()'s default
+	// wordpress@<host>. Brevo's SMTP login isn't an email address, so
+	// installs using Brevo must set WARRNER_SMTP_FROM_EMAIL.
 	$from_email = defined( 'WARRNER_SMTP_FROM_EMAIL' ) ? WARRNER_SMTP_FROM_EMAIL : $phpmailer->Username;
 	$from_name  = defined( 'WARRNER_SMTP_FROM_NAME' ) ? WARRNER_SMTP_FROM_NAME : 'Warrner Legal';
 	if ( '' !== $from_email ) {

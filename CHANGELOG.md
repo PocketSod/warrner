@@ -31,6 +31,9 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   `wp-config.php` (the one line, marked with a comment). Remove that line
   when real content is ready to go live. It was added over FTP; a pre-edit
   copy of the file is not kept in the repo.
+- Intake-form email: Brevo chosen (2026-09-26); account, DNS and
+  production constants not set up yet. Until then `wp_mail()` uses
+  Hostinger's default transport.
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -53,6 +56,40 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
 ---
 
 ## Log
+
+### 2026-09-26: Intake-form mail moves to Brevo, not M365 SMTP AUTH
+- **Decision:** the intake form sends through Brevo's SMTP relay instead
+  of `smtp.office365.com`. Reason: the M365 route depended on Erin's
+  tenant allowing SMTP AUTH (off by default, possibly blocked by
+  Conditional Access) and put her mailbox password or app password in a
+  server config file. Brevo needs nothing from her tenant, its free tier
+  (300/day) covers a contact form, and its SMTP key can be revoked
+  without touching her mailbox. The Graph API fallback is dropped.
+- No code change needed: `warrner-smtp.php` is provider-neutral. Only
+  its From comment and `wp-config-sample.php`'s example values changed.
+- **Send from `notify.erinwlegal.com`, not the root domain.** Keeps
+  Brevo's DNS records and sending reputation separate from Erin's M365
+  mail on `erinwlegal.com`. Brevo's DKIM selectors (`brevo1`/`brevo2`)
+  don't collide with M365's (`selector1`/`selector2`) either way.
+- Brevo requires a DMARC record before it will authenticate a domain.
+  None exists on `erinwlegal.com` (see the 2026-09-22 DKIM entry). A
+  `p=none` record at `_dmarc.erinwlegal.com` only reports, it doesn't
+  reject, so it's safe for her M365 mail and covers the subdomain too.
+- Setup steps, none done yet:
+  1. Create the Brevo account (ideally owned by Erin, see ACCOUNTS.md).
+  2. Senders, Domains & Dedicated IPs → Domains → add
+     `notify.erinwlegal.com`. Add every record it lists at GoDaddy
+     (a `brevo-code` TXT, two DKIM CNAMEs, DMARC). Leave MX, SPF and the
+     M365 records alone, as in the 2026-09-19 cutover.
+  3. Add sender `intake@notify.erinwlegal.com` (no mailbox needed).
+  4. SMTP & API → SMTP → generate an SMTP key. Note the SMTP login shown
+     there; it is not the account email.
+  5. In production's `wp-config.php` (over FTP, never this repo): host
+     `smtp-relay.brevo.com`, port 587, secure `tls`, username = SMTP
+     login, password = SMTP key, from = `intake@notify.erinwlegal.com`.
+  6. Submit the intake form on production, confirm it lands in Erin's
+     inbox and not junk. M365 may flag the first few; if so, have her
+     mark it "Not junk" or add the sender to her safe list.
 
 ### 2026-09-26: Erin's answers to the missing-info list
 - Added "Criminal Defense for Immigrants" as a sixth practice area (grid

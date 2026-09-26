@@ -100,19 +100,19 @@ define( 'WP_DEBUG', false );
 /**
  * Route wp_mail() through SMTP instead of PHP's default mail() transport
  * (wp-content/mu-plugins/warrner-smtp.php). Off unless WARRNER_SMTP_HOST is
- * set. For Microsoft 365: host smtp.office365.com, port 587, secure 'tls'.
- * WARRNER_SMTP_USERNAME must be a mailbox with SMTP AUTH enabled for it in
- * the Exchange admin center (often off by default) — the password is an
- * app password or the mailbox password, per that tenant's auth policy.
+ * set. Provider is Brevo (chosen 2026-09-26 over M365 SMTP AUTH, see
+ * CHANGELOG.md). USERNAME is the "SMTP login" shown under Brevo's SMTP & API
+ * page (not the account email), PASSWORD is an SMTP key generated there.
+ * FROM_EMAIL must be on a domain authenticated in Brevo's Domains page.
  * Never commit real values here; each install sets its own in its own
  * (gitignored) wp-config.php.
  */
-// define( 'WARRNER_SMTP_HOST', 'smtp.office365.com' );
+// define( 'WARRNER_SMTP_HOST', 'smtp-relay.brevo.com' );
 // define( 'WARRNER_SMTP_PORT', 587 );
 // define( 'WARRNER_SMTP_SECURE', 'tls' );
-// define( 'WARRNER_SMTP_USERNAME', 'erin@erinwlegal.com' );
+// define( 'WARRNER_SMTP_USERNAME', '' );
 // define( 'WARRNER_SMTP_PASSWORD', '' );
-// define( 'WARRNER_SMTP_FROM_EMAIL', 'erin@erinwlegal.com' );
+// define( 'WARRNER_SMTP_FROM_EMAIL', 'intake@notify.erinwlegal.com' );
 // define( 'WARRNER_SMTP_FROM_NAME', 'Warrner Legal' );
 
 /* That's all, stop editing! Happy publishing. */
