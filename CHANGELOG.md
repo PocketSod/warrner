@@ -78,6 +78,8 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   alternates backgrounds where testimonials used to sit.
 - `es_ES.mo` updated with the 11 new strings; replaced strings and sample
   quotes dropped (136 entries).
+- Deployed to dev.erinwlegal.com for Erin's review (`npm run deploy:dev`)
+  and verified the new copy renders there.
 
 ### 2026-09-25: Consultations are paid; employment immigration removed
 - Erin reviewed the draft and said she will charge for consults, and that
