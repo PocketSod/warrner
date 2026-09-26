@@ -31,9 +31,11 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   `wp-config.php` (the one line, marked with a comment). Remove that line
   when real content is ready to go live. It was added over FTP; a pre-edit
   copy of the file is not kept in the repo.
-- Intake-form email: Brevo chosen (2026-09-26); account, DNS and
-  production constants not set up yet. Until then `wp_mail()` uses
-  Hostinger's default transport.
+- Intake-form email goes through Brevo on production (live 2026-09-26).
+  Still to do: a real intake-form submission to confirm it lands in
+  Erin's inbox, not junk; restricting the SMTP key to the server's
+  sending IP (Brevo Security → Authorized IPs); and a plan for the key's
+  90-day inactivity expiry (see the Brevo entry below).
 - AI-assisted lead scoring (`inc/ai-lead-intake.php`) is stubbed, not wired
   in. Needs a reviewed pass on API key storage/consent before it touches
   real client PII.
@@ -71,32 +73,34 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   Brevo's DNS records and sending reputation separate from Erin's M365
   mail on `erinwlegal.com`. Brevo's DKIM selectors (`brevo1`/`brevo2`)
   don't collide with M365's (`selector1`/`selector2`) either way.
-- Brevo requires a DMARC record before it will authenticate a domain.
-  None exists on `erinwlegal.com` (see the 2026-09-22 DKIM entry). A
-  `p=none` record at `_dmarc.erinwlegal.com` only reports, it doesn't
-  reject, so it's safe for her M365 mail and covers the subdomain too.
 - **Done 2026-09-26:** Brevo account created (under a PocketSod email,
   so it needs transferring at handover); domain `notify.erinwlegal.com`
   added; four records added at GoDaddy (`notify` TXT brevo-code,
   `brevo1`/`brevo2._domainkey.notify` CNAMEs, `_dmarc.notify` TXT
   `p=none`). Brevo put DMARC on the subdomain, so no root `_dmarc` was
   added. Verified resolving on ns33 and 8.8.8.8; M365 MX, SPF and DKIM
-  records unchanged.
-- Setup steps:
-  1. Create the Brevo account (ideally owned by Erin, see ACCOUNTS.md).
-  2. Senders, Domains & Dedicated IPs → Domains → add
-     `notify.erinwlegal.com`. Add every record it lists at GoDaddy
-     (a `brevo-code` TXT, two DKIM CNAMEs, DMARC). Leave MX, SPF and the
-     M365 records alone, as in the 2026-09-19 cutover.
-  3. Add sender `intake@notify.erinwlegal.com` (no mailbox needed).
-  4. SMTP & API → SMTP → generate an SMTP key. Note the SMTP login shown
-     there; it is not the account email.
-  5. In production's `wp-config.php` (over FTP, never this repo): host
-     `smtp-relay.brevo.com`, port 587, secure `tls`, username = SMTP
-     login, password = SMTP key, from = `intake@notify.erinwlegal.com`.
-  6. Submit the intake form on production, confirm it lands in Erin's
-     inbox and not junk. M365 may flag the first few; if so, have her
-     mark it "Not junk" or add the sender to her safe list.
+  records unchanged. Sender `intake@notify.erinwlegal.com` added and
+  verified. Link branding skipped (only affects marketing tracking links).
+- SMTP key "Production" created with no fixed expiry. SMTP login is
+  `bb4220001@smtp-brevo.com`. The first key-generation attempt failed
+  with a generic "try again later" error; Brevo asks for an emailed
+  verification code before creating a key, which is the likely cause.
+- Constants added to production's `wp-config.php` by the developer through
+  hPanel File Manager (host `smtp-relay.brevo.com`, 587, `tls`, from
+  `intake@notify.erinwlegal.com`). **Verified:** a wp-login password reset
+  for the production admin arrived from
+  `Warrner Legal <intake@notify.erinwlegal.com>`, and Brevo's transactional
+  log shows it Sent.
+- **Brevo SMTP keys expire after 90 consecutive days without use**, even
+  with no fixed expiry. A quiet intake form could hit that and fail
+  silently. A monthly heartbeat email via WP-Cron was proposed and not
+  yet approved; until something is in place, send any test email at
+  least every 90 days, or check the key's "Last used on" date in Brevo.
+- IP restriction for SMTP keys left off until the server's actual sending
+  IP is confirmed from Brevo's log. The IP in the reset email's body
+  (`46.110.50.46`) is the requester's, not the server's.
+- Still to do: one real intake-form submission to Erin. M365 may junk the
+  first few; if so, have her mark it "Not junk" or safe-list the sender.
 
 ### 2026-09-26: Erin's answers to the missing-info list
 - Added "Criminal Defense for Immigrants" as a sixth practice area (grid

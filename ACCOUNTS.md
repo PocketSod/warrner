@@ -33,6 +33,7 @@ hers · ⚪ not Erin's concern (developer's own tooling/asset)
 | Account | What it's for | Who holds it now | Where to manage it | Handover |
 |---|---|---|---|---|
 | **Microsoft 365** | Erin's live mailbox, `erin@erinwlegal.com` — the business's actual email | **Erin's own account already.** | admin.microsoft.com / outlook.com | 🟡 Nothing to transfer — this is already hers. Only note: as of 2026-09-22 the developer does *not* have any access here; every DNS/SMTP-related ask has gone through Erin directly (see CHANGELOG.md's DKIM and SMTP AUTH entries). If the developer is ever granted scoped Exchange Administrator access for convenience, that's a separate grant Erin controls and can revoke any time — see the 2026-09-22 conversation for exactly what that would look like. |
+| **Brevo** ("Warrner Legal") | Sends the intake form's notification emails over SMTP from `intake@notify.erinwlegal.com` (live 2026-09-26). Free tier. | Created under a PocketSod email (`contact@pocketsod.com` is its default sender). | app.brevo.com | 🔴 Add Erin as a user or move the owner email to hers before handover. The SMTP key lives only in production's `wp-config.php`; regenerate it rather than hand it over. |
 
 ## Code
 
@@ -66,7 +67,6 @@ Roadmap phase comes up (see [ROADMAP.md](ROADMAP.md)).
 |---|---|---|
 | Google Search Console (and optionally Bing Webmaster Tools) | Submitting the sitemap once the site is publicly launched | ROADMAP.md Phase 3 |
 | Google Analytics (or equivalent) | If Erin wants visitor analytics — not yet decided | ROADMAP.md Phase 3 |
-| Brevo | Sending the intake form's notification emails over SMTP (decided 2026-09-26). Should be created in Erin's name, or with her email as owner, so it doesn't need transferring later. Free tier covers the volume. | ROADMAP.md Phase 1, item 2 |
 | Anthropic (Claude API) | Only if the stubbed AI lead-scoring feature (`inc/ai-lead-intake.php`) is ever reviewed and turned on | Not scheduled — flagged as needing a security/consent review first, see ROADMAP.md |
 
 ---

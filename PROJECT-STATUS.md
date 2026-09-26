@@ -66,7 +66,7 @@ items" section, which is the authoritative source if they ever disagree.)
 | Item | Status |
 |---|---|
 | Privacy Policy / Terms of Use pages on production | Not created yet (they live in the DB, not this repo — must be recreated per-environment) |
-| SMTP for the intake form | Mu-plugin built and deployed (off by default). Provider is Brevo (decided 2026-09-26). Needs a Brevo account, DNS records at GoDaddy, then constants in production's `wp-config.php`, see CHANGELOG.md |
+| SMTP for the intake form | Live on production via Brevo (2026-09-26), test send verified. Remaining: one real intake-form test to Erin's inbox, and handling the key's 90-day inactivity expiry, see CHANGELOG.md |
 | Homepage placeholder copy (`[PLACEHOLDER]` tags) | Waiting on real numbers/facts from Erin |
 | Practice-area pages | `functions.php` still returns hardcoded placeholder data; real pages not built |
 | Attorney CPT | Empty — needs at least Erin's own bio/headshot |

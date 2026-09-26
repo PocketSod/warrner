@@ -19,13 +19,11 @@ Nothing here blocks anything else in this phase; they can happen in any order.
    2026-09-22 but it's unconfirmed — send a test via mail-tester.com, or
    check a sent message's headers for `DKIM-Signature: d=erinwlegal.com`.
    See CHANGELOG.md's 2026-09-22 DKIM entry.
-2. **Set up Brevo for the intake form.** *(Developer, then Claude)* Decided
-   2026-09-26, replacing the M365 SMTP AUTH plan, so nothing is needed
-   from Erin's tenant. Create the Brevo account (ideally in Erin's name),
-   authenticate `notify.erinwlegal.com`, add the DNS records Brevo lists
-   at GoDaddy, generate an SMTP key, then set the constants in
-   production's `wp-config.php` and test the intake form. Steps in
-   CHANGELOG.md's 2026-09-26 Brevo entry.
+2. **Finish Brevo for the intake form.** *(Developer, with Erin)* Brevo
+   is live on production and a test send worked (2026-09-26). Left: one
+   real intake-form submission landing in Erin's inbox, and a way to
+   keep the SMTP key from expiring after 90 idle days. See CHANGELOG.md's
+   2026-09-26 Brevo entry.
 3. **Confirm `siteurl` matches `home`.** *(Claude, quick check)* `home` is
    confirmed `https://erinwlegal.com`. `siteurl` specifically wasn't
    independently re-verified this session (it isn't exposed by the default
