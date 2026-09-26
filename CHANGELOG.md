@@ -75,7 +75,14 @@ typo/formatting fixes don't need an entry. Newest entries go on top.
   None exists on `erinwlegal.com` (see the 2026-09-22 DKIM entry). A
   `p=none` record at `_dmarc.erinwlegal.com` only reports, it doesn't
   reject, so it's safe for her M365 mail and covers the subdomain too.
-- Setup steps, none done yet:
+- **Done 2026-09-26:** Brevo account created (under a PocketSod email,
+  so it needs transferring at handover); domain `notify.erinwlegal.com`
+  added; four records added at GoDaddy (`notify` TXT brevo-code,
+  `brevo1`/`brevo2._domainkey.notify` CNAMEs, `_dmarc.notify` TXT
+  `p=none`). Brevo put DMARC on the subdomain, so no root `_dmarc` was
+  added. Verified resolving on ns33 and 8.8.8.8; M365 MX, SPF and DKIM
+  records unchanged.
+- Setup steps:
   1. Create the Brevo account (ideally owned by Erin, see ACCOUNTS.md).
   2. Senders, Domains & Dedicated IPs → Domains → add
      `notify.erinwlegal.com`. Add every record it lists at GoDaddy
